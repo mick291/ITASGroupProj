@@ -1,0 +1,1427 @@
+
+Setting up MetaDeta for className: bed
+Setting up MetaDeta for className: care_center
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => care_center_has_employee
+            [_columns:protected] => Array
+                (
+                    [care_center_care_center_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => care_center_care_center_id
+                            [_quoted:protected] => 
+                        )
+
+                    [employee_employee_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => employee_employee_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_care_center_id
+                                    [1] => employee_employee_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_employee_employee1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => employee_employee_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_employee_employee1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_employee_care_center1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_care_center_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_employee_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_care_center_has_employee_care_center1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                    [fk_care_center_has_employee_employee1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => employee_employee_id
+                                )
+
+                            [_foreignTableName:protected] => employee
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => employee_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_care_center_has_employee_employee1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => care_center_care_center_id
+        )
+
+    [_foreignTableName:protected] => care_center
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => care_center_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_care_center_has_employee_care_center1
+    [_quoted:protected] => 
+)
+
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => care_center_has_employee
+            [_columns:protected] => Array
+                (
+                    [care_center_care_center_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => care_center_care_center_id
+                            [_quoted:protected] => 
+                        )
+
+                    [employee_employee_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => employee_employee_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_care_center_id
+                                    [1] => employee_employee_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_employee_employee1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => employee_employee_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_employee_employee1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_employee_care_center1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_care_center_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_employee_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_care_center_has_employee_care_center1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => care_center_care_center_id
+                                )
+
+                            [_foreignTableName:protected] => care_center
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_care_center_has_employee_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_employee_employee1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => employee_employee_id
+        )
+
+    [_foreignTableName:protected] => employee
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => employee_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_care_center_has_employee_employee1
+    [_quoted:protected] => 
+)
+Target Entity
+Employee
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => care_center_has_physician
+            [_columns:protected] => Array
+                (
+                    [care_center_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => care_center_id
+                            [_quoted:protected] => 
+                        )
+
+                    [physician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => physician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                    [1] => physician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_physician1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => physician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_physician1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_has_physician_care_center1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_has_physician_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_has_physician_care_center1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                    [fk_care_center_has_physician1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => physician_id
+                                )
+
+                            [_foreignTableName:protected] => physician
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => physician_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_care_center_has_physician1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => care_center_id
+        )
+
+    [_foreignTableName:protected] => care_center
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => care_center_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_has_physician_care_center1
+    [_quoted:protected] => 
+)
+
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => care_center_has_physician
+            [_columns:protected] => Array
+                (
+                    [care_center_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => care_center_id
+                            [_quoted:protected] => 
+                        )
+
+                    [physician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => physician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                    [1] => physician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_physician1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => physician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_care_center_has_physician1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_has_physician_care_center1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_has_physician_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_has_physician_care_center1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                )
+
+                            [_foreignTableName:protected] => care_center
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => care_center_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_has_physician_care_center1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_care_center_has_physician1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => physician_id
+        )
+
+    [_foreignTableName:protected] => physician
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => physician_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_care_center_has_physician1
+    [_quoted:protected] => 
+)
+Target Entity
+Physician
+Setting up MetaDeta for className: item
+Setting up MetaDeta for className: item_consumed
+Setting up MetaDeta for className: laboratory
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => laboratory_has_technician
+            [_columns:protected] => Array
+                (
+                    [laboratory_laboratory_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => laboratory_laboratory_id
+                            [_quoted:protected] => 
+                        )
+
+                    [technician_technician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => technician_technician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => laboratory_laboratory_id
+                                    [1] => technician_technician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_laboratory_has_technician_technician1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => technician_technician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_laboratory_has_technician_technician1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_laboratory_has_technician_laboratory1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => laboratory_laboratory_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_laboratory_has_technician_laboratory1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_laboratory_has_technician_laboratory1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                    [fk_laboratory_has_technician_technician1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => technician_technician_id
+                                )
+
+                            [_foreignTableName:protected] => technician
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => technician_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_laboratory_has_technician_technician1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => laboratory_laboratory_id
+        )
+
+    [_foreignTableName:protected] => laboratory
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => laboratory_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_laboratory_has_technician_laboratory1
+    [_quoted:protected] => 
+)
+
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => laboratory_has_technician
+            [_columns:protected] => Array
+                (
+                    [laboratory_laboratory_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => laboratory_laboratory_id
+                            [_quoted:protected] => 
+                        )
+
+                    [technician_technician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => technician_technician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => laboratory_laboratory_id
+                                    [1] => technician_technician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_laboratory_has_technician_technician1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => technician_technician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_laboratory_has_technician_technician1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_laboratory_has_technician_laboratory1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => laboratory_laboratory_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_laboratory_has_technician_laboratory1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_laboratory_has_technician_laboratory1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => laboratory_laboratory_id
+                                )
+
+                            [_foreignTableName:protected] => laboratory
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => laboratory_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_laboratory_has_technician_laboratory1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_laboratory_has_technician_technician1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => technician_technician_id
+        )
+
+    [_foreignTableName:protected] => technician
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => technician_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_laboratory_has_technician_technician1
+    [_quoted:protected] => 
+)
+Target Entity
+Technician
+Setting up MetaDeta for className: outpatient
+Setting up MetaDeta for className: patient
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => referral
+            [_columns:protected] => Array
+                (
+                    [patient_patient_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => patient_patient_id
+                            [_quoted:protected] => 
+                        )
+
+                    [physicians_physician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => physicians_physician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                    [1] => physicians_physician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_patient_has_physicians_physicians1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => physicians_physician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_patient_has_physicians_physicians1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_patient_has_physicians_patient1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_patient_has_physicians_patient1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_patient_has_physicians_patient1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                    [fk_patient_has_physicians_physicians1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => physicians_physician_id
+                                )
+
+                            [_foreignTableName:protected] => physician
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => physician_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_patient_has_physicians_physicians1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => patient_patient_id
+        )
+
+    [_foreignTableName:protected] => patient
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => patient_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_patient_has_physicians_patient1
+    [_quoted:protected] => 
+)
+
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => referral
+            [_columns:protected] => Array
+                (
+                    [patient_patient_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => patient_patient_id
+                            [_quoted:protected] => 
+                        )
+
+                    [physicians_physician_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => physicians_physician_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                    [1] => physicians_physician_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_patient_has_physicians_physicians1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => physicians_physician_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_patient_has_physicians_physicians1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_patient_has_physicians_patient1] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                )
+
+                            [_isUnique:protected] => 
+                            [_isPrimary:protected] => 
+                            [_name:protected] => fk_patient_has_physicians_patient1
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_patient_has_physicians_patient1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+                        (
+                            [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+ *RECURSION*
+                            [_localColumnNames:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                )
+
+                            [_foreignTableName:protected] => patient
+                            [_foreignColumnNames:protected] => Array
+                                (
+                                    [0] => patient_id
+                                )
+
+                            [_cascade:protected] => 
+                            [_options:protected] => Array
+                                (
+                                    [onUpdate] => NO ACTION
+                                    [onDelete] => NO ACTION
+                                )
+
+                            [_name:protected] => fk_patient_has_physicians_patient1
+                            [_quoted:protected] => 
+                        )
+
+                    [fk_patient_has_physicians_physicians1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => physicians_physician_id
+        )
+
+    [_foreignTableName:protected] => physician
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => physician_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_patient_has_physicians_physicians1
+    [_quoted:protected] => 
+)
+Target Entity
+Physician
+Checking ForeignKey Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+(
+    [_localTable:protected] => Doctrine\DBAL\Schema\Table Object
+        (
+            [_name:protected] => resident
+            [_columns:protected] => Array
+                (
+                    [patient_patient_id] => Doctrine\DBAL\Schema\Column Object
+                        (
+                            [_type:protected] => Doctrine\DBAL\Types\IntegerType Object
+                                (
+                                )
+
+                            [_length:protected] => 
+                            [_precision:protected] => 0
+                            [_scale:protected] => 
+                            [_unsigned:protected] => 
+                            [_fixed:protected] => 
+                            [_notnull:protected] => 1
+                            [_default:protected] => 
+                            [_autoincrement:protected] => 
+                            [_platformOptions:protected] => Array
+                                (
+                                )
+
+                            [_columnDefinition:protected] => 
+                            [_name:protected] => patient_patient_id
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_indexes:protected] => Array
+                (
+                    [primary] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 1
+                            [_name:protected] => PRIMARY
+                            [_quoted:protected] => 
+                        )
+
+                    [patient_patient_id_unique] => Doctrine\DBAL\Schema\Index Object
+                        (
+                            [_columns:protected] => Array
+                                (
+                                    [0] => patient_patient_id
+                                )
+
+                            [_isUnique:protected] => 1
+                            [_isPrimary:protected] => 
+                            [_name:protected] => patient_patient_id_UNIQUE
+                            [_quoted:protected] => 
+                        )
+
+                )
+
+            [_primaryKeyName:protected] => primary
+            [_fkConstraints:protected] => Array
+                (
+                    [fk_resident_patient1] => Doctrine\DBAL\Schema\ForeignKeyConstraint Object
+ *RECURSION*
+                )
+
+            [_options:protected] => Array
+                (
+                )
+
+            [_schemaConfig:protected] => 
+            [_quoted:protected] => 
+            [_idGeneratorType] => 
+        )
+
+    [_localColumnNames:protected] => Array
+        (
+            [0] => patient_patient_id
+        )
+
+    [_foreignTableName:protected] => patient
+    [_foreignColumnNames:protected] => Array
+        (
+            [0] => patient_id
+        )
+
+    [_cascade:protected] => 
+    [_options:protected] => Array
+        (
+            [onUpdate] => NO ACTION
+            [onDelete] => NO ACTION
+        )
+
+    [_name:protected] => fk_resident_patient1
+    [_quoted:protected] => 
+)
+Target Entity
+Physician
+
+                                                                                                       
+  [Doctrine\ORM\Mapping\MappingException]                                                              
+  Property "physiciansPhysician" in "Patient" was already declared, but it must be declared only once  
+                                                                                                       
+
+
+orm:convert-mapping [--filter="..."] [--from-database] [--extend[="..."]] [--num-spaces[="..."]] [-h|--help] [-q|--quiet] [-v|--verbose] [-V|--version] [-a|--ansi] [-n|--no-interaction] command to-type dest-path
+
+

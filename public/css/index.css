@@ -1,0 +1,524 @@
+body,html {
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0;
+    border:0;	
+    /* This removes the border around the viewport in old versions of IE */
+    width:100%;
+    background-color: #85B7E0;
+    /* The min-width property does not work in old versions of Internet Explorer */
+    font:90%/1.25em arial, sans-serif;
+  letter-spacing:.1em;
+  
+}
+A:link {
+ COLOR: #4390D0  /*The color of the link*/
+}
+A:visited {
+ COLOR: #E83571 /*The color of the visited link*/
+}
+A:hover {
+ COLOR: green /*The color of the mouseover or 'hover' link*/
+}
+
+#content {
+
+    -moz-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+    background-color: #D6E7F5;
+     background-image: url(../images/staroflife.gif);
+     background-repeat: no-repeat;
+      background-position: 1.5% 2%;
+  
+}
+
+div#leftholder
+	{
+		width:200px;
+                left: 20px;
+		float: left;
+                position:absolute;
+		margin-right:8px;
+                top: 440px;
+                 border: thin;
+    border-color:#000;
+    border-style:groove;
+    border-radius: 9px;
+    -moz-box-shadow: inset 0 0 15px #000;
+    -webkit-box-shadow: inset 0 0 15px #000;
+    box-shadow: inner 0 0 15px #000;
+    
+	}
+        	
+	div#toprightholder
+	{
+	top: 8px;
+    right:0;
+    width:350px;
+ position:absolute;
+	}
+        
+        div#rightholder
+	{
+	width:300px;
+		float: left;
+                position:absolute;
+		margin-right:8px;
+                right:0;
+                top: 440px;
+	}
+
+
+h1 {
+	font:225%/1.25em garamond, georgia, 'times new roman', serif;
+	text-align:center;
+        color: #000;
+	margin:0 auto 15px;
+}
+h2 {
+	font:200%/1.25em garamond, georgia, 'times new roman', serif;
+	text-align:center;
+        color: #5e5b5b;
+	margin:30px auto 15px;
+}
+p {
+	margin:15px auto;
+	padding:15px;
+	border-top:1px dotted #DDD;
+	border-bottom:1px dotted #DDD;
+}
+	p.highlight {
+	  border:1px solid #FFD;
+	  padding:15px;
+	  background:#FFE;
+	  color:#820;
+	}
+	
+pre {
+	margin:15px auto;
+}
+
+#header{
+    float: left;
+    width: 100%;
+    text-align: left;
+    padding-bottom: inherit;
+    margin-bottom: 10px; 
+    -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    background-color: #ededed;
+}
+#logged-in-as {
+    margin-top: 10px;
+    float:right;
+}
+div #headerimage {
+   
+    }
+
+/* Footer styles */
+footer {
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding-bottom: inherit;
+    margin-bottom: 10px; 
+    -moz-box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.4);
+    background-color: #ededed;
+}
+footer p {
+    padding:10px;
+    margin:0;
+    text-align: center;
+}
+table
+{
+    margin-left:auto;
+    margin-right:auto;
+    border: thin;
+    border-color:#000;
+    border-style:groove;
+    border-radius: 9px;
+    -moz-box-shadow: inset 0 0 15px #000;
+    -webkit-box-shadow: inset 0 0 15px #000;
+    box-shadow: inner 0 0 15px #000;
+    padding:5px;
+
+}
+#navigation li {
+
+    display: inline;
+    text-decoration: none; 
+    text-align: center;
+    color: #6b6868;
+    padding: 2px;
+}
+
+#navigation li.active{
+    text-transform: uppercase; 
+    color: #000; 
+    font-weight: bold;
+    background-color: #ededed;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left-color: #59d9d9;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-right-color: #29d9d9;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+#navigation li.active ul{
+    text-transform: uppercase;
+    color: #000;
+    font-weight: bold;
+    background-color: #ededed;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left-color: #d9d9d9;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-right-color: #d9d9d9;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+#navigation a:link {
+    text-decoration: none;
+    color: inherit; 
+}
+#navigation a:visited {
+    text-decoration: none;
+    color: inherit; 
+}
+
+#navigation a:hover {
+    color: #000;
+}
+
+.nav {
+    text-align: center;
+    background-color: #AECFEA;  
+    margin-bottom: 0px;
+    padding: 1px;
+    -moz-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.colmask {
+    clear:both;
+    text-align: left;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;			/* width of whole page */
+    overflow:hidden;		/* This chops off any overhanging divs */
+}
+.colmask img {
+    border-style: groove;
+    border-color: #ebebeb;
+    -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+    float:left;
+    width:100%;
+    position:relative; 
+}
+.col1,
+.col2,
+.col3 {
+    float:left;
+    position:relative;
+    padding:0 0 1em 0;
+    overflow: hidden; 
+}
+
+/* 2 Column (double page) settings */
+.doublepage {
+}
+.doublepage .colleft {
+    right:50%;			/* right column width */
+}
+.doublepage .col1 {
+    width:46%;			/* left column content width (column width minus left and right padding) */
+    left:52%;			/* right column width plus left column left padding */
+}
+.doublepage .col2 {
+    width:46%;			/* right column content width (column width minus left and right padding) */
+    left:56%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+
+.topWidth {
+    width: 600px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: left;
+    height: auto;
+}
+
+form label {
+    color: #666;
+}
+
+/**
+ * Adding red star after label of each required Zend_Form_Element
+*/
+form label.required:after {
+    color: red;
+    content: "*";
+}
+
+/**
+ * Horizontally centering submit button, 'submit-container' class added by jquery
+*/
+form dd.submit-container {
+    clear: both;
+    text-align: left;
+}
+
+form fieldset {
+    border: none;
+}
+
+form dd {
+    margin: 0 0 0.7em 0;
+}
+
+form dd p.description {
+    width: 80%; 
+    max-width: 350px;
+    margin: 0.2em 0 0 0.2em; 
+    padding: 0;
+    color: #999;
+    font-size: 0.85em;
+}
+
+form dd ul.errors {
+    margin: 0 0 0 1.6em;
+    padding: 0;
+}
+
+form dd ul.errors li {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 0.2em;
+    margin: 0.2em 0 0 0;
+    padding: 0;
+    color: red;
+    font-size: 0.9em;
+}
+
+
+form input[type=text],
+form input[type=password],
+form textarea,
+form select {
+    width: 90%; 
+    max-width: 250px;
+    padding: 0.5em;
+    color: #555;
+    font-size: 1em;
+    background: #fff;
+    border: 1px #ddd solid;
+    -webkit-box-shadow: 0px 0px 4px #aaa;
+    -moz-box-shadow: 0px 0px 4px #aaa;
+    box-shadow: 0px 0px 4px #aaa;
+}
+
+/**
+ * Highlighting current element
+*/
+form input[type=text]:focus,
+form input[type=password]:focus,
+form select:focus,
+form textarea:focus {
+    background: #FFFFE0;
+}
+
+form select {
+    max-width: 65px;
+}
+
+form textarea {
+    height: 70px;
+}
+
+/**
+ * Highlighting elements that were found invalid.
+ * 'error' class added by jquery.
+*/
+form input[type=text].error,
+form input[type=password].error,
+form select.error,
+form textarea.error {
+    background: #fee;
+}
+
+form input[type=submit] {
+    margin-top: -10px;
+    padding: 0.4em 1.2em;
+    color: #666;
+    font-size: 3px; font-size: 1em;
+    border-radius: 5px; 
+    -moz-border-radius: 5px 5px 5px 5px;
+    border: 0 none;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 2px #666;
+    -moz-box-shadow: 2px 2px 2px #666;
+    box-shadow: 2px 2px 2px #666;
+    background: #f6f8f9; /* old browsers */
+    background: -moz-linear-gradient(
+        top, 
+        #f6f8f9 0%, 
+        #e5ebee 50%, 
+        #d7dee3 51%, 
+        #f5f7f9 100%
+        ); /* firefox */
+    background: -webkit-gradient(
+        linear, 
+        left top, 
+        left bottom, 
+        color-stop(0%,#f6f8f9), 
+        color-stop(50%,#e5ebee), 
+        color-stop(51%,#d7dee3), 
+        color-stop(100%,#f5f7f9)
+        ); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#f6f8f9', 
+        endColorstr='#f5f7f9',
+        GradientType=0
+        ); /* ie */
+}
+
+form input[type=submit]:hover {
+    color: #fff;
+    background: #bfd255; /* old browsers */
+    background: -moz-linear-gradient(
+        top, 
+        #bfd255 0%, 
+        #8eb92a 50%, 
+        #72aa00 51%, 
+        #9ecb2d 100%
+        ); /* firefox */
+    background: -webkit-gradient(
+        linear, 
+        left top, 
+        left bottom, 
+        color-stop(0%,#bfd255), 
+        color-stop(50%,#8eb92a), 
+        color-stop(51%,#72aa00), 
+        color-stop(100%,#9ecb2d)
+        ); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#bfd255', 
+        endColorstr='#9ecb2d',
+        GradientType=0
+        ); /* ie */
+}
+
+form.allInDisplayGroups > dl > dd > fieldset > legend {
+    font-size: .5em;
+}
+
+form.elementsOnly,
+form.subformsOnly fieldset,
+form.allInDisplayGroups fieldset fieldset,
+form.subformAndDisplayGroups fieldset {
+    margin-bottom: 1em;
+    padding: 1em 0;
+    background-color: #eee;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 10px #666;
+    -moz-box-shadow: 3px 3px 10px #666;
+    box-shadow: 3px 3px 10px #666;
+    background: #ffffff; /* old browsers */
+    background: -moz-linear-gradient(
+        top, 
+        #ffffff 0%, 
+        #e5e5e5 100%
+        ); /* firefox */
+    background: -webkit-gradient(
+        linear, 
+        left top, 
+        left bottom, 
+        color-stop(0%,#ffffff), 
+        color-stop(100%,#e5e5e5)
+        ); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( 
+        startColorstr='#ffffff', 
+        endColorstr='#e5e5e5',
+        GradientType=0
+        ); /* ie */
+}
+
+form.subformsOnly fieldset dd:last-of-type,
+form.allInDisplayGroups fieldset fieldset dd:last-of-type,
+form.subformAndDisplayGroups fieldset dd:last-of-type {
+    margin-bottom: 0;
+}
+
+form.subformsOnly fieldset legend,
+form.allInDisplayGroups fieldset fieldset legend,
+form.subformAndDisplayGroups fieldset legend {
+    width: 90%;
+    margin-top: -1em; margin-bottom: 1em;
+    padding: 0.2em 0;
+    color: #666;
+    font-size: .75em;
+    text-align: left;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-box-shadow: 2px 2px 2px #666;
+    -moz-box-shadow: 2px 2px 2px #666;
+    box-shadow: 2px 2px 2px #666;
+    background: #f6f8f9; /* old browsers */
+    background: -moz-linear-gradient(
+        top, 
+        #f6f8f9 0%, 
+        #e5ebee 50%, 
+        #d7dee3 51%, 
+        #f5f7f9 100%
+        ); /* firefox */
+    background: -webkit-gradient(
+        linear, 
+        left top, 
+        left bottom, 
+        color-stop(0%,#f6f8f9), 
+        color-stop(50%,#e5ebee), 
+        color-stop(51%,#d7dee3), 
+        color-stop(100%,#f5f7f9)
+        ); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( 
+        startColorstr='#f6f8f9', 
+        endColorstr='#f5f7f9',
+        GradientType=0
+        ); /* ie */
+}
+
+form.subformsOnly fieldset label,
+form.allInDisplayGroups fieldset fieldset label,
+form.subformAndDisplayGroups fieldset label {
+    font-size: .7em;
+}

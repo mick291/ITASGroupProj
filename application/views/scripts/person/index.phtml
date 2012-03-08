@@ -1,0 +1,26 @@
+<?php
+/**
+ * @category
+ * @package
+ * @copyright
+ * @author      Saeed Ahmed <saeed.sas@gmail.com>
+ * @date        7/5/11 2:50 PM
+ */
+?>
+
+<table border="0" align="center">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+    </tr>
+    <?php     
+    
+    foreach ($this->person as $key => $person) : ?>
+        <tr id="row_<?php echo $person['firstName']; ?>">
+        <?php $serial = $key + (($this->page - 1) * $this->itemNumber) ?>
+        <tr>
+            <td><?php echo $person['firstName']; ?></td>
+            <td><?php echo $person['address']; ?></td>
+        </tr>
+<?php endforeach; ?>
+</table

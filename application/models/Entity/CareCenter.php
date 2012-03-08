@@ -1,0 +1,125 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CareCenter
+ *
+ * @Table(name="care_center")
+ * @Entity
+ */
+class CareCenter
+{
+    /**
+     * @var integer $careCenterId
+     *
+     * @Column(name="care_center_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    private $careCenterId;
+
+    /**
+     * @var string $rooms
+     *
+     * @Column(name="rooms", type="string", length=45, nullable=false)
+     */
+    private $rooms;
+
+    /**
+     * @var string $location
+     *
+     * @Column(name="location", type="string", length=45, nullable=false)
+     */
+    private $location;
+
+    /**
+     * @var string $name
+     *
+     * @Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string $bedMax
+     *
+     * @Column(name="bed_max", type="string", length=45, nullable=false)
+     */
+    private $bedMax;
+
+    /**
+     * @var string $inventory
+     *
+     * @Column(name="inventory", type="string", length=45, nullable=false)
+     */
+    private $inventory;
+
+    /**
+     * @var string $labs
+     *
+     * @Column(name="labs", type="string", length=45, nullable=false)
+     */
+    private $labs;
+
+    /**
+     * @var string $nurseInCharge
+     *
+     * @Column(name="nurse_in_charge", type="string", length=45, nullable=false)
+     */
+    private $nurseInCharge;
+
+    /**
+     * @var Employee
+     *
+     * @ManyToMany(targetEntity="Employee", inversedBy="careCenterCareCenter")
+     * @JoinTable(name="care_center_has_employee",
+     *   joinColumns={
+     *     @JoinColumn(name="care_center_care_center_id", referencedColumnName="care_center_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+     *   }
+     * )
+     */
+    private $employeeEmployee;
+
+    /**
+     * @var ItemConsumed
+     *
+     * @ManyToMany(targetEntity="ItemConsumed", inversedBy="careCenter")
+     * @JoinTable(name="care_center_has_item_consumed",
+     *   joinColumns={
+     *     @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="iitem_id", referencedColumnName="item_item_id")
+     *   }
+     * )
+     */
+    private $iitem;
+
+    /**
+     * @var Physician
+     *
+     * @ManyToMany(targetEntity="Physician", inversedBy="careCenter")
+     * @JoinTable(name="care_center_has_physician",
+     *   joinColumns={
+     *     @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="physician_id", referencedColumnName="physician_id")
+     *   }
+     * )
+     */
+    private $physician;
+
+    public function __construct()
+    {
+        $this->employeeEmployee = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->iitem = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+}
