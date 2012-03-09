@@ -2,6 +2,7 @@
 
 namespace Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,9 +46,9 @@ class Physician
     /**
      * @var Patient
      *
-     * @ManyToMany(targetEntity="Patient", mappedBy="physiciansPhysician")
+     * @ManyToMany(targetEntity="Patient", mappedBy="physician")
      */
-    private $patientPatient;
+    private $patient;
 
     /**
      * @var Person
@@ -62,7 +63,7 @@ class Physician
     public function __construct()
     {
         $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->patientPatient = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->patient = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

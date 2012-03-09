@@ -13,28 +13,20 @@ use Doctrine\ORM\Mapping as ORM;
 class Laboratory
 {
     /**
-     * @var integer $laboratoryId
+     * @var integer $laboratoriesId
      *
-     * @Column(name="laboratory_id", type="integer", nullable=false)
+     * @Column(name="laboratories_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $laboratoryId;
+    private $laboratoriesId;
 
     /**
      * @var Technician
      *
-     * @ManyToMany(targetEntity="Technician", inversedBy="laboratoryLaboratory")
-     * @JoinTable(name="laboratory_has_technician",
-     *   joinColumns={
-     *     @JoinColumn(name="laboratory_laboratory_id", referencedColumnName="laboratory_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @JoinColumn(name="technician_technician_id", referencedColumnName="technician_id")
-     *   }
-     * )
+     * @ManyToMany(targetEntity="Technician", mappedBy="laboratories")
      */
-    private $technicianTechnician;
+    private $technician;
 
     /**
      * @var CareCenter
@@ -48,7 +40,7 @@ class Laboratory
 
     public function __construct()
     {
-        $this->technicianTechnician = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->technician = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

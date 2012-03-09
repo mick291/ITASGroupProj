@@ -13,23 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Outpatient
 {
     /**
-     * @var integer $patientPatientId
+     * @var integer $patientId
      *
-     * @Column(name="patient_patient_id", type="integer", nullable=false)
+     * @Column(name="patient_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $patientPatientId;
+    private $patientId;
 
     /**
      * @var Patient
      *
      * @ManyToOne(targetEntity="Patient")
      * @JoinColumns({
-     *   @JoinColumn(name="patient_patient_id", referencedColumnName="patient_id")
+     *   @JoinColumn(name="patient_id", referencedColumnName="patient_id")
      * })
      */
-    private $patientPatient;
+    private $patient;
 
 
 }

@@ -29,16 +29,6 @@ class Nurse
     private $certifiate;
 
     /**
-     * @var CareCenter
-     *
-     * @ManyToOne(targetEntity="CareCenter")
-     * @JoinColumns({
-     *   @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
-     * })
-     */
-    private $careCenter;
-
-    /**
      * @var Employee
      *
      * @ManyToOne(targetEntity="Employee")
@@ -47,6 +37,16 @@ class Nurse
      * })
      */
     private $nurse;
+
+    /**
+     * @var CareCenter
+     *
+     * @ManyToOne(targetEntity="CareCenter")
+     * @JoinColumns({
+     *   @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
+     * })
+     */
+    private $careCenter;
 
 
 }

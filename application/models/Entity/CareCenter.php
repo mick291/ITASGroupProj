@@ -73,17 +73,17 @@ class CareCenter
     /**
      * @var Employee
      *
-     * @ManyToMany(targetEntity="Employee", inversedBy="careCenterCareCenter")
+     * @ManyToMany(targetEntity="Employee", inversedBy="careCenter")
      * @JoinTable(name="care_center_has_employee",
      *   joinColumns={
-     *     @JoinColumn(name="care_center_care_center_id", referencedColumnName="care_center_id")
+     *     @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
      *   },
      *   inverseJoinColumns={
-     *     @JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+     *     @JoinColumn(name="employee_id", referencedColumnName="employee_id")
      *   }
      * )
      */
-    private $employeeEmployee;
+    private $employee;
 
     /**
      * @var ItemConsumed
@@ -94,11 +94,11 @@ class CareCenter
      *     @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
      *   },
      *   inverseJoinColumns={
-     *     @JoinColumn(name="iitem_id", referencedColumnName="item_item_id")
+     *     @JoinColumn(name="item_id", referencedColumnName="item_id")
      *   }
      * )
      */
-    private $iitem;
+    private $item;
 
     /**
      * @var Physician
@@ -117,8 +117,8 @@ class CareCenter
 
     public function __construct()
     {
-        $this->employeeEmployee = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->iitem = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->item = new \Doctrine\Common\Collections\ArrayCollection();
     $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
     }
     

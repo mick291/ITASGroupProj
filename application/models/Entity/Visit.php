@@ -22,13 +22,13 @@ class Visit
     private $visitId;
 
     /**
-     * @var integer $outpatientPatientPatientId
+     * @var integer $outpatientPatientId
      *
-     * @Column(name="outpatient_patient_patient_id", type="integer", nullable=false)
+     * @Column(name="outpatient_patient_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="NONE")
      */
-    private $outpatientPatientPatientId;
+    private $outpatientPatientId;
 
     /**
      * @var date $date
@@ -49,10 +49,10 @@ class Visit
      *
      * @ManyToOne(targetEntity="Outpatient")
      * @JoinColumns({
-     *   @JoinColumn(name="outpatient_patient_patient_id", referencedColumnName="patient_patient_id")
+     *   @JoinColumn(name="outpatient_patient_id", referencedColumnName="patient_id")
      * })
      */
-    private $outpatientPatientPatient;
+    private $outpatientPatient;
 
 
 }

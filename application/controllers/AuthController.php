@@ -68,14 +68,14 @@ class AuthController extends Zend_Controller_Action {
             } else {
                 //test
                 $SearchFor = $auth->getIdentity();               //What string do you want to find?
-                $SearchField = "samaccountname";   //In what Active Directory field do you want to search for the string?
+                $SearchField = "userprincipalname";   //In what Active Directory field do you want to search for the string?
 
-                $LDAPHost = "10.10.10.107";       //Your LDAP server DNS Name or IP Address
-                $dn = "DC=sharepoint,DC=mickelsmith,DC=ca"; //Put your Base DN here
-                $LDAPUserDomain = "@sharepoint.mickelsmith.ca";  //Needs the @, but not always the same as the LDAP server domain
+                $LDAPHost = "142.25.97.67";       //Your LDAP server DNS Name or IP Address
+                $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
+                $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
                 $LDAPUser = "vmail";        //A valid Active Directory login
-                $LDAPUserPassword = "medds";
-                $LDAPFieldsToFind = array("cn", "sn", "givenname", "samaccountname", "description", "telephonenumber", "mail");
+                $LDAPUserPassword = "GR0UP!M@!L";
+                $LDAPFieldsToFind = array("cn", "sn", "givenname", "samaccountname", "descritpion", "telephonenumber", "mail");
 
                 $cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
                 ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  //Set the LDAP Protocol used by your AD service
@@ -93,11 +93,12 @@ class AuthController extends Zend_Controller_Action {
                     $tel = $info[$x]['telephonenumber'][0];
                     $email = $info[$x]['mail'][0];
                     $nam = $info[$x]['cn'][0];
-                    $dis = $info[$x]['description'][0];
+                    $dis = $info[$x]['descritpion'][0];
                     $pos = strpos($dir, "home");
                     $pos = $pos + 5;
                 }
                 if ($x == 0) {
+
                     print "Oops, $SearchField $SearchFor was not found. Please try again.\n";
                 } else {
                     echo "found it";
@@ -113,8 +114,8 @@ class AuthController extends Zend_Controller_Action {
 
                 //end test
                 $user = Zend_Auth::getInstance()->getIdentity();
-                
-               echo $user['role'] = $dis;
+
+                echo $user['role'] = $dis;
                 $urlOptions = array('controller' => 'index', 'action' => 'index');
                 //$this->_helper->redirector->gotoRoute($urlOptions);
             }

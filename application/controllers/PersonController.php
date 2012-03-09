@@ -25,7 +25,7 @@ class PersonController extends Zend_Controller_Action {
         $dql = $this->_entityManager->createQueryBuilder();
         $dql->select('c.firstName', 'c.address')
                 ->from('Entity\Person', 'c')
-                //->leftJoin('c.Entity\Physician', 'p')
+                //->leftJoin('c.Entity\Physician.physician', 'p')
                 //->where('c.specialty = Brain surgeon')
                 ->orderBy('c.firstName', 'ASC');
 

@@ -13,13 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class ItemConsumed
 {
     /**
-     * @var integer $itemItemId
+     * @var integer $itemId
      *
-     * @Column(name="item_item_id", type="integer", nullable=false)
+     * @Column(name="item_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $itemItemId;
+    private $itemId;
 
     /**
      * @var string $date
@@ -52,31 +52,31 @@ class ItemConsumed
     /**
      * @var CareCenter
      *
-     * @ManyToMany(targetEntity="CareCenter", mappedBy="iitem")
+     * @ManyToMany(targetEntity="CareCenter", mappedBy="item")
      */
     private $careCenter;
 
     /**
      * @var Patient
      *
-     * @ManyToMany(targetEntity="Patient", mappedBy="itemConsumedItemItem")
+     * @ManyToMany(targetEntity="Patient", mappedBy="itemConsumed")
      */
-    private $patientPatient;
+    private $patient;
 
     /**
      * @var Item
      *
      * @ManyToOne(targetEntity="Item")
      * @JoinColumns({
-     *   @JoinColumn(name="item_item_id", referencedColumnName="item_id")
+     *   @JoinColumn(name="item_id", referencedColumnName="item_id")
      * })
      */
-    private $itemItem;
+    private $item;
 
     public function __construct()
     {
         $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->patientPatient = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->patient = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

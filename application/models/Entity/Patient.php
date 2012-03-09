@@ -38,42 +38,32 @@ class Patient
     /**
      * @var ItemConsumed
      *
-     * @ManyToMany(targetEntity="ItemConsumed", inversedBy="patientPatient")
+     * @ManyToMany(targetEntity="ItemConsumed", inversedBy="patient")
      * @JoinTable(name="patient_has_item_consumed",
      *   joinColumns={
-     *     @JoinColumn(name="patient_patient_id", referencedColumnName="patient_id")
+     *     @JoinColumn(name="patient_id", referencedColumnName="patient_id")
      *   },
      *   inverseJoinColumns={
-     *     @JoinColumn(name="item_consumed_item_item_id", referencedColumnName="item_item_id")
+     *     @JoinColumn(name="item_consumed_id", referencedColumnName="item_id")
      *   }
      * )
      */
-    private $itemConsumedItemItem;
+    private $itemConsumed;
 
     /**
      * @var Physician
      *
-     * @ManyToMany(targetEntity="Physician", inversedBy="patientPatient")
+     * @ManyToMany(targetEntity="Physician", inversedBy="patient")
      * @JoinTable(name="referral",
      *   joinColumns={
-     *     @JoinColumn(name="patient_patient_id", referencedColumnName="patient_id")
+     *     @JoinColumn(name="patient_id", referencedColumnName="patient_id")
      *   },
      *   inverseJoinColumns={
-     *     @JoinColumn(name="physicians_physician_id", referencedColumnName="physician_id")
+     *     @JoinColumn(name="physician_id", referencedColumnName="physician_id")
      *   }
      * )
      */
-    private $physiciansPhysician;
-
-    /**
-     * @var Physician
-     *
-     * @ManyToOne(targetEntity="Physician")
-     * @JoinColumns({
-     *   @JoinColumn(name="assigned_physician", referencedColumnName="physician_id")
-     * })
-     */
-    private $assignedPhysician;
+    private $physician;
 
     /**
      * @var Person
@@ -85,18 +75,20 @@ class Patient
      */
     private $patient;
 
+    /**
+     * @var Physician
+     *
+     * @ManyToOne(targetEntity="Physician")
+     * @JoinColumns({
+     *   @JoinColumn(name="assigned_physician", referencedColumnName="physician_id")
+     * })
+     */
+    private $assignedPhysician;
+
     public function __construct()
     {
-        $this->itemConsumedItemItem = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->physiciansPhysician = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->itemConsumed = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-      public function __get($property) 
-    { 
-        return $this->$property; 
-    } 
-    public function __set($property, $value) 
-    { 
-        $this->$property = $value; 
-    } 
 }

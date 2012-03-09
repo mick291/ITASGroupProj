@@ -31,9 +31,17 @@ class Technician
     /**
      * @var Laboratory
      *
-     * @ManyToMany(targetEntity="Laboratory", mappedBy="technicianTechnician")
+     * @ManyToMany(targetEntity="Laboratory", inversedBy="technician")
+     * @JoinTable(name="technician_has_laboratories",
+     *   joinColumns={
+     *     @JoinColumn(name="technician_id", referencedColumnName="technician_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="laboratories_id", referencedColumnName="laboratories_id")
+     *   }
+     * )
      */
-    private $laboratoryLaboratory;
+    private $laboratories;
 
     /**
      * @var Employee
@@ -47,7 +55,7 @@ class Technician
 
     public function __construct()
     {
-        $this->laboratoryLaboratory = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->laboratories = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

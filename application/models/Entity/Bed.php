@@ -17,9 +17,18 @@ class Bed
      *
      * @Column(name="bed_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * @GeneratedValue(strategy="NONE")
      */
     private $bedId;
+
+    /**
+     * @var integer $residentPatientId
+     *
+     * @Column(name="resident_patient_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="NONE")
+     */
+    private $residentPatientId;
 
     /**
      * @var integer $bedNumber
@@ -40,20 +49,20 @@ class Bed
      *
      * @ManyToOne(targetEntity="CareCenter")
      * @JoinColumns({
-     *   @JoinColumn(name="care_center_care_center_id", referencedColumnName="care_center_id")
+     *   @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
      * })
      */
-    private $careCenterCareCenter;
+    private $careCenter;
 
     /**
      * @var Resident
      *
      * @ManyToOne(targetEntity="Resident")
      * @JoinColumns({
-     *   @JoinColumn(name="resident_patient_patient_id", referencedColumnName="patient_patient_id")
+     *   @JoinColumn(name="resident_patient_id", referencedColumnName="patient_id")
      * })
      */
-    private $residentPatientPatient;
+    private $residentPatient;
 
 
 }

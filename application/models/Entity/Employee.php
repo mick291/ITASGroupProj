@@ -31,9 +31,9 @@ class Employee
     /**
      * @var CareCenter
      *
-     * @ManyToMany(targetEntity="CareCenter", mappedBy="employeeEmployee")
+     * @ManyToMany(targetEntity="CareCenter", mappedBy="employee")
      */
-    private $careCenterCareCenter;
+    private $careCenter;
 
     /**
      * @var Person
@@ -47,7 +47,7 @@ class Employee
 
     public function __construct()
     {
-        $this->careCenterCareCenter = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }
