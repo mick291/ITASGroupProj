@@ -8,6 +8,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * generate registry
      * @return Zend_Registry
      */
+      
     protected function _initRegistry() {
         $registry = Zend_Registry::getInstance();
         return $registry;
@@ -118,69 +119,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
-    }
-
-    protected function _initAcl() {
-        // Create a zend acl
-        $acl = new Zend_Acl();
-
-        // Load acl roles from config
-        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
-        $roles = $config->acl->roles;
-
-        // Loop through config and establish acl roles
-        foreach ($roles as $child => $parents) {
-            if (!$acl->hasRole($child)) {
-                if (empty($parents)) {
-                    $parents = null;
-                } else {
-                    $parents = explode(',', $parents);
-                }
-                $acl->addRole(new Zend_Acl_Role($child), $parents);
-            }
-        }
-
-        // Set null resource to be allowed
-        $acl->allow(null, null, null);
-
-        $resourcesAllow = $config->acl->resources->allow;
-        $resourcesDeny = $config->acl->resources->deny;
-
-        // Resources denied
-        if ($resourcesDeny != null) {
-            foreach ($resourcesDeny as $controller => $parents) {
-                if (!$acl->has($controller)) {
-                    $acl->addResource($controller);
-                }
-                foreach ($parents as $action => $role) {
-                    if ($action == 'all') {
-                        $action = null;
-                    }
-                    $acl->deny(
-                            $role, $controller, $action
-                    );
-                }
-            }
-        }
-
-        // Resources allowed
-        if ($resourcesAllow != null) {
-            foreach ($resourcesAllow as $controller => $parents) {
-                if (!$acl->has($controller)) {
-                    $acl->addResource($controller);
-                }
-                foreach ($parents as $action => $role) {
-                    if ($action == 'all') {
-                        $action = null;
-                    }
-                    $acl->allow(
-                            $role, $controller, $action
-                    );
-                }
-            }
-        }
-
-        Zend_Registry::set('acl', $acl);
     }
 
 }

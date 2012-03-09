@@ -66,13 +66,57 @@ class AuthController extends Zend_Controller_Action {
                     echo "$message<br>";
                 }
             } else {
-                $urlOptions = array('controller' => 'index', 'action' => 'index');
-                $this->_helper->redirector->gotoRoute($urlOptions);
+                //test
+                $SearchFor = $auth->getIdentity();               //What string do you want to find?
+                $SearchField = "samaccountname";   //In what Active Directory field do you want to search for the string?
+
+                $LDAPHost = "10.10.10.107";       //Your LDAP server DNS Name or IP Address
+                $dn = "DC=sharepoint,DC=mickelsmith,DC=ca"; //Put your Base DN here
+                $LDAPUserDomain = "@sharepoint.mickelsmith.ca";  //Needs the @, but not always the same as the LDAP server domain
+                $LDAPUser = "vmail";        //A valid Active Directory login
+                $LDAPUserPassword = "medds";
+                $LDAPFieldsToFind = array("cn", "sn", "givenname", "samaccountname", "description", "telephonenumber", "mail");
+
+                $cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+                ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  //Set the LDAP Protocol used by your AD service
+                ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);         //This was necessary for my AD to do anything
+                ldap_bind($cnx, $LDAPUser . $LDAPUserDomain, $LDAPUserPassword) or die("Could not bind to LDAP");
+                error_reporting(E_ALL ^ E_NOTICE);   //Suppress some unnecessary messages
+                $filter = "($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
+                $sr = ldap_search($cnx, $dn, $filter, $LDAPFieldsToFind);
+                $info = ldap_get_entries($cnx, $sr);
+
+                for ($x = 0; $x < $info["count"]; $x++) {
+                    $sam = $info[$x]['samaccountname'][0];
+                    $giv = $info[$x]['givenname'][0];
+                    $last = $info[$x]['sn'][0];
+                    $tel = $info[$x]['telephonenumber'][0];
+                    $email = $info[$x]['mail'][0];
+                    $nam = $info[$x]['cn'][0];
+                    $dis = $info[$x]['description'][0];
+                    $pos = strpos($dir, "home");
+                    $pos = $pos + 5;
+                }
+                if ($x == 0) {
+                    print "Oops, $SearchField $SearchFor was not found. Please try again.\n";
+                } else {
+                    echo "found it";
+                    echo "Active Directory says that:\n";
+                    echo "CN is: $nam \n";
+                    echo "SAMAccountName is: $sam \n";
+                    echo "Given Name is: $giv \n";
+                    echo "Telephone is: $tel \n";
+                    echo "Last Name is: $last \n";
+                    echo "Email is: $email \n";
+                    echo "Role is: $dis \n";
+                }
+
+                //end test
+                $user = Zend_Auth::getInstance()->getIdentity();
                 
-                echo 'Authentication is Ok';
-                echo '<br />';
-                echo 'Username is :';
-                echo $auth->getIdentity();
+               echo $user['role'] = $dis;
+                $urlOptions = array('controller' => 'index', 'action' => 'index');
+                //$this->_helper->redirector->gotoRoute($urlOptions);
             }
         }
     }
