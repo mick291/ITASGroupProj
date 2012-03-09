@@ -14,12 +14,12 @@
         <th>Address</th>
     </tr>
     <?php     
-    
+print_r($this->person);
     foreach ($this->person as $key => $person) : ?>
         <tr id="row_<?php echo $person['firstName']; ?>">
         <?php $serial = $key + (($this->page - 1) * $this->itemNumber) ?>
         <tr>
-            <td><?php echo $person['firstName']; ?></td>
+            <td><?php echo $key ."test" . $person; ?></td>
             <td><?php echo $person['address']; ?></td>
         </tr>
 <?php endforeach; ?>

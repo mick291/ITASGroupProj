@@ -111,7 +111,6 @@ class AuthController extends Zend_Controller_Action {
                     echo "Email is: $email \n";
                     echo "Role is: $dis \n";
                 }
-
                 //end test
                 $user = Zend_Auth::getInstance()->getIdentity();
 

@@ -22,17 +22,23 @@ class PersonController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $dql = $this->_entityManager->createQueryBuilder();
-        $dql->select('c.firstName', 'c.address')
-                ->from('Entity\Person', 'c')
-                //->leftJoin('c.Entity\Physician.physician', 'p')
-                //->where('c.specialty = Brain surgeon')
-                ->orderBy('c.firstName', 'ASC');
 
+        //Assuming $em is EntityManager
+        //$query = $this->createQuery('SELECT c, o FROM Car c JOIN c.owner o');
+       // $query = $this->_entityManager->createQuery('SELECT c, o FROM Entity\Physician c JOIN c.physician o WHERE c.specialty = \'Brain Surgeon\'');
+       // $result = $query->execute();
+
+        //$dql = $this->_entityManager->createQueryBuilder();
+        //$dql->select('c, p')
+        //        ->from('Entity\Physician', 'c')
+        //        ->leftJoin('c.physician', 'p')
+        //       ->where('c.specialty = \'Brain surgeon\'');
+        // ->orderBy('c.firstName', 'ASC');
+       
         $query = $dql->getQuery();
-
-        $records = new Zend_Paginator(new DoctrineExtensions\Paginate\PaginationAdapter($query));
-
+       // print_r($$query);
+       $records = new Zend_Paginator(new DoctrineExtensions\Paginate\PaginationAdapter($query));
+      //  print_r($result);
         $this->view->person = $records;
     }
 
