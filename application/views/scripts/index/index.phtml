@@ -3,12 +3,5 @@
         <th>Serial</th>
         <th>Name</th>
     </tr>
-<?php foreach ($this->records as $key => $customer) : ?>
-    <tr id="row_<?php echo $customer['personId'];?>">
-    <?php $serial = $key + (($this->page - 1) * $this->itemNumber) ?>
-    <tr>
-        <td><?php echo ++$serial; ?></td>
-        <td><?php echo $customer['address']; ?></td>
-    </tr>
-<?php endforeach; ?>
+
 </table>

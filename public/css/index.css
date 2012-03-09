@@ -9,17 +9,17 @@ body,html {
     background-color: #85B7E0;
     /* The min-width property does not work in old versions of Internet Explorer */
     font:90%/1.25em arial, sans-serif;
-  letter-spacing:.1em;
-  
+    letter-spacing:.1em;
+
 }
 A:link {
- COLOR: #4390D0  /*The color of the link*/
+    COLOR: #4390D0  /*The color of the link*/
 }
 A:visited {
- COLOR: #E83571 /*The color of the visited link*/
+    COLOR: #E83571 /*The color of the visited link*/
 }
 A:hover {
- COLOR: green /*The color of the mouseover or 'hover' link*/
+    COLOR: green /*The color of the mouseover or 'hover' link*/
 }
 
 #content {
@@ -28,76 +28,77 @@ A:hover {
     -webkit-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4);
     background-color: #D6E7F5;
-     background-image: url(../images/staroflife.gif);
-     background-repeat: no-repeat;
-      background-position: 1.5% 2%;
-  
+    background-image: url(../images/staroflife.gif);
+    background-repeat: no-repeat;
+    background-position: 1.5% 2%;
+    min-height: 500px;
+
 }
 
 div#leftholder
-	{
-		width:200px;
-                left: 20px;
-		float: left;
-                position:absolute;
-		margin-right:8px;
-                top: 440px;
-                 border: thin;
+{
+    width:200px;
+    left: 20px;
+    float: left;
+    position:absolute;
+    margin-right:8px;
+    top: 440px;
+    border: thin;
     border-color:#000;
     border-style:groove;
     border-radius: 9px;
     -moz-box-shadow: inset 0 0 15px #000;
     -webkit-box-shadow: inset 0 0 15px #000;
     box-shadow: inner 0 0 15px #000;
-    
-	}
-        	
-	div#toprightholder
-	{
-	top: 8px;
+
+}
+
+div#toprightholder
+{
+    top: 8px;
     right:0;
     width:350px;
- position:absolute;
-	}
-        
-        div#rightholder
-	{
-	width:300px;
-		float: left;
-                position:absolute;
-		margin-right:8px;
-                right:0;
-                top: 440px;
-	}
+    position:absolute;
+}
+
+div#rightholder
+{
+    width:300px;
+    float: left;
+    position:absolute;
+    margin-right:8px;
+    right:0;
+    top: 440px;
+}
 
 
 h1 {
-	font:225%/1.25em garamond, georgia, 'times new roman', serif;
-	text-align:center;
-        color: #000;
-	margin:0 auto 15px;
+    font:225%/1.25em garamond, georgia, 'times new roman', serif;
+    text-align:center;
+    color: #000;
+    margin:0 auto 15px;
 }
 h2 {
-	font:200%/1.25em garamond, georgia, 'times new roman', serif;
-	text-align:center;
-        color: #5e5b5b;
-	margin:30px auto 15px;
+    font:200%/1.25em garamond, georgia, 'times new roman', serif;
+    text-align:center;
+    color: #5e5b5b;
+    margin:30px auto 15px;
 }
 p {
-	margin:15px auto;
-	padding:15px;
-	border-top:1px dotted #DDD;
-	border-bottom:1px dotted #DDD;
+    margin:15px auto;
+    padding:15px;
+    border-top:1px dotted #DDD;
+    border-bottom:1px dotted #DDD;
 }
-	p.highlight {
-	  border:1px solid #FFD;
-	  padding:15px;
-	  background:#FFE;
-	  color:#820;
-	}
-	
+p.highlight {
+    border:1px solid #FFD;
+    padding:15px;
+    background:#FFE;
+    color:#820;
+}
+
 pre {
-	margin:15px auto;
+    margin:15px auto;
 }
 
 #header{
@@ -116,8 +117,8 @@ pre {
     float:right;
 }
 div #headerimage {
-   
-    }
+
+}
 
 /* Footer styles */
 footer {

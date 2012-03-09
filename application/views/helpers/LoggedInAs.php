@@ -19,7 +19,7 @@ class Zend_View_Helper_LoggedInAs extends Zend_View_Helper_Abstract {
         if ($controller == 'auth' && $action == 'index') {
             return '';
         }
-        $loginUrl = $this->view->url(array('controller' => 'auth', 'action' => 'index'));
+        $loginUrl = $this->view->url(array('controller' => 'auth', 'action' => 'login'));
         $register = $this->view->url(array('controller' => 'user', 'action' => 'register'));
         return '<a href="' . $loginUrl . '">Login</a>' . '<br /><a href="' . $register . '">Register</a>';
     }
