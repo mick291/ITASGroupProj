@@ -49,7 +49,7 @@ class Application_Form_Auth extends Zend_Form
         $this->addDisplayGroup(array(
             'username',
             'password',
-        ), 'auth', array('legend' => 'Login Information'));
+        ), 'auth');
         $authDisplayGroup = $this->getDisplayGroup('auth');
         $authDisplayGroup->setDecorators(array(
             'FormElements',

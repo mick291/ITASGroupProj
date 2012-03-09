@@ -1,33 +1,30 @@
 <?php
 
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
-{
+class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
+
     public $frontController;
 
     /**
      * generate registry
      * @return Zend_Registry
      */
-    protected function _initRegistry()
-    {
+    protected function _initRegistry() {
         $registry = Zend_Registry::getInstance();
         return $registry;
     }
-    
-    protected function _initAppAutoload()
-    {
+
+    protected function _initAppAutoload() {
         $autoloader = new Zend_Application_Module_Autoloader(array(
                     'namespace' => 'Application_',
                     'basePath' => dirname(__FILE__),
                 ));
         return $autoloader;
     }
-    
+
     /**
      * Initialized View settings
      */
-    protected function _initViewSettings()
-    {
+    protected function _initViewSettings() {
         $this->bootstrap('view');
 
         $this->_view = $this->getResource('view');
@@ -45,7 +42,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->_view->headLink()->appendStylesheet('/css/style.css');
 
         /* jQuery AND jQueryUI */
-        $this->_view->headScript()->appendFile('/js/');;
+        $this->_view->headScript()->appendFile('/js/');
+        ;
 
         $this->_view->addHelperPath('View/Helper', 'View_Helper');
         // setting the site in the title
@@ -56,8 +54,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      * Initialize Doctrine
      * @return Doctrine_Manager
      */
-    public function _initDoctrine()
-    {
+    public function _initDoctrine() {
         $doctrineConfig = $this->getOption('doctrine');
         $connection = $doctrineConfig['connection'];
         $settings = $doctrineConfig['settings'];
@@ -112,4 +109,78 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $entityManager;
     }
+
+    protected function _initNavigation() {
+        $this->bootstrap('view');
+        $view = $this->getResource('view');
+
+        $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'nav');
+
+        $navigation = new Zend_Navigation($config);
+        $view->navigation($navigation);
+    }
+
+    protected function _initAcl() {
+        // Create a zend acl
+        $acl = new Zend_Acl();
+
+        // Load acl roles from config
+        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
+        $roles = $config->acl->roles;
+
+        // Loop through config and establish acl roles
+        foreach ($roles as $child => $parents) {
+            if (!$acl->hasRole($child)) {
+                if (empty($parents)) {
+                    $parents = null;
+                } else {
+                    $parents = explode(',', $parents);
+                }
+                $acl->addRole(new Zend_Acl_Role($child), $parents);
+            }
+        }
+
+        // Set null resource to be allowed
+        $acl->allow(null, null, null);
+
+        $resourcesAllow = $config->acl->resources->allow;
+        $resourcesDeny = $config->acl->resources->deny;
+
+        // Resources denied
+        if ($resourcesDeny != null) {
+            foreach ($resourcesDeny as $controller => $parents) {
+                if (!$acl->has($controller)) {
+                    $acl->addResource($controller);
+                }
+                foreach ($parents as $action => $role) {
+                    if ($action == 'all') {
+                        $action = null;
+                    }
+                    $acl->deny(
+                            $role, $controller, $action
+                    );
+                }
+            }
+        }
+
+        // Resources allowed
+        if ($resourcesAllow != null) {
+            foreach ($resourcesAllow as $controller => $parents) {
+                if (!$acl->has($controller)) {
+                    $acl->addResource($controller);
+                }
+                foreach ($parents as $action => $role) {
+                    if ($action == 'all') {
+                        $action = null;
+                    }
+                    $acl->allow(
+                            $role, $controller, $action
+                    );
+                }
+            }
+        }
+
+        Zend_Registry::set('acl', $acl);
+    }
+
 }

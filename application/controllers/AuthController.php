@@ -50,7 +50,7 @@ class AuthController extends Zend_Controller_Action {
 
             $authAdapter->setIdentity($username);
             $authAdapter->setCredential($password);
-            
+
             //instanciate the Zend_auth object
             $auth = Zend_Auth::getInstance();
 
@@ -66,6 +66,9 @@ class AuthController extends Zend_Controller_Action {
                     echo "$message<br>";
                 }
             } else {
+                $urlOptions = array('controller' => 'index', 'action' => 'index');
+                $this->_helper->redirector->gotoRoute($urlOptions);
+                
                 echo 'Authentication is Ok';
                 echo '<br />';
                 echo 'Username is :';
@@ -81,17 +84,10 @@ class AuthController extends Zend_Controller_Action {
     public function logoutAction() {
 
         if (Zend_Auth::getInstance()->hasIdentity()) {
-// Get Idenity
-            $user = Zend_Auth::getInstance()->getIdentity();
-
-// Log logout
-            $logger = Zend_Registry::get('logger');
-            $logger->log('User: ' . $user->username . ' has logged out.', Zend_Log::INFO);
-
-// Clear Idenity
             Zend_Auth::getInstance()->clearIdentity();
+            Zend_Session::destroy();
+            $this->_helper->redirector('login'); // back to login page
         }
-        $this->_helper->redirector('index', 'index');
     }
 
 }
