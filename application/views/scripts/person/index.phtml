@@ -1,29 +1,25 @@
-<?php
-/**
- * @category
- * @package
- * @copyright
- * @author      Saeed Ahmed <saeed.sas@gmail.com>
- * @date        7/5/11 2:50 PM
- */
-?>
 
 <table border="0" align="center">
-    <tr>
-        <th>Name</th>
+    <tr>      
+        <th>Specialty</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Address</th>
+        <?php echo $this->form; ?>
     </tr>
     <?php
-    print_r($this->person);
-    foreach ($this->person as $key => $value) {
-        foreach ($value as $key1 => $value1) {
-            //print_r($value);
-            ?>
-            <tr id="row_<?php //echo $value['firstName']; ?>">
-                <?php ?>
-            <tr>
-                <td><?php echo $value1['firstName']; ?></td>
-                <td><?php echo $value1['address']; ?></td>
+    if (isset($this->person)) {
+        foreach ($this->person as $key => $value) {
+            ?> <tr id="row_<?php //echo $value['firstName'];     ?>">
+                <?php
+                echo '<tr>';
+                echo '<td>' . $value['specialty'] . '</td>';
+                $myVar = $value['physician'];
+                ?>
+
+                <td><?php echo $myVar['firstName']; ?></td>
+                <td><?php echo $myVar['lastName']; ?></td>
+                <td><?php echo $myVar['address']; ?></td>
             </tr>
         <?php }
     } ?>

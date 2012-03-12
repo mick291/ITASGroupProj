@@ -19,23 +19,31 @@ class PersonController extends Zend_Controller_Action {
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
         $this->_flashMessenger = $this->_helper->FlashMessenger;
+        $form = new Application_Form_Search();
+        $this->view->form = $form;
     }
 
     public function indexAction() {
 
-        //  $query = $this->_entityManager->createQuery('SELECT c, o FROM Entity\Physician c JOIN c.physician o WHERE c.specialty = \'Brain Surgeon\'');
-        // $result = $query->execute();
+        $p = $this->getRequest()->getParams('keyword');
 
-        $qb = $this->_entityManager->createQueryBuilder()
-                ->select('p', 'o')
-                ->from('Entity\Physician', 'p')
-                ->leftJoin('p.physician', 'o')
-                ->where('p.specialty = \'Brain Surgeon\'');
-        $q = $qb->getQuery();
-        $result = $q->getArrayResult();
-
+        if (isset($p['keyword'])) {
+            
+            $column = $p['column'];
+            
+            $qb = $this->_entityManager->createQueryBuilder()
+                    ->select('p', 'o')
+                    ->from('Entity\Physician', 'p')
+                    ->leftJoin('p.physician', 'o')
+                    ->where($column . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
+            $q = $qb->getQuery();
+           
+            $result = $q->getArrayResult();
+            
+            return $this->view->person = $result;
+        }
         //print_r($result);
-        return $this->view->person = $result;
     }
 
     public function createAction() {
