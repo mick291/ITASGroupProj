@@ -14,16 +14,18 @@
         <th>Address</th>
     </tr>
     <?php
-   
-   //var_dump($this->person);
-      foreach ($this->person as $key=>$person) :
-        ?>
-        <tr id="row_<?php echo $person['firstName']; ?>">
-            <?php $serial = $key + (($this->page - 1) * $this->itemNumber) ?>
-        <tr>
-            <td><?php echo $person['firstName']; ?></td>
-            <td><?php echo $person['address']; ?></td>
-        </tr>
-    <?php endforeach; ?>
- 
+    print_r($this->person);
+    foreach ($this->person as $key => $value) {
+        foreach ($value as $key1 => $value1) {
+            //print_r($value);
+            ?>
+            <tr id="row_<?php //echo $value['firstName']; ?>">
+                <?php ?>
+            <tr>
+                <td><?php echo $value1['firstName']; ?></td>
+                <td><?php echo $value1['address']; ?></td>
+            </tr>
+        <?php }
+    } ?>
+
 </table

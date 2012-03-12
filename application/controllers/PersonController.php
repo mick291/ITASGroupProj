@@ -23,17 +23,18 @@ class PersonController extends Zend_Controller_Action {
 
     public function indexAction() {
 
-      //  $query = $this->_entityManager->createQuery('SELECT c, o FROM Entity\Physician c JOIN c.physician o WHERE c.specialty = \'Brain Surgeon\'');
-       // $result = $query->execute();
+        //  $query = $this->_entityManager->createQuery('SELECT c, o FROM Entity\Physician c JOIN c.physician o WHERE c.specialty = \'Brain Surgeon\'');
+        // $result = $query->execute();
 
         $qb = $this->_entityManager->createQueryBuilder()
-        ->select('p')
-        ->from('Entity\Person', 'p')
-        //->leftJoin('c.physician', 'o')
-        ->where('p.physician = true');
+                ->select('p', 'o')
+                ->from('Entity\Physician', 'p')
+                ->leftJoin('p.physician', 'o')
+                ->where('p.specialty = \'Brain Surgeon\'');
         $q = $qb->getQuery();
-         $result = $q->getArrayResult();
-       
+        $result = $q->getArrayResult();
+
+        //print_r($result);
         return $this->view->person = $result;
     }
 
@@ -47,6 +48,18 @@ class PersonController extends Zend_Controller_Action {
 
     public function deleteAction() {
         
+    }
+
+    function array_flatten($array, &$newArray = Array(), $prefix='', $delimiter='|') {
+        foreach ($array as $key => $child) {
+            if (is_array($child)) {
+                $newPrefix = $prefix . $key . $delimiter;
+                $newArray = & array_flatten($child, $newArray, $newPrefix, $delimiter);
+            } else {
+                $newArray[$prefix . $key] = $child;
+            }
+        }
+        return $newArray;
     }
 
 }
