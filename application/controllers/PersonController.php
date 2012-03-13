@@ -28,9 +28,9 @@ class PersonController extends Zend_Controller_Action {
         $p = $this->getRequest()->getParams('keyword');
 
         if (isset($p['keyword'])) {
-            
+
             $column = $p['column'];
-            
+
             $qb = $this->_entityManager->createQueryBuilder()
                     ->select('p', 'o')
                     ->from('Entity\Physician', 'p')
@@ -38,9 +38,33 @@ class PersonController extends Zend_Controller_Action {
                     ->where($column . ' LIKE :specialty')
                     ->setParameter('specialty', '%' . $p['keyword'] . '%');
             $q = $qb->getQuery();
-           
+
             $result = $q->getArrayResult();
-            
+
+            return $this->view->person = $result;
+        }
+        //print_r($result);
+    }
+
+    public function ajaxsearchAction() {
+
+        $p = $this->getRequest()->getParams('keyword');
+
+        if ($this->_request->isXmlHttpRequest()) {
+
+
+            $column = $p['column'];
+
+            $qb = $this->_entityManager->createQueryBuilder()
+                    ->select('p', 'o')
+                    ->from('Entity\Physician', 'p')
+                    ->leftJoin('p.physician', 'o')
+                    ->where($column . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
+            $q = $qb->getQuery();
+
+            $result = $q->getArrayResult();
+
             return $this->view->person = $result;
         }
         //print_r($result);
@@ -56,18 +80,6 @@ class PersonController extends Zend_Controller_Action {
 
     public function deleteAction() {
         
-    }
-
-    function array_flatten($array, &$newArray = Array(), $prefix='', $delimiter='|') {
-        foreach ($array as $key => $child) {
-            if (is_array($child)) {
-                $newPrefix = $prefix . $key . $delimiter;
-                $newArray = & array_flatten($child, $newArray, $newPrefix, $delimiter);
-            } else {
-                $newArray[$prefix . $key] = $child;
-            }
-        }
-        return $newArray;
     }
 
 }

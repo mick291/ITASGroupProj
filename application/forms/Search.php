@@ -5,7 +5,7 @@ class Application_Form_Search extends Zend_Form {
 
     public function init() {
 
-             $this->setName('search');
+            $this->setName('search');
              $this->setMethod('get');
         
         $column = new Zend_Form_Element_Select('column');
@@ -18,10 +18,8 @@ class Application_Form_Search extends Zend_Form {
                   ->setRequired(true)
                   ->addValidator('NotEmpty'); 
         
-        $submit = new Zend_Form_Element_Submit('search');
-        $submit->setLabel('Search');
         
-        $this->addElements(array($column, $keyword, $submit));
+        $this->addElements(array($column, $keyword));
     }
 
 }

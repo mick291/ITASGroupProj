@@ -24,28 +24,28 @@ class ItemConsumed
     /**
      * @var string $date
      *
-     * @Column(name="date", type="string", length=45, nullable=false)
+     * @Column(name="date", type="string", length=20, nullable=false)
      */
     private $date;
 
     /**
      * @var string $time
      *
-     * @Column(name="time", type="string", length=45, nullable=false)
+     * @Column(name="time", type="string", length=20, nullable=false)
      */
     private $time;
 
     /**
      * @var string $quantity
      *
-     * @Column(name="quantity", type="string", length=45, nullable=false)
+     * @Column(name="quantity", type="string", length=3, nullable=false)
      */
     private $quantity;
 
     /**
      * @var string $totalCost
      *
-     * @Column(name="total_cost", type="string", length=45, nullable=false)
+     * @Column(name="total_cost", type="string", length=10, nullable=false)
      */
     private $totalCost;
 

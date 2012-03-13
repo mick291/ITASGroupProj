@@ -7,10 +7,15 @@
             <action>index</action>
         </home>
         <person>
-            <label>Person</label>
+            <label>Physician</label>
             <controller>person</controller>
             <action>index</action>
         </person>
+        <patient>
+            <label>Patient</label>
+            <controller>patient</controller>
+            <action>index</action>
+        </patient>
         <login>
             <label>Login</label>
             <controller>auth</controller>

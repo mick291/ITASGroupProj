@@ -13,18 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class Laboratory
 {
     /**
-     * @var integer $laboratoriesId
+     * @var integer $laboratoryId
      *
-     * @Column(name="laboratories_id", type="integer", nullable=false)
+     * @Column(name="laboratory_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $laboratoriesId;
+    private $laboratoryId;
 
     /**
      * @var Technician
      *
-     * @ManyToMany(targetEntity="Technician", mappedBy="laboratories")
+     * @ManyToMany(targetEntity="Technician", inversedBy="laboratory")
+     * @JoinTable(name="laboratory_has_technician",
+     *   joinColumns={
+     *     @JoinColumn(name="laboratory_id", referencedColumnName="laboratory_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="technician_id", referencedColumnName="technician_id")
+     *   }
+     * )
      */
     private $technician;
 

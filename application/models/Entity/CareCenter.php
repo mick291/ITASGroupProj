@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,51 +22,51 @@ class CareCenter
     private $careCenterId;
 
     /**
-     * @var string $rooms
+     * @var integer $rooms
      *
-     * @Column(name="rooms", type="string", length=45, nullable=false)
+     * @Column(name="rooms", type="integer", nullable=false)
      */
     private $rooms;
 
     /**
      * @var string $location
      *
-     * @Column(name="location", type="string", length=45, nullable=false)
+     * @Column(name="location", type="string", length=25, nullable=false)
      */
     private $location;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=45, nullable=false)
+     * @Column(name="name", type="string", length=25, nullable=false)
      */
     private $name;
 
     /**
-     * @var string $bedMax
+     * @var integer $bedMax
      *
-     * @Column(name="bed_max", type="string", length=45, nullable=false)
+     * @Column(name="bed_max", type="integer", nullable=false)
      */
     private $bedMax;
 
     /**
      * @var string $inventory
      *
-     * @Column(name="inventory", type="string", length=45, nullable=false)
+     * @Column(name="inventory", type="string", length=5, nullable=false)
      */
     private $inventory;
 
     /**
-     * @var string $labs
+     * @var integer $labs
      *
-     * @Column(name="labs", type="string", length=45, nullable=false)
+     * @Column(name="labs", type="integer", nullable=false)
      */
     private $labs;
 
     /**
      * @var string $nurseInCharge
      *
-     * @Column(name="nurse_in_charge", type="string", length=45, nullable=false)
+     * @Column(name="nurse_in_charge", type="string", length=25, nullable=false)
      */
     private $nurseInCharge;
 

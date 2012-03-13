@@ -24,7 +24,7 @@ class Volunteer
     /**
      * @var string $skill
      *
-     * @Column(name="skill", type="string", length=45, nullable=false)
+     * @Column(name="skill", type="string", length=25, nullable=false)
      */
     private $skill;
 
