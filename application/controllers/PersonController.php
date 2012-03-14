@@ -15,6 +15,10 @@ class PersonController extends Zend_Controller_Action {
     private $_itemNumber;
 
     public function init() {
+        
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('check', 'html');
+        $ajaxContext->initContext();
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
