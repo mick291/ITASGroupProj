@@ -50,29 +50,7 @@ class PersonController extends Zend_Controller_Action {
         //print_r($result);
     }
 
-    public function ajaxsearchAction() {
 
-        $p = $this->getRequest()->getParams('keyword');
-
-        if ($this->_request->isXmlHttpRequest()) {
-
-
-            $column = $p['column'];
-
-            $qb = $this->_entityManager->createQueryBuilder()
-                    ->select('p', 'o')
-                    ->from('Entity\Physician', 'p')
-                    ->leftJoin('p.physician', 'o')
-                    ->where($column . ' LIKE :specialty')
-                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
-            $q = $qb->getQuery();
-
-            $result = $q->getArrayResult();
-
-            return $this->view->person = $result;
-        }
-        //print_r($result);
-    }
 
     public function createAction() {
         

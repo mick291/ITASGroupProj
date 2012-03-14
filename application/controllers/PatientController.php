@@ -9,6 +9,7 @@ class PatientController extends Zend_Controller_Action
     private $_itemNumber;
 
     public function init() {
+        
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
@@ -24,7 +25,8 @@ class PatientController extends Zend_Controller_Action
         if (isset($p['keyword'])) {
 
             $column = $p['column'];
-
+            $column2 = 't.firstName';
+       
             $qb = $this->_entityManager->createQueryBuilder()
                     ->select('p', 'o','s','t')
                     ->from('Entity\Patient', 'p')
@@ -32,7 +34,10 @@ class PatientController extends Zend_Controller_Action
                     ->leftJoin('o.physician', 's')
                     ->leftJoin('p.patient', 't')
                     ->where($column . ' LIKE :specialty')
-                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
+                    ->orWhere($column2 . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%')
+                 //   ->setParameter('second', '%' . $p['keyword'] . '%' )
+                    ->orderBy($column);
             $q = $qb->getQuery();
 
             $result = $q->getArrayResult();

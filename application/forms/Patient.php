@@ -10,8 +10,8 @@ class Application_Form_Patient extends Zend_Form {
         
         $column = new Zend_Form_Element_Select('column');
         $column->setLabel('Search By:')
-              ->setMultiOptions(array('t.firstName'=>'Name', 
-                  's.firstName'=>'Assigned Physician',
+              ->setMultiOptions(array('t.lastName'=>'Name', 
+                  's.lastName'=>'Assigned Physician',
                   'p.patientType'=>'Patient Type'))
               ->setRequired(true)->addValidator('NotEmpty', true);
         $keyword = new Zend_Form_Element_Text('keyword');
