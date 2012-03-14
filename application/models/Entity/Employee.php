@@ -24,7 +24,7 @@ class Employee
     /**
      * @var string $dateHired
      *
-     * @Column(name="date_hired", type="string", length=1, nullable=false)
+     * @Column(name="date_hired", type="string", length=22, nullable=false)
      */
     private $dateHired;
 

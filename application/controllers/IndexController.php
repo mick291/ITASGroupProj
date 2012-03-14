@@ -9,7 +9,7 @@ class IndexController extends Zend_Controller_Action
     {
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
     }
-
+    
     public function indexAction()
     {
           $dql = $this->_entityManager->createQueryBuilder();

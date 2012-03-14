@@ -1,26 +1,25 @@
-<?php
-/**
- * @category
- * @package
- * @copyright
- * @author      Saeed Ahmed <saeed.sas@gmail.com>
- * @date        7/5/11 2:50 PM
- */
-?>
 
 <table border="0" align="center">
-    <tr>
+    <tr>      
+        <th>Specialty</th>
         <th>Name</th>
         <th>Address</th>
+        <?php echo $this->form; ?>
     </tr>
-    <?php     
-print_r($this->person);
-    foreach ($this->person as $key => $person) : ?>
-        <tr id="row_<?php echo $person['firstName']; ?>">
-        <?php $serial = $key + (($this->page - 1) * $this->itemNumber) ?>
-        <tr>
-            <td><?php echo $key ."test" . $person; ?></td>
-            <td><?php echo $person['address']; ?></td>
-        </tr>
-<?php endforeach; ?>
-</table
+    <?php
+    if (isset($this->person)) {
+        foreach ($this->person as $key => $value) {
+            ?> <tr id="row_<?php //echo $value['firstName'];     ?>">
+                <?php
+                echo '<tr>';
+                echo '<td>' . $value['specialty'] . '</td>';
+                $myVar = $value['physician'];
+                ?>
+
+                <td><?php echo "Dr. " . $myVar['firstName'] . $myVar['lastName'] ; ?></td>
+                <td><?php echo $myVar['address']; ?></td>
+            </tr>
+        <?php }
+    } ?>
+
+</table>

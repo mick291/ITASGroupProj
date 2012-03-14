@@ -15,31 +15,63 @@ class PersonController extends Zend_Controller_Action {
     private $_itemNumber;
 
     public function init() {
+        
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('check', 'html');
+        $ajaxContext->initContext();
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
         $this->_flashMessenger = $this->_helper->FlashMessenger;
+        $form = new Application_Form_Search();
+        $this->view->form = $form;
     }
 
     public function indexAction() {
 
-        //Assuming $em is EntityManager
-        //$query = $this->createQuery('SELECT c, o FROM Car c JOIN c.owner o');
-       // $query = $this->_entityManager->createQuery('SELECT c, o FROM Entity\Physician c JOIN c.physician o WHERE c.specialty = \'Brain Surgeon\'');
-       // $result = $query->execute();
+        $p = $this->getRequest()->getParams('keyword');
 
-        //$dql = $this->_entityManager->createQueryBuilder();
-        //$dql->select('c, p')
-        //        ->from('Entity\Physician', 'c')
-        //        ->leftJoin('c.physician', 'p')
-        //       ->where('c.specialty = \'Brain surgeon\'');
-        // ->orderBy('c.firstName', 'ASC');
-       
-        $query = $dql->getQuery();
-       // print_r($$query);
-       $records = new Zend_Paginator(new DoctrineExtensions\Paginate\PaginationAdapter($query));
-      //  print_r($result);
-        $this->view->person = $records;
+        if (isset($p['keyword'])) {
+
+            $column = $p['column'];
+
+            $qb = $this->_entityManager->createQueryBuilder()
+                    ->select('p', 'o')
+                    ->from('Entity\Physician', 'p')
+                    ->leftJoin('p.physician', 'o')
+                    ->where($column . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
+            $q = $qb->getQuery();
+
+            $result = $q->getArrayResult();
+
+            return $this->view->person = $result;
+        }
+        //print_r($result);
+    }
+
+    public function ajaxsearchAction() {
+
+        $p = $this->getRequest()->getParams('keyword');
+
+        if ($this->_request->isXmlHttpRequest()) {
+
+
+            $column = $p['column'];
+
+            $qb = $this->_entityManager->createQueryBuilder()
+                    ->select('p', 'o')
+                    ->from('Entity\Physician', 'p')
+                    ->leftJoin('p.physician', 'o')
+                    ->where($column . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%');
+            $q = $qb->getQuery();
+
+            $result = $q->getArrayResult();
+
+            return $this->view->person = $result;
+        }
+        //print_r($result);
     }
 
     public function createAction() {

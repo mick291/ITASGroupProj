@@ -17,18 +17,9 @@ class Bed
      *
      * @Column(name="bed_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $bedId;
-
-    /**
-     * @var integer $residentPatientId
-     *
-     * @Column(name="resident_patient_id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     */
-    private $residentPatientId;
 
     /**
      * @var integer $bedNumber
@@ -38,9 +29,9 @@ class Bed
     private $bedNumber;
 
     /**
-     * @var string $roomNumber
+     * @var integer $roomNumber
      *
-     * @Column(name="room_number", type="string", length=45, nullable=false)
+     * @Column(name="room_number", type="integer", nullable=false)
      */
     private $roomNumber;
 

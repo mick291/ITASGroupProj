@@ -24,14 +24,14 @@ class Patient
     /**
      * @var string $contactDate
      *
-     * @Column(name="contact_date", type="string", length=45, nullable=false)
+     * @Column(name="contact_date", type="string", length=20, nullable=false)
      */
     private $contactDate;
 
     /**
      * @var string $patientType
      *
-     * @Column(name="patient_type", type="string", length=1, nullable=false)
+     * @Column(name="patient_type", type="string", length=11, nullable=false)
      */
     private $patientType;
 

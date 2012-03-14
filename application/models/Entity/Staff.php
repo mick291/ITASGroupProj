@@ -24,7 +24,7 @@ class Staff
     /**
      * @var string $jobClass
      *
-     * @Column(name="job_class", type="string", length=45, nullable=false)
+     * @Column(name="job_class", type="string", length=25, nullable=false)
      */
     private $jobClass;
 
