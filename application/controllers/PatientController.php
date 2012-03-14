@@ -36,7 +36,6 @@ class PatientController extends Zend_Controller_Action
                     ->where($column . ' LIKE :specialty')
                     ->orWhere($column2 . ' LIKE :specialty')
                     ->setParameter('specialty', '%' . $p['keyword'] . '%')
-                 //   ->setParameter('second', '%' . $p['keyword'] . '%' )
                     ->orderBy($column);
             $q = $qb->getQuery();
 

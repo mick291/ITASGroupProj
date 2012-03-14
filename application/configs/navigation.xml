@@ -16,6 +16,11 @@
             <controller>patient</controller>
             <action>index</action>
         </patient>
+        <floor>
+            <label>Floor Plan</label>
+            <controller>floorPlan</controller>
+            <action>index</action>
+        </floor>
         <login>
             <label>Login</label>
             <controller>auth</controller>
