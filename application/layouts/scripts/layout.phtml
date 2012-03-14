@@ -19,12 +19,8 @@ echo $this->doctype();
     </head>
  
     <body>
-        
-     
-      
-
-  
-            
+              
+                
             
             <div id="content">
                    <div id="headerimage" align="center" padding="202px" >
@@ -32,10 +28,7 @@ echo $this->doctype();
            </div>
         <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
         <div> 
-            <div id="navigation" class="nav">
-                <?php echo $this->navigation()->menu(); ?>
-            </div> 
-                      <div id="leftholder">
+              <div id="leftholder">
                 <?php 
                   echo "</br>";
                 echo "stuff goes here"; 
@@ -46,16 +39,21 @@ echo $this->doctype();
                     echo "</br>";
                 ?>
             </div>  
-                
+            <div id="navigation" class="nav">
+                <?php echo $this->navigation()->menu(); ?>
+            </div> 
+                 
                              
                         <?php echo $this->layout()->content; ?>
                
-                       <div id="rightholder">
-                <?php echo $this->navigation()->menu(); ?>
-                          </div>
+                     
                    
             </div> 
-            </div>     
+            </div>   
+               
+          <div id="rightholder">
+                <?php echo $this->navigation()->menu(); ?>
+                          </div>
         
         <footer> 
             
