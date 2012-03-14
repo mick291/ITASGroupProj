@@ -5,6 +5,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Address</th>
+        <th>Assigned Physician</th>
         <?php echo $this->form; ?>
     </tr>
     <?php
@@ -15,11 +16,16 @@
                 echo '<tr>';
                 echo '<td>' . $value['patientType'] . '</td>';
                 $myVar = $value['patient'];
+                
+                foreach($value['assignedPhysician'] as $newKey => $value2){
+                   $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName']; 
+                }
                 ?>
 
                 <td><?php echo $myVar['firstName']; ?></td>
                 <td><?php echo $myVar['lastName']; ?></td>
                 <td><?php echo $myVar['address']; ?></td>
+                <td><?php echo $assignedPhysician; ?></td>
             </tr>
         <?php }
     } ?>
