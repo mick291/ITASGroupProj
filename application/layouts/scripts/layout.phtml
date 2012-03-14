@@ -21,20 +21,20 @@ echo $this->doctype();
     <body>
         
      
-        <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
+      
 
-   <div id="headerimage" align="center" padding="202px" >
+  
+            
+            
+            <div id="content">
+                   <div id="headerimage" align="center" padding="202px" >
            <img src="<?php echo $this->baseUrl('images/header.gif') ?>" alt="MEDDS header background image" width="1000" height="142" />
            </div>
-      
+        <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
         <div> 
             <div id="navigation" class="nav">
                 <?php echo $this->navigation()->menu(); ?>
             </div> 
-            
-            
-            <div id="content">
-                  
                       <div id="leftholder">
                 <?php 
                   echo "</br>";

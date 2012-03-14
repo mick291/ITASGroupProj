@@ -32,7 +32,7 @@ A:hover {
     background-repeat: no-repeat;
     background-position: 1.5% 2%;
     min-height: 500px;
-
+     min-width: 1600px;
 }
 
 div#leftholder
@@ -57,8 +57,11 @@ div#toprightholder
 {
     top: 8px;
     right:0;
-    width:350px;
-    position:absolute;
+    width: 350px;
+    min-width:350px;
+    float: right;
+
+    
 }
 
 div#rightholder
@@ -106,7 +109,7 @@ pre {
     width: 100%;
     text-align: left;
     padding-bottom: inherit;
-    margin-bottom: 10px; 
+    margin-bottom:10px; 
     -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
