@@ -7,6 +7,7 @@ echo $this->doctype();
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
+        
         <?php echo $this->headMeta(); ?>
         <?php echo $this->headTitle(); ?>
         <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
@@ -21,16 +22,18 @@ echo $this->doctype();
     <body>
         
      
-              <div id="content">
-                   <div id="headerimage" align="center" padding="202px" >
-           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" width="1000" height="142" />
+              <div id="content" >
+                    
+                   <div id="headerimage" align="center"  >
+           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
            </div>
-        <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
+      <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
      
             <div id="navigation" class="nav">
                 <?php echo $this->navigation()->menu(); ?>
             </div> 
-                      <div id="leftholder">
+                    
+                   <div id="leftholder">
                 <?php 
                   echo "</br>";
                 echo "stuff goes here"; 
@@ -48,18 +51,18 @@ echo $this->doctype();
                           </div>
                      
                         <?php echo $this->layout()->content; ?>
-                  
-           <footer> 
-            
-           <p>All content &copy; 2011 R2Autos. site designed by MEDDS</p>
-        </footer> 
-            </div>     
-        
-
-  
-            
+       
+              <div class="clearfooter"></div>      
+                           
+               <div id="footer">            
+           <p>site designed by MEDDS</p>
+        </div>
+              </div>
+             
        
     </body> 
-         
+     
+    
+</html>    
     
   
