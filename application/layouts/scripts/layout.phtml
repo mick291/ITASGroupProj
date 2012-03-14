@@ -19,16 +19,25 @@ echo $this->doctype();
     </head>
  
     <body>
-              
-                
+        
+     
+      
+
+  
             
+       
+    </body> 
+         
             <div id="content">
                    <div id="headerimage" align="center" padding="202px" >
-           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
+           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" width="1000" height="142" />
            </div>
         <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
-        <div> 
-              <div id="leftholder">
+     
+            <div id="navigation" class="nav">
+                <?php echo $this->navigation()->menu(); ?>
+            </div> 
+                      <div id="leftholder">
                 <?php 
                   echo "</br>";
                 echo "stuff goes here"; 
@@ -39,25 +48,18 @@ echo $this->doctype();
                     echo "</br>";
                 ?>
             </div>  
-            <div id="navigation" class="nav">
-                <?php echo $this->navigation()->menu(); ?>
-            </div> 
-                 
-                             
-                        <?php echo $this->layout()->content; ?>
-               
-                     
-                   
-            </div> 
-            </div>   
-               
-          <div id="rightholder">
+                
+                        
+                       <div id="rightholder">
                 <?php echo $this->navigation()->menu(); ?>
                           </div>
-        
-        <footer> 
+                     
+                        <?php echo $this->layout()->content; ?>
+                  
+           <footer> 
             
            <p>All content &copy; 2011 R2Autos. site designed by MEDDS</p>
         </footer> 
-        </div>
-    </body> 
+            </div>     
+        
+  

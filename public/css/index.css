@@ -35,6 +35,12 @@ A:hover {
     min-height: 100%;
      min-width: 20%;
      position:absolute;
+      margin-left: auto;
+    margin-right: auto;
+     width: 100%;
+      height: 100%;
+  overflow:hidden;
+
 }
 
 div#leftholder
