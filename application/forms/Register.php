@@ -6,7 +6,7 @@ class Application_Form_Register extends Zend_Form {
         $this->setName("Register");
         $this->setMethod('post');
 
-
+echo "test";
         $type = new Zend_Form_Element_Select('type');
         $type->setLabel('Patient Type:');
         
