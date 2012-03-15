@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,7 +24,7 @@ class CareCenter
     /**
      * @var integer $rooms
      *
-     * @Column(name="rooms", type="integer", nullable=false)
+     * @Column(name="rooms", type="integer", nullable=true)
      */
     private $rooms;
 
@@ -50,16 +50,9 @@ class CareCenter
     private $bedMax;
 
     /**
-     * @var string $inventory
-     *
-     * @Column(name="inventory", type="string", length=5, nullable=false)
-     */
-    private $inventory;
-
-    /**
      * @var integer $labs
      *
-     * @Column(name="labs", type="integer", nullable=false)
+     * @Column(name="labs", type="integer", nullable=true)
      */
     private $labs;
 
