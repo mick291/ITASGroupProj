@@ -6,6 +6,15 @@ class Application_Form_Register extends Zend_Form {
         $this->setName("Register");
         $this->setMethod('post');
 
+
+        $type = new Zend_Form_Element_Select('type');
+        $type->setLabel('Patient Type:');
+
+        $type->setMultiOptions(array(
+            'Out Patient',
+            'In Patient'
+        ));
+        $this->addElement($type);
         $firstname = new Zend_Form_Element_Text('firstname');
         $firstname->setLabel('First Name:')
                 ->setRequired(true)
@@ -44,8 +53,8 @@ class Application_Form_Register extends Zend_Form {
         $dob->setLabel('DoB: ')
                 ->setRequired(true)
                 ->addValidator('NotEmpty', true)
-                ->addErrorMessage("DoB Format is MM-DD-YYYY")
-                ->addValidator('date', 'MM-dd-YYYY'); // Month-Day-Year
+                ->addErrorMessage("DoB Format is YYYY-MM-DD")
+                ->addValidator('date', 'YYYY-MM-DD'); // Month-Day-Year
         $this->addElement($dob);
 
         $email = $this->createElement('text', 'email');
@@ -57,15 +66,6 @@ class Application_Form_Register extends Zend_Form {
                         Zend_Validate_Db_NoRecordExists::ERROR_RECORD_FOUND => 'Email address already exists'
                         )));
         $this->addElement($email);
-
-        $type = new Zend_Form_Element_Select('type');
-        $type->setLabel('Patient Type:');
-
-        $type->setMultiOptions(array(
-            'Out Patient',
-            'In Patient'
-        ));
-        $this->addElement($type);
 
         $register = $this->createElement('submit', 'register');
         $register->setLabel('Sign up')
