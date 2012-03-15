@@ -1,11 +1,12 @@
 
 <table border="0" align="center">
     <tr>      
-        <th>Type</th>
-        <th>First Name</th>
         <th>Last Name</th>
+        <th>First Name</th>
         <th>Address</th>
         <th>Assigned Physician</th>
+        <th>Type</th>
+
         <?php echo $this->form; ?>
     </tr>
     <?php
@@ -14,18 +15,18 @@
             ?> <tr id="row_<?php //echo $value['firstName'];     ?>">
                 <?php
                 echo '<tr>';
-                echo '<td>' . $value['patientType'] . '</td>';
                 $myVar = $value['patient'];
-                
-                foreach($value['assignedPhysician'] as $newKey => $value2){
-                   $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName']; 
+                $type = $value['patientType'];
+                foreach ($value['assignedPhysician'] as $newKey => $value2) {
+                    $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
                 }
                 ?>
 
-                <td><?php echo $myVar['firstName']; ?></td>
                 <td><?php echo $myVar['lastName']; ?></td>
+                <td><?php echo $myVar['firstName']; ?></td>
                 <td><?php echo $myVar['address']; ?></td>
                 <td><?php echo $assignedPhysician; ?></td>
+                <td><?php echo $type; ?></td>
             </tr>
         <?php }
     } ?>
