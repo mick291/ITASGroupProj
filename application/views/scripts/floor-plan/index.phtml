@@ -1,5 +1,42 @@
  
+          <head>
+        
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
 
-<div id="center" >
-<img src="<?php echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=64% height=auto />
+        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery-1.4.2.min.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.easing.1.3.js') ?>"></script> 
+        <script type="text/javascript" src="<?php echo $this->baseUrl('https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js') ?>"></script> 
+
+    </head>
+
+
+    <body>
+<div id="content" >
+                    
+                   <div id="headerimage" align="center"  >
+           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
+           </div>
+      <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
+     
+            <div id="navigation" class="nav">
+                <?php echo $this->navigation()->menu(); ?>
+            </div> 
+                            <div id="center" >
+<img src="<?php echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=100% height=auto />
 </div>
+                        <?php echo $this->layout()->content; ?>
+       
+              <div class="clearfooter"></div>      
+                           
+               <div id="footer">            
+           <p>site designed by MEDDS</p>
+        </div>
+              </div>
+
+ 
+
+        
+    </body>
