@@ -7,6 +7,7 @@ class Application_Form_Register extends Zend_Form {
         $this->setMethod('post');
 
         $firstname = new Zend_Form_Element_Text('firstname');
+        
         $firstname->setLabel('First Name:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')
