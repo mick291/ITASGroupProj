@@ -61,6 +61,7 @@ class AuthController extends Zend_Controller_Action {
             $result = $auth->authenticate($authAdapter);
 
             if (!$result->isValid()) {
+                
                 // Authentication failed; print the reasons why
                 foreach ($result->getMessages() as $message) {
                     echo "$message<br>";

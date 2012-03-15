@@ -37,7 +37,7 @@ class Application_Form_Register extends Zend_Form {
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags')
                 ->addErrorMessage("A valid Postal Code is Required")
-                ->addValidator('PostCode');
+                ->addValidator('PostCode', true, array('format' => '^[a-zA-Z]\d[a-zA-Z] ?\d[a-zA-Z]\d$'));
         $this->addElement($postal);
 
         $dob = new Zend_Form_Element_Text('date');
@@ -57,6 +57,15 @@ class Application_Form_Register extends Zend_Form {
                         Zend_Validate_Db_NoRecordExists::ERROR_RECORD_FOUND => 'Email address already exists'
                         )));
         $this->addElement($email);
+
+        $type = new Zend_Form_Element_Select('type');
+        $type->setLabel('Patient Type:');
+
+        $type->setMultiOptions(array(
+            'Out Patient',
+            'In Patient'
+        ));
+        $this->addElement($type);
 
         $register = $this->createElement('submit', 'register');
         $register->setLabel('Sign up')
