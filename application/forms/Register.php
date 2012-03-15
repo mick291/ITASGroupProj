@@ -9,7 +9,7 @@ class Application_Form_Register extends Zend_Form {
 
         $type = new Zend_Form_Element_Select('type');
         $type->setLabel('Patient Type:');
-
+        
         $type->setMultiOptions(array(
             'Out Patient',
             'In Patient'
