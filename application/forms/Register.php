@@ -8,12 +8,14 @@ class Application_Form_Register extends Zend_Form {
 
 
         $type = new Zend_Form_Element_Select('type');
+             $type->setAttrib('size', '500px');
         $type->setLabel('Patient Type:');
-        
-        $type->setMultiOptions(array(
-            'Out Patient',
-            'In Patient'
-        ));
+//        $type->setMultiOptions(array(
+//            
+//            'Out Patient',
+//            'In Patient'
+//        ));
+       
         $this->addElement($type);
         $firstname = new Zend_Form_Element_Text('firstname');
         
