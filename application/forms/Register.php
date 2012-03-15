@@ -7,7 +7,7 @@ class Application_Form_Register extends Zend_Form {
         $this->setMethod('post');
 
         $firstname = new Zend_Form_Element_Text('firstname');
-        $firstname->setLabel('First Name: *')
+        $firstname->setLabel('First Name:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags')
@@ -16,7 +16,7 @@ class Application_Form_Register extends Zend_Form {
         $this->addElement($firstname);
 
         $lastname = new Zend_Form_Element_Text('lastname');
-        $lastname->setLabel('Last Name: *')
+        $lastname->setLabel('Last Name:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags')
@@ -25,7 +25,7 @@ class Application_Form_Register extends Zend_Form {
         $this->addElement($lastname);
 
         $address = new Zend_Form_Element_Text('address');
-        $address->setLabel('Address: *')
+        $address->setLabel('Address:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags');
@@ -37,7 +37,7 @@ class Application_Form_Register extends Zend_Form {
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags')
                 ->addErrorMessage("A valid Postal Code is Required")
-                ->addValidator('PostCode', true);
+                ->addValidator('PostCode');
         $this->addElement($postal);
 
         $dob = new Zend_Form_Element_Text('date');
