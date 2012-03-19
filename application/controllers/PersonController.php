@@ -1,12 +1,6 @@
 <?php
 
-/**
- * @category    Controller
- * @package     
- * @copyright   
- * @author      Saeed Ahmed <saeed.sas@gmail.com>
- * @date        7/5/11 2:50 PM
- */
+
 class PersonController extends Zend_Controller_Action {
 
     private $_entityManager;

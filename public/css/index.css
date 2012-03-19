@@ -108,7 +108,7 @@ padding-right: 1%;
     text-align: center;
     margin-left:auto;
     margin-right:auto;
-    padding-top: 50px;
+    padding-top: 25px;
     
 }
 
@@ -136,10 +136,9 @@ h2 {
     margin:30px auto 15px;
 }
 p {
-    margin:15px auto;
-    padding:15px;
-    border-top:1px dotted #DDD;
-    border-bottom:1px dotted #DDD;
+    
+   
+   
     position: relative;
 }
 
@@ -199,7 +198,7 @@ clear: both;
 
 table
 {
-    
+     text-align: left;
     margin-left:auto;
     margin-right:auto;
     border: 4px;
@@ -509,10 +508,10 @@ form input[type=submit]:hover {
     background: #bfd255; /* old browsers */
     background: -moz-linear-gradient(
         top, 
-        #bfd255 0%, 
-        #8eb92a 50%, 
-        #72aa00 51%, 
-        #9ecb2d 100%
+        #AECFEA 0%, 
+      #AEC0E0 50%, 
+        #AECFEA 51%, 
+        #AECFEA 100%
         ); /* firefox */
     background: -webkit-gradient(
         linear, 
