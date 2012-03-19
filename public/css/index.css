@@ -10,16 +10,6 @@ body,html {
     letter-spacing:.1em;
     height: 100%;
      }
-     
-A:link {
-    COLOR: #4390D0  /*The color of the link*/
-}
-A:visited {
-    COLOR: #E83571 /*The color of the visited link*/
-}
-A:hover {
-    COLOR: green /*The color of the mouseover or 'hover' link*/
-}
 
 #spacer {
     
@@ -153,6 +143,18 @@ p {
     border-bottom:1px dotted #DDD;
     position: relative;
 }
+
+     
+A:link {
+    COLOR: #4390D0  /*The color of the link*/
+}
+A:visited {
+    COLOR: #E83571 /*The color of the visited link*/
+}
+A:hover {
+    COLOR: green /*The color of the mouseover or 'hover' link*/
+}
+
 p.highlight {
     border:1px solid #FFD;
     padding:15px;
