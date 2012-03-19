@@ -6,7 +6,7 @@
  * 
  */
 
-class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract {
+class Plugin_AccessCheck  {
     
     
    public function preDispatch() {
