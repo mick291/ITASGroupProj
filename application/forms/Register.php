@@ -6,19 +6,17 @@ class Application_Form_Register extends Zend_Form {
         $this->setName("Register");
         $this->setMethod('post');
 
-echo "test";
         $type = new Zend_Form_Element_Select('type');
-             $type->setAttrib('size', '500px');
-        $type->setLabel('Patient Type:');
-//        $type->setMultiOptions(array(
-//            
-//            'Out Patient',
-//            'In Patient'
-//        ));
-       
+        $type->setAttrib('style', 'width: 240px')
+                ->setLabel('Patient Type:')
+                ->setMultiOptions(array(
+                    'Out Patient',
+                    'In Patient'
+                ));
+
         $this->addElement($type);
         $firstname = new Zend_Form_Element_Text('firstname');
-        
+
         $firstname->setLabel('First Name:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')

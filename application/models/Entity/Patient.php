@@ -36,6 +36,13 @@ class Patient
     private $patientType;
 
     /**
+     * @var boolean $discharged
+     *
+     * @Column(name="discharged", type="boolean", nullable=false)
+     */
+    private $discharged;
+
+    /**
      * @var ItemConsumed
      *
      * @ManyToMany(targetEntity="ItemConsumed", inversedBy="patient")

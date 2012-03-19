@@ -54,5 +54,15 @@ class Visit
      */
     private $outpatientPatient;
 
+    /**
+     * @var Physician
+     *
+     * @ManyToOne(targetEntity="Physician")
+     * @JoinColumns({
+     *   @JoinColumn(name="physician_id", referencedColumnName="physician_id")
+     * })
+     */
+    private $physician;
+
 
 }
