@@ -71,7 +71,7 @@ class AuthController extends Zend_Controller_Action {
                 $SearchFor = $auth->getIdentity();               //What string do you want to find?
                 $SearchField = "userprincipalname";   //In what Active Directory field do you want to search for the string?
 
-                $LDAPHost = "142.25.97.74";       //Your LDAP server DNS Name or IP Address
+                $LDAPHost = "142.25.97.154";       //Your LDAP server DNS Name or IP Address
                 $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
                 $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
                 $LDAPUser = "vmail";        //A valid Active Directory login
