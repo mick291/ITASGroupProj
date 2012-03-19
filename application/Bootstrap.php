@@ -120,7 +120,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->navigation($navigation);
     }
 
-    protected function _initAcl() {
+     protected function _initAcl()
+    {
         // Create a zend acl
         $acl = new Zend_Acl();
 
@@ -129,14 +130,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $roles = $config->acl->roles;
 
         // Loop through config and establish acl roles
-        foreach ($roles as $child => $parents) {
-            if (!$acl->hasRole($child)) {
-                if (empty($parents)) {
-                    $parents = null;
-                } else {
-                    $parents = explode(',', $parents);
+        foreach ($roles as $child => $parents){
+            if (!$acl->hasRole($child)){
+                if (empty($parents)){
+                    $parents=null;
                 }
-                $acl->addRole(new Zend_Acl_Role($child), $parents);
+                else {
+                    $parents = explode(',',$parents);
+                }
+                $acl->addRole(new Zend_Acl_Role($child),$parents);
             }
         }
 
@@ -147,40 +149,44 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $resourcesDeny = $config->acl->resources->deny;
 
         // Resources denied
-        if ($resourcesDeny != null) {
-            foreach ($resourcesDeny as $controller => $parents) {
-                if (!$acl->has($controller)) {
+        if ($resourcesDeny != null){
+            foreach ($resourcesDeny as $controller => $parents){
+                if (!$acl->has($controller)){
                     $acl->addResource($controller);
                 }
-                foreach ($parents as $action => $role) {
-                    if ($action == 'all') {
+                foreach ($parents as $action => $role){
+                    if ($action == 'all'){
                         $action = null;
                     }
                     $acl->deny(
-                            $role, $controller, $action
+                        $role,
+                        $controller,
+                        $action
                     );
                 }
             }
         }
 
         // Resources allowed
-        if ($resourcesAllow != null) {
-            foreach ($resourcesAllow as $controller => $parents) {
-                if (!$acl->has($controller)) {
+        if ($resourcesAllow != null){
+            foreach ($resourcesAllow as $controller => $parents){
+                if (!$acl->has($controller)){
                     $acl->addResource($controller);
                 }
-                foreach ($parents as $action => $role) {
-                    if ($action == 'all') {
+                foreach ($parents as $action => $role){
+                    if ($action == 'all'){
                         $action = null;
                     }
                     $acl->allow(
-                            $role, $controller, $action
+                        $role,
+                        $controller,
+                        $action
                     );
                 }
             }
         }
 
-        Zend_Registry::set('acl', $acl);
+        Zend_Registry::set('acl',$acl);
     }
 
 }
