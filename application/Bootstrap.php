@@ -8,12 +8,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * generate registry
      * @return Zend_Registry
      */
+    protected function _initAutoLoad() {
+        $fc = Zend_Controller_Front::getInstance();
+        
+       // $p = new AccessCheck();
+        
+    }
+
     protected function _initRegistry() {
         $registry = Zend_Registry::getInstance();
         return $registry;
     }
 
     protected function _initAppAutoload() {
+
+
         $autoloader = new Zend_Application_Module_Autoloader(array(
                     'namespace' => 'Application_',
                     'basePath' => dirname(__FILE__),
@@ -188,5 +197,4 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 //
 //        Zend_Registry::set('acl',$acl);
 //    }
-
 }
