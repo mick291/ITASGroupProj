@@ -8,11 +8,20 @@
     </tr>
     
     <?php
+    $count = 0;
     if (isset($this->person)) {
         foreach ($this->person as $key => $value) {
-            ?> <tr id="row_<?php //echo $value['firstName'];     ?>">
-                <?php
-                echo '<tr>';
+            $count ++;
+            
+                          
+                          if ( $count&1 )
+{
+ ?> <tr class="d0"> <?php
+}
+else
+{
+?> <tr id="d1"> <?php
+}
                 echo '<td>' . $value['specialty'] . '</td>';
                 $myVar = $value['physician'];
                 ?>

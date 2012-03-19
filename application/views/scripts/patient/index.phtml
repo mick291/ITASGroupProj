@@ -10,11 +10,21 @@
         <?php echo $this->form; ?>
     </tr>
     <?php
+     $count = 0;
     if (isset($this->patient)) {
         foreach ($this->patient as $key => $value) {
-            ?> <tr id="row_<?php //echo $value['firstName'];     ?>">
-                <?php
-                echo '<tr>';
+         
+               $count ++;
+            
+                          
+                          if ( $count&1 )
+{
+ ?> <tr class="d0"> <?php
+}
+else
+{
+?> <tr id="d1"> <?php
+}
                 $myVar = $value['patient'];
                 $type = $value['patientType'];
                 foreach ($value['assignedPhysician'] as $newKey => $value2) {
