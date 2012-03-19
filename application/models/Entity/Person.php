@@ -91,5 +91,12 @@ class Person
      */
     private $physician;
 
+    /**
+     * @var string $role
+     *
+     * @Column(name="role", type="string", length=15, nullable=true)
+     */
+    private $role;
+
 
 }
