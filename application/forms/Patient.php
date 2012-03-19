@@ -18,8 +18,7 @@ class Application_Form_Patient extends Zend_Form {
         $keyword->setLabel('Search For: ')
                   ->setRequired(true)
                   ->addValidator('NotEmpty'); 
-        
-        
+      
         $this->addElements(array($column, $keyword));
     }
 
