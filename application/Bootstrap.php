@@ -9,25 +9,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * @return Zend_Registry
      */
     protected function _initAutoLoad() {
-        $fc = Zend_Controller_Front::getInstance();
         
-        $fc->registerPlugin(new Medds_Acl());
+        $modelLoader = new Zend_Application_Module_Autoloader(array(
+            'namespace' => '',
+            'basePath' => APPLICATION_PATH));
+        
+        $acl = new Model_Acl();
+        $auth = Zend_Auth::getInstance();
+        
+        $fc = Zend_Controller_Front::getInstance();       
+        $fc->registerPlugin(new Plugin_AccessCheck($acl, $auth));
+        
+        return $modelLoader;
         
     }
 
     protected function _initRegistry() {
         $registry = Zend_Registry::getInstance();
         return $registry;
-    }
-
-    protected function _initAppAutoload() {
-
-
-        $autoloader = new Zend_Application_Module_Autoloader(array(
-                    'namespace' => 'Application_',
-                    'basePath' => dirname(__FILE__),
-                ));
-        return $autoloader;
     }
 
     /**
@@ -37,7 +36,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view = new Zend_View();
         $view->doctype('HTML5');
         $view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
-        $view->headTitle('Mr. Book')->setSeparator(' - ');
+        $view->headTitle('Care Center')->setSeparator(' - ');
         $view->env = APPLICATION_ENV;
 
 //* setup nav from nav xml file for use in view 
@@ -125,72 +124,72 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->navigation($navigation);
     }
 
-protected function _initAcl()
-    {
-        // Create a zend acl
-        $acl = new Zend_Acl();
-
-        // Load acl roles from config
-        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
-        $roles = $config->acl->roles;
-
-        // Loop through config and establish acl roles
-        foreach ($roles as $child => $parents){
-            if (!$acl->hasRole($child)){
-                if (empty($parents)){
-                    $parents=null;
-                }
-                else {
-                    $parents = explode(',',$parents);
-                }
-                $acl->addRole(new Zend_Acl_Role($child),$parents);
-            }
-        }
-
-        // Set null resource to be allowed
-        $acl->allow(null, null, null);
-
-        $resourcesAllow = $config->acl->resources->allow;
-        $resourcesDeny = $config->acl->resources->deny;
-
-        // Resources denied
-        if ($resourcesDeny != null){
-            foreach ($resourcesDeny as $controller => $parents){
-                if (!$acl->has($controller)){
-                    $acl->addResource($controller);
-                }
-                foreach ($parents as $action => $role){
-                    if ($action == 'all'){
-                        $action = null;
-                    }
-                    $acl->deny(
-                        $role,
-                        $controller,
-                        $action
-                    );
-                }
-            }
-        }
-
-        // Resources allowed
-        if ($resourcesAllow != null){
-            foreach ($resourcesAllow as $controller => $parents){
-                if (!$acl->has($controller)){
-                    $acl->addResource($controller);
-                }
-                foreach ($parents as $action => $role){
-                    if ($action == 'all'){
-                        $action = null;
-                    }
-                    $acl->allow(
-                        $role,
-                        $controller,
-                        $action
-                    );
-                }
-            }
-        }
-
-        Zend_Registry::set('acl',$acl);
-    }
+//protected function _initAcl()
+//    {
+//        // Create a zend acl
+//        $acl = new Zend_Acl();
+//
+//        // Load acl roles from config
+//        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
+//        $roles = $config->acl->roles;
+//
+//        // Loop through config and establish acl roles
+//        foreach ($roles as $child => $parents){
+//            if (!$acl->hasRole($child)){
+//                if (empty($parents)){
+//                    $parents=null;
+//                }
+//                else {
+//                    $parents = explode(',',$parents);
+//                }
+//                $acl->addRole(new Zend_Acl_Role($child),$parents);
+//            }
+//        }
+//
+//        // Set null resource to be allowed
+//        $acl->allow(null, null, null);
+//
+//        $resourcesAllow = $config->acl->resources->allow;
+//        $resourcesDeny = $config->acl->resources->deny;
+//
+//        // Resources denied
+//        if ($resourcesDeny != null){
+//            foreach ($resourcesDeny as $controller => $parents){
+//                if (!$acl->has($controller)){
+//                    $acl->addResource($controller);
+//                }
+//                foreach ($parents as $action => $role){
+//                    if ($action == 'all'){
+//                        $action = null;
+//                    }
+//                    $acl->deny(
+//                        $role,
+//                        $controller,
+//                        $action
+//                    );
+//                }
+//            }
+//        }
+//
+//        // Resources allowed
+//        if ($resourcesAllow != null){
+//            foreach ($resourcesAllow as $controller => $parents){
+//                if (!$acl->has($controller)){
+//                    $acl->addResource($controller);
+//                }
+//                foreach ($parents as $action => $role){
+//                    if ($action == 'all'){
+//                        $action = null;
+//                    }
+//                    $acl->allow(
+//                        $role,
+//                        $controller,
+//                        $action
+//                    );
+//                }
+//            }
+//        }
+//
+//        Zend_Registry::set('acl',$acl);
+//    }
 }

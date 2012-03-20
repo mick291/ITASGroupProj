@@ -136,6 +136,7 @@ class Zend_Loader
                 $dirs = implode(PATH_SEPARATOR, $dirs);
             }
             $incPath = get_include_path();
+            
             set_include_path($dirs . PATH_SEPARATOR . $incPath);
         }
 

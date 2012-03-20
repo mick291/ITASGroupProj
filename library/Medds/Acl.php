@@ -6,8 +6,8 @@
  */
 
 class Medds_Acl extends Zend_Acl {
-
-    public function __construct() {
+    
+     public function __construct() {
         $this->add(new Zend_Acl_Resource('patient'));
         $this->add(new Zend_Acl_Resource('index'), 'patient');    
         $this->add(new Zend_Acl_Resource('register'), 'patient');
@@ -18,7 +18,6 @@ class Medds_Acl extends Zend_Acl {
         $this->allow('user', 'patient', 'index');
         $this->allow('admin', 'patient', 'register');
     }
-
 }
 
 ?>
