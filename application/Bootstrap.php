@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initAutoLoad() {
         $fc = Zend_Controller_Front::getInstance();
         
-        $fc->registerPlugin(new Model_Acl());
+        $fc->registerPlugin(new Medds_Acl());
         
     }
 
