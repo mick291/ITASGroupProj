@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initAutoLoad() {
         $fc = Zend_Controller_Front::getInstance();
         
-        $fc->registerPlugin(new Plugin_AccessCheck);
+        $fc->registerPlugin(new Model_Acl());
         
     }
 
@@ -33,32 +33,28 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     /**
      * Initialized View settings
      */
-    protected function _initViewSettings() {
-        $this->bootstrap('view');
+    protected function _initView() {
+        $view = new Zend_View();
+        $view->doctype('HTML5');
+        $view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+        $view->headTitle('Mr. Book')->setSeparator(' - ');
+        $view->env = APPLICATION_ENV;
 
-        $this->_view = $this->getResource('view');
+//* setup nav from nav xml file for use in view 
+        $navContainerConfig = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'nav');
+        $navContainer = new Zend_Navigation($navContainerConfig);
 
-        // set encoding and doctype
-        $this->_view->setEncoding('UTF-8');
-        $this->_view->doctype('HTML5');
+        $view->navigation($navContainer);
 
-        // set the content type and language
-        $this->_view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8');
-        $this->_view->headMeta()->appendHttpEquiv('Content-Language', 'en-US');
+//* Add view to the ViewRenderer
+        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(
+                        'ViewRenderer'
+        );
+        $viewRenderer->setView($view);
 
-        // set css/js links and a special import for the accessibility styles
-        $this->_view->headLink()->appendStylesheet('/css/reset.css');
-        $this->_view->headLink()->appendStylesheet('/css/style.css');
-
-        /* jQuery AND jQueryUI */
-        $this->_view->headScript()->appendFile('/js/');
-        ;
-
-        $this->_view->addHelperPath('View/Helper', 'View_Helper');
-        // setting the site in the title
-        $this->_view->headTitle('Care Center');
+//* Return view, so that it can be stored by the bootstrap
+        return $view;
     }
-
     /**
      * Initialize Doctrine
      * @return Doctrine_Manager
@@ -129,72 +125,72 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->navigation($navigation);
     }
 
-//     protected function _initAcl()
-//    {
-//        // Create a zend acl
-//        $acl = new Zend_Acl();
-//
-//        // Load acl roles from config
-//        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
-//        $roles = $config->acl->roles;
-//
-//        // Loop through config and establish acl roles
-//        foreach ($roles as $child => $parents){
-//            if (!$acl->hasRole($child)){
-//                if (empty($parents)){
-//                    $parents=null;
-//                }
-//                else {
-//                    $parents = explode(',',$parents);
-//                }
-//                $acl->addRole(new Zend_Acl_Role($child),$parents);
-//            }
-//        }
-//
-//        // Set null resource to be allowed
-//        $acl->allow(null, null, null);
-//
-//        $resourcesAllow = $config->acl->resources->allow;
-//        $resourcesDeny = $config->acl->resources->deny;
-//
-//        // Resources denied
-//        if ($resourcesDeny != null){
-//            foreach ($resourcesDeny as $controller => $parents){
-//                if (!$acl->has($controller)){
-//                    $acl->addResource($controller);
-//                }
-//                foreach ($parents as $action => $role){
-//                    if ($action == 'all'){
-//                        $action = null;
-//                    }
-//                    $acl->deny(
-//                        $role,
-//                        $controller,
-//                        $action
-//                    );
-//                }
-//            }
-//        }
-//
-//        // Resources allowed
-//        if ($resourcesAllow != null){
-//            foreach ($resourcesAllow as $controller => $parents){
-//                if (!$acl->has($controller)){
-//                    $acl->addResource($controller);
-//                }
-//                foreach ($parents as $action => $role){
-//                    if ($action == 'all'){
-//                        $action = null;
-//                    }
-//                    $acl->allow(
-//                        $role,
-//                        $controller,
-//                        $action
-//                    );
-//                }
-//            }
-//        }
-//
-//        Zend_Registry::set('acl',$acl);
-//    }
+protected function _initAcl()
+    {
+        // Create a zend acl
+        $acl = new Zend_Acl();
+
+        // Load acl roles from config
+        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
+        $roles = $config->acl->roles;
+
+        // Loop through config and establish acl roles
+        foreach ($roles as $child => $parents){
+            if (!$acl->hasRole($child)){
+                if (empty($parents)){
+                    $parents=null;
+                }
+                else {
+                    $parents = explode(',',$parents);
+                }
+                $acl->addRole(new Zend_Acl_Role($child),$parents);
+            }
+        }
+
+        // Set null resource to be allowed
+        $acl->allow(null, null, null);
+
+        $resourcesAllow = $config->acl->resources->allow;
+        $resourcesDeny = $config->acl->resources->deny;
+
+        // Resources denied
+        if ($resourcesDeny != null){
+            foreach ($resourcesDeny as $controller => $parents){
+                if (!$acl->has($controller)){
+                    $acl->addResource($controller);
+                }
+                foreach ($parents as $action => $role){
+                    if ($action == 'all'){
+                        $action = null;
+                    }
+                    $acl->deny(
+                        $role,
+                        $controller,
+                        $action
+                    );
+                }
+            }
+        }
+
+        // Resources allowed
+        if ($resourcesAllow != null){
+            foreach ($resourcesAllow as $controller => $parents){
+                if (!$acl->has($controller)){
+                    $acl->addResource($controller);
+                }
+                foreach ($parents as $action => $role){
+                    if ($action == 'all'){
+                        $action = null;
+                    }
+                    $acl->allow(
+                        $role,
+                        $controller,
+                        $action
+                    );
+                }
+            }
+        }
+
+        Zend_Registry::set('acl',$acl);
+    }
 }
