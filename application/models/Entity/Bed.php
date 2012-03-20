@@ -22,13 +22,6 @@ class Bed
     private $bedId;
 
     /**
-     * @var integer $bedNumber
-     *
-     * @Column(name="bed_number", type="integer", nullable=false)
-     */
-    private $bedNumber;
-
-    /**
      * @var integer $roomNumber
      *
      * @Column(name="room_number", type="integer", nullable=false)

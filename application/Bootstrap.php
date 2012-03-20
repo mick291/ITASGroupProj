@@ -1,5 +1,6 @@
 <?php
 
+
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
     public $frontController;
@@ -9,7 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * @return Zend_Registry
      */
     protected function _initAutoLoad() {
-        
+
         $modelLoader = new Zend_Application_Module_Autoloader(array(
             'namespace' => '',
             'basePath' => APPLICATION_PATH));
@@ -54,6 +55,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 //* Return view, so that it can be stored by the bootstrap
         return $view;
     }
+    
     /**
      * Initialize Doctrine
      * @return Doctrine_Manager

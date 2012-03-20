@@ -98,5 +98,12 @@ class Person
      */
     private $role;
 
+    /**
+     * @var string $email
+     *
+     * @Column(name="email", type="string", length=45, nullable=false)
+     */
+    private $email;
+
 
 }

@@ -34,6 +34,9 @@ class Zend_Auth
      * @var Zend_Auth
      */
     protected static $_instance = null;
+    
+    // mickel hacked this
+    public $role = 'guest';
 
     /**
      * Persistent storage handler

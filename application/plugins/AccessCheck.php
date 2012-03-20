@@ -18,24 +18,39 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract {
 
     public function preDispatch(Zend_Controller_Request_Abstract $request) {
 
+        $this->_itemNumber = 30;
+        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+        $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
         $resource = $request->getControllerName();
         $action = $request->getActionName();
 
-        $identity = $this->_auth->getStorage()->read();
-        
-        $role = 'guest';
-        
-        if ($identity != null) {
-            $role = $identity->role;
-        } 
+        $email = $this->_auth->getIdentity();
 
-        if (!$this->_acl->isAllowed($role, $resource, $action)) {
-                $request->setControllerName('index')
-                        ->setActionName('index');
+        $q = $this->_entityManager->createQueryBuilder()
+                ->select('u')
+                ->from('Entity\Person', 'u')
+                ->where('u.email = ' . "'$email'");
+        //   ->setParameter('email', $auth->getIdentity());
+
+        $result = $q->getQuery();
+        $userInfo = $result->getArrayResult();
+
+        $userRole = $userInfo[0]['role'];
+
+        $role = 'guest';
+
+        If ($userRole!= null) {
+            
+            $role = $userRole;
         }
 
-            //echo 'PreDispatch';
-        
+
+        if (!$this->_acl->isAllowed($role, $resource, $action)) {
+            $request->setControllerName('index')
+                    ->setActionName('index');
+        }
+
+        //echo 'PreDispatch';
     }
 
 }

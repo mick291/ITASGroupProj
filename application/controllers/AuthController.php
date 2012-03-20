@@ -9,9 +9,13 @@ class AuthController extends Zend_Controller_Action {
      * Init action
      *
      */
+
     public function init() {
-        
-    }
+        $this->_itemNumber = 30;
+        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+        $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
+
+        }
 
     /**
      * Index Action
@@ -61,17 +65,20 @@ class AuthController extends Zend_Controller_Action {
             $result = $auth->authenticate($authAdapter);
 
             if (!$result->isValid()) {
-                
+
                 // Authentication failed; print the reasons why
                 foreach ($result->getMessages() as $message) {
                     echo "$message<br>";
                 }
             } else {
+                
+
+
                 //test
                 $SearchFor = $auth->getIdentity();               //What string do you want to find?
                 $SearchField = "userprincipalname";   //In what Active Directory field do you want to search for the string?
 
-                $LDAPHost = "142.25.97.154";       //Your LDAP server DNS Name or IP Address
+                $LDAPHost = "142.25.97.201";       //Your LDAP server DNS Name or IP Address
                 $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
                 $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
                 $LDAPUser = "vmail";        //A valid Active Directory login
@@ -98,6 +105,8 @@ class AuthController extends Zend_Controller_Action {
                     $pos = strpos($dir, "home");
                     $pos = $pos + 5;
                 }
+
+
                 if ($x == 0) {
 
                     print "Oops, $SearchField $SearchFor was not found. Please try again.\n";
@@ -113,11 +122,11 @@ class AuthController extends Zend_Controller_Action {
                     echo "Role is: $dis \n";
                 }
                 //end test
-                $user = Zend_Auth::getInstance()->getIdentity();
 
-                echo $user['role'] = $dis;
+                $user = $auth->getIdentity();
+
                 $urlOptions = array('controller' => 'index', 'action' => 'index');
-                //$this->_helper->redirector->gotoRoute($urlOptions);
+                $this->_helper->redirector->gotoRoute($urlOptions);
             }
         }
     }
