@@ -22,9 +22,9 @@
             <action>index</action>
         </floor>
         <login>
-            <label>Login</label>
-            <controller>auth</controller>
-            <action>login</action>
+            <label>Register</label>
+            <controller>patient</controller>
+            <action>register</action>
         </login>
     </nav>
 </configdata>
