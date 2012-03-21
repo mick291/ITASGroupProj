@@ -15,6 +15,7 @@ class PatientController extends Zend_Controller_Action {
         $this->_flashMessenger = $this->_helper->FlashMessenger;
         $form = new Application_Form_Patient();
         $this->view->form = $form;
+        $sessionRole = new Zend_Session_Namespace('sessionRole');
     }
 
     public function indexAction() {
@@ -63,8 +64,8 @@ class PatientController extends Zend_Controller_Action {
                 $phone = $form->getValue('phone');
 
 
-//                $urlOptions = array('controller' => 'patient', 'action' => 'index');
-//                $this->_helper->redirector->gotoRoute($urlOptions);
+               // $urlOptions = array('controller' => 'patient', 'action' => 'index');
+               // $this->_helper->redirector->gotoRoute($urlOptions);
             }
 
 
@@ -117,12 +118,30 @@ class PatientController extends Zend_Controller_Action {
                 // $ldaprecord["unicodepwd"] = $newPassw;
                 $ldaprecord["UserAccountControl"] = "544";
 
-
                 ldap_add($cnx, $dn, $ldaprecord);
+              
+                    
+//                    $careCenterData = new CareCenterData();
+//                    $careCenterData->firstName = $fn;
+//                    $careCenterData->lastName = $ln;
+//                    $careCenterData->address = $address;
+//                    $careCenterData->birthDate = "2000-10-10";
+//                    $careCenterData->phoneNumber = "1234567890";
+//                    $careCenterData->zipCode = $postal;
+//                    $careCenterData->assignedPhysician = '91';
+//                    $careCenterData->contactDate = "2000-10-10";
+//                    $careCenterData->patientType = "outPatient";
+//                    $careCenterData->email = "test@test.com";
+//                                        var_dump($careCenterData);
 
+                   // $careCenterData->save();
+                    echo "test";
+                
             } else {
                 echo "Unable to connect to LDAP server";
             }
+            
+            
         }
     }
 

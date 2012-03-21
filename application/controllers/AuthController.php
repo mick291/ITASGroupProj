@@ -69,8 +69,23 @@ class AuthController extends Zend_Controller_Action {
                     echo "$message<br>";
                 }
             } else {
-                $email = $auth->getIdentity();
+                $sessionRole = new Zend_Session_Namespace('sessionRole');
 
+                echo $email = $auth->getIdentity();
+
+
+                $qb = $this->_entityManager->createQueryBuilder()
+                        ->select('p', 'o')
+                        ->from('Entity\Physician', 'p')
+                        ->leftJoin('p.physician', 'o')
+                        ->where('o.email = ' . "'$email'");
+                //   ->setParameter('email', $auth->getIdentity());
+
+                $result = $qb->getQuery();
+                $userInfo = $result->getArrayResult();
+                $sessionRole->physicianId = $userInfo[0]['physicianId'];
+                // exit();
+                //
                 //test
                 $SearchFor = $auth->getIdentity();               //What string do you want to find?
                 $SearchField = "userprincipalname";   //In what Active Directory field do you want to search for the string?
@@ -90,8 +105,8 @@ class AuthController extends Zend_Controller_Action {
                 $filter = "($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
                 $sr = ldap_search($cnx, $dn, $filter, $LDAPFieldsToFind);
                 $info = ldap_get_entries($cnx, $sr);
-                
-     
+
+
                 for ($x = 0; $x < $info["count"]; $x++) {
                     $sam = $info[$x]['samaccountname'][0];
                     $giv = $info[$x]['givenname'][0];
@@ -111,14 +126,14 @@ class AuthController extends Zend_Controller_Action {
                 }
                 //end test
 
-                $sessionRole = new Zend_Session_Namespace('sessionRole');
+
                 $sessionRole->role = $dis;
                 $sessionRole->email = $upn;
 
                 $user = $auth->getIdentity();
 
-                $urlOptions = array('controller' => 'index', 'action' => 'index');
-                $this->_helper->redirector->gotoRoute($urlOptions);
+                   $urlOptions = array('controller' => 'index', 'action' => 'index');
+                   $this->_helper->redirector->gotoRoute($urlOptions);
             }
         }
     }

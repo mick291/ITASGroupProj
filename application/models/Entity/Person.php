@@ -2,6 +2,7 @@
 
 namespace Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,28 +67,28 @@ class Person
     /**
      * @var boolean $patient
      *
-     * @Column(name="patient", type="boolean", nullable=false)
+     * @Column(name="patient", type="boolean", nullable=true)
      */
     private $patient;
 
     /**
      * @var boolean $employee
      *
-     * @Column(name="employee", type="boolean", nullable=false)
+     * @Column(name="employee", type="boolean", nullable=true)
      */
     private $employee;
 
     /**
      * @var boolean $volunteer
      *
-     * @Column(name="volunteer", type="boolean", nullable=false)
+     * @Column(name="volunteer", type="boolean", nullable=true)
      */
     private $volunteer;
 
     /**
      * @var boolean $physician
      *
-     * @Column(name="physician", type="boolean", nullable=false)
+     * @Column(name="physician", type="boolean", nullable=true)
      */
     private $physician;
 
