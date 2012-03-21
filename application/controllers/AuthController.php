@@ -132,8 +132,8 @@ class AuthController extends Zend_Controller_Action {
 
                 $user = $auth->getIdentity();
 
-                //   $urlOptions = array('controller' => 'index', 'action' => 'index');
-                //   $this->_helper->redirector->gotoRoute($urlOptions);
+                   $urlOptions = array('controller' => 'index', 'action' => 'index');
+                   $this->_helper->redirector->gotoRoute($urlOptions);
             }
         }
     }
