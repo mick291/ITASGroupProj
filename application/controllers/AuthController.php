@@ -9,13 +9,11 @@ class AuthController extends Zend_Controller_Action {
      * Init action
      *
      */
-
     public function init() {
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
-
-        }
+    }
 
     /**
      * Index Action
@@ -71,8 +69,7 @@ class AuthController extends Zend_Controller_Action {
                     echo "$message<br>";
                 }
             } else {
-                
-
+                $email = $auth->getIdentity();
 
                 //test
                 $SearchFor = $auth->getIdentity();               //What string do you want to find?
@@ -83,7 +80,7 @@ class AuthController extends Zend_Controller_Action {
                 $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
                 $LDAPUser = "vmail";        //A valid Active Directory login
                 $LDAPUserPassword = "GR0UP!M@!L";
-                $LDAPFieldsToFind = array("cn", "sn", "givenname", "samaccountname", "descritpion", "telephonenumber", "mail");
+                $LDAPFieldsToFind = array("cn", "sn", "givenname", "samaccountname", "description", "telephonenumber", "userprincipalname");
 
                 $cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
                 ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  //Set the LDAP Protocol used by your AD service
@@ -93,15 +90,16 @@ class AuthController extends Zend_Controller_Action {
                 $filter = "($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
                 $sr = ldap_search($cnx, $dn, $filter, $LDAPFieldsToFind);
                 $info = ldap_get_entries($cnx, $sr);
-
+                
+     
                 for ($x = 0; $x < $info["count"]; $x++) {
                     $sam = $info[$x]['samaccountname'][0];
                     $giv = $info[$x]['givenname'][0];
                     $last = $info[$x]['sn'][0];
                     $tel = $info[$x]['telephonenumber'][0];
-                    $email = $info[$x]['mail'][0];
+                    $upn = $info[$x]['userprincipalname'][0];
                     $nam = $info[$x]['cn'][0];
-                    $dis = $info[$x]['descritpion'][0];
+                    $dis = $info[$x]['description'][0];
                     $pos = strpos($dir, "home");
                     $pos = $pos + 5;
                 }
@@ -110,18 +108,12 @@ class AuthController extends Zend_Controller_Action {
                 if ($x == 0) {
 
                     print "Oops, $SearchField $SearchFor was not found. Please try again.\n";
-                } else {
-                    echo "found it";
-                    echo "Active Directory says that:\n";
-                    echo "CN is: $nam \n";
-                    echo "SAMAccountName is: $sam \n";
-                    echo "Given Name is: $giv \n";
-                    echo "Telephone is: $tel \n";
-                    echo "Last Name is: $last \n";
-                    echo "Email is: $email \n";
-                    echo "Role is: $dis \n";
                 }
                 //end test
+
+                $sessionRole = new Zend_Session_Namespace('sessionRole');
+                $sessionRole->role = $dis;
+                $sessionRole->email = $upn;
 
                 $user = $auth->getIdentity();
 

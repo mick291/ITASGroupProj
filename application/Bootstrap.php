@@ -9,6 +9,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * generate registry
      * @return Zend_Registry
      */
+    
+     protected function _initSession()
+    {
+            Zend_Session::start();
+            $sessionRole = new Zend_Session_Namespace('sessionRole');
+    }
     protected function _initAutoLoad() {
 
         $modelLoader = new Zend_Application_Module_Autoloader(array(

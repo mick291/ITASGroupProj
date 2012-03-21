@@ -58,15 +58,12 @@ class Application_Form_Register extends Zend_Form {
                 ->addValidator('date', 'YYYY-MM-DD'); // Month-Day-Year
         $this->addElement($dob);
 
-        $email = $this->createElement('text', 'email');
-        $email->setLabel('Email Address: ')
-                ->setRequired(true)
-                ->addValidator('EmailAddress')
-                ->addValidator('Db_NoRecordExists', true, array('users', 'email',
-                    'messages' => array(
-                        Zend_Validate_Db_NoRecordExists::ERROR_RECORD_FOUND => 'Email address already exists'
-                        )));
-        $this->addElement($email);
+        $phone = new Zend_Form_Element_Text('phone');
+        $phone->setLabel('Phone Number: ')
+                ->setAttrib('size', 11)
+                ->addValidator('Digits')
+                ->addFilter('Digits');
+        $this->addElement($phone);
 
         $register = $this->createElement('submit', 'register');
         $register->setLabel('Sign up')
