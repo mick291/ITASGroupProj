@@ -15,6 +15,7 @@ class PatientController extends Zend_Controller_Action {
         $this->_flashMessenger = $this->_helper->FlashMessenger;
         $form = new Application_Form_Patient();
         $this->view->form = $form;
+        $sessionRole = new Zend_Session_Namespace('sessionRole');
     }
 
     public function indexAction() {
@@ -63,8 +64,8 @@ class PatientController extends Zend_Controller_Action {
                 $phone = $form->getValue('phone');
 
 
-//                $urlOptions = array('controller' => 'patient', 'action' => 'index');
-//                $this->_helper->redirector->gotoRoute($urlOptions);
+                $urlOptions = array('controller' => 'patient', 'action' => 'index');
+                $this->_helper->redirector->gotoRoute($urlOptions);
             }
 
 
@@ -117,12 +118,12 @@ class PatientController extends Zend_Controller_Action {
                 // $ldaprecord["unicodepwd"] = $newPassw;
                 $ldaprecord["UserAccountControl"] = "544";
 
-
                 ldap_add($cnx, $dn, $ldaprecord);
-
             } else {
                 echo "Unable to connect to LDAP server";
             }
+            
+            
         }
     }
 
