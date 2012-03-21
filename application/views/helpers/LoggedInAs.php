@@ -20,8 +20,8 @@ class Zend_View_Helper_LoggedInAs extends Zend_View_Helper_Abstract {
             return '';
         }
         $loginUrl = $this->view->url(array('controller' => 'auth', 'action' => 'login'));
-        $register = $this->view->url(array('controller' => 'patient', 'action' => 'register'));
-        return '<a href="' . $loginUrl . '">Login</a>' . '<br /><a href="' . $register . '">Register</a>';
+       
+        return '<a href="' . $loginUrl . '">Login</a>';
     }
 
 }
