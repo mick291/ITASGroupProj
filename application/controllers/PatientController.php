@@ -11,8 +11,7 @@ class PatientController extends Zend_Controller_Action {
 
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
-        $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
-        $this->_flashMessenger = $this->_helper->FlashMessenger;
+     
         $form = new Application_Form_Patient();
         $this->view->form = $form;
         $sessionRole = new Zend_Session_Namespace('sessionRole');
@@ -121,20 +120,20 @@ class PatientController extends Zend_Controller_Action {
                 ldap_add($cnx, $dn, $ldaprecord);
               
                     
-//                    $careCenterData = new CareCenterData();
-//                    $careCenterData->firstName = $fn;
-//                    $careCenterData->lastName = $ln;
-//                    $careCenterData->address = $address;
-//                    $careCenterData->birthDate = "2000-10-10";
-//                    $careCenterData->phoneNumber = "1234567890";
-//                    $careCenterData->zipCode = $postal;
-//                    $careCenterData->assignedPhysician = '91';
-//                    $careCenterData->contactDate = "2000-10-10";
-//                    $careCenterData->patientType = "outPatient";
-//                    $careCenterData->email = "test@test.com";
-//                                        var_dump($careCenterData);
+                    $careCenterData = new Entity\CareCenterData;
+                    $careCenterData->firstName = $fn;
+                    $careCenterData->lastName = $ln;
+                    $careCenterData->address = $address;
+                    $careCenterData->birthDate = "2000-10-10";
+                    $careCenterData->phoneNumber = "1234567890";
+                    $careCenterData->zipCode = $postal;
+                    $careCenterData->assignedPhysician = '91';
+                    $careCenterData->contactDate = "2000-10-10";
+                    $careCenterData->patientType = "outPatient";
+                    $careCenterData->email = "test@test.com";
 
-                   // $careCenterData->save();
+                    $this->_entityManager->persist($careCenterData);
+                    $this->_entityManager->flush();
                     echo "test";
                 
             } else {

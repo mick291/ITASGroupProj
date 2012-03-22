@@ -1,43 +1,79 @@
  
-          <head>
-        
-        <?php echo $this->headMeta(); ?>
-        <?php echo $this->headTitle(); ?>
-        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
-        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
+<head>
 
-        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery-1.4.2.min.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.easing.1.3.js') ?>"></script> 
-        <script type="text/javascript" src="<?php echo $this->baseUrl('https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js') ?>"></script> 
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
 
-    </head>
-
-
-    <body>
-<div id="content" >
-                    
-                   <div id="headerimage" align="center"  >
-           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
-           </div>
-      <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
+    <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery-1.4.2.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.easing.1.3.js') ?>"></script> 
+    <script type="text/javascript" src="<?php echo $this->baseUrl('https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js') ?>"></script> 
      
-            <div id="navigation" class="nav">
-                <?php echo $this->navigation()->menu(); ?>
-            </div> 
-      <h2> Click on a room for more info!</h2>
-                            <div id="center" >
-<img src="<?php echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=100% height=auto />
-</div>
-                        <?php echo $this->layout()->content; ?>
-       
-              <div class="clearfooter"></div>      
-                           
-               <div id="footer">            
-           <p>site designed by MEDDS</p>
+
+</head>
+
+
+<body>
+    <div id="content" >
+
+        <div id="headerimage" align="center"  >
+            <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
         </div>
-              </div>
+        <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
 
- 
+        <div id="navigation" class="nav">
+            <?php echo $this->navigation()->menu(); ?>
+        </div> 
+        <h2> Click on a room for more info!</h2>
+        <div id="center" >
+            <img src="<?php echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=auto height=auto usemap="#Islandmap" />
+        </div>
 
-        
-    </body>
+        <map name="Islandmap">
+            <area shape="poly" coords="14,333,87,404,173,320,171,247,137,213" href="#room:202" alt="Room 202" onclick="performlookup('202');" />
+            <area shape="poly" coords="94,413,166,486,284,367,247,329,175,327" href="#Room:203" alt="Room 203" />
+            <area shape="poly" coords="336,555,440,555,441,438,386,389,337,389" href="#Room:204" alt="Room 204" />
+
+        </map>
+
+        <?php echo $this->layout()->content; ?>
+
+
+
+        <script>
+
+
+            function performLookup(room)
+            {
+                data = {
+                    "room":room
+                };
+                /* Get the name, we know its >= characters */
+                $.ajax({
+                    dataType: 'json',
+                    url: '/floorPlan/list',
+                    type: 'POST',
+                    data: data,
+
+                    success: function (response) {
+                        alert(response);
+                    },
+
+                    timeout: 13*60*1000,
+                    error: function(){
+                        alert("error!");
+                    }
+                });
+             
+        </script>
+
+
+        <div class="clearfooter"></div>      
+
+        <div id="footer">            
+            <p>site designed by MEDDS</p>
+        </div>
+    </div>
+
+</body>

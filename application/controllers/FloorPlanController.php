@@ -1,20 +1,24 @@
 <?php
 
-class FloorPlanController extends Zend_Controller_Action
-{
+class FloorPlanController extends Zend_Controller_Action {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    protected $_flashMessenger = null;
+
+    public function init() {
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('add', 'json')
+                ->initContext();
     }
 
-    public function indexAction()
-    {
-         
- $this->_helper->layout()->disableLayout();
-
+    public function listAction() {
+        $p = $this->getRequest()->getParams('room');
+        echo $p['room'];
     }
 
+    public function indexAction() {
+
+        $this->_helper->layout()->disableLayout();
+    }
 
 }
 

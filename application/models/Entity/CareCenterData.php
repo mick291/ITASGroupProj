@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="care_center_data")
  * @Entity
  */
-class CareCenterData
-{
+class CareCenterData {
+
     /**
      * @var integer $id
      *
@@ -190,5 +189,12 @@ class CareCenterData
      */
     private $email;
 
+    public function __get($property) {
+        return $this->$property;
+    }
+
+    public function __set($property, $value) {
+        $this->$property = $value;
+    }
 
 }
