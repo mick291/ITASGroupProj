@@ -28,6 +28,7 @@ class AuthController extends Zend_Controller_Action {
      *
      */
     public function loginAction() {
+        
         $loginForm = new Application_Form_Auth();
 
         //If the request is not POST

@@ -65,9 +65,9 @@ body,html {
 div#leftholder
 {
     width: 15%;
-     margin-left: 1.5%;
+     margin-left: 3%;
     margin-right:1.5%;
-     margin-top: 5%;
+     margin-top: 20%;
    position:absolute;
      border: 4px;
     border-color:#ffffff;

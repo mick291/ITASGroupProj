@@ -15,6 +15,12 @@
 
 
 <body>
+    
+      <div id="leftholder">
+                
+  
+            </div>  
+    
     <div id="content" >
 
         <div id="headerimage" align="center"  >
@@ -26,8 +32,11 @@
             <?php echo $this->navigation()->menu(); ?>
         </div> 
         <h2> Click on a room for more info!</h2>
+        
+          
+<!--                 
         <div id="center" >
-            <img src="<?php echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=auto height=auto usemap="#Islandmap" />
+            <img src="<?php // echo $this->baseUrl('images/floorsmall.png') ?>" alt="Health Care Center Floor Plan" width=auto height=auto usemap="#Islandmap" />
         </div>
 
         <map name="Islandmap">
@@ -35,7 +44,22 @@
             <area shape="poly" coords="94,413,166,486,284,367,247,329,175,327" href="#Room:203" alt="Room 203" />
             <area shape="poly" coords="336,555,440,555,441,438,386,389,337,389" href="#Room:204" alt="Room 204" />
 
-        </map>
+        </map>-->
+        
+        
+	<img src="http://i.imgur.com/2v7Hb.png" width=auto height=auto  alt="Health Care Center Floor Plan" usemap="#imgmap">
+        
+	<map name="imgmap">
+		<area shape="poly" coords="135,211,172,248,174,325,86,410,7,332" href="#room:202" alt="Room 202" onclick="performLookup('202');">  
+        <area shape="poly" coords="179,329,251,328,291,368,165,492,90,414" href="#" alt="23">
+         <area shape="poly" coords="336,387,390,386,445,441,443,560,336,562" href="#" alt="24">
+        <area shape="poly" coords="450,443,505,387,554,390,556,557,450,558" href="#" alt="36"> 
+          <area shape="poly" coords="560,556,559,388,611,387,666,444,665,557,564,556" href="#" alt="42"> 
+         <area shape="poly" coords="672,557,673,440,726,388,776,389,775,558,673,560,674,559" href="#" alt="47">
+       	</map>
+
+
+
 
         <?php echo $this->layout()->content; ?>
 
@@ -43,7 +67,7 @@
 
         <script>
 
-
+ 
             function performLookup(room)
             {
                 data = {
