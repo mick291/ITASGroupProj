@@ -18,8 +18,13 @@ class Model_Acl extends Zend_Acl {
         $this->add(new Zend_Acl_Resource('login'), 'auth');
 
         $this->add(new Zend_Acl_Resource('person'));
+
         $this->add(new Zend_Acl_Resource('floorPlan'));
         $this->add(new Zend_Acl_Resource('list'), 'floorPlan');
+
+        $this->add(new Zend_Acl_Resource('employee'));
+        $this->add(new Zend_Acl_Resource('empregister'), 'employee');
+        $this->add(new Zend_Acl_Resource('docregister'), 'employee');
 
         $this->addRole(new Zend_Acl_Role('guest'));
         $this->addRole(new Zend_Acl_Role('employee'), 'guest');
@@ -33,8 +38,10 @@ class Model_Acl extends Zend_Acl {
         $this->allow('employee', 'person', 'index');
         $this->allow('doctor', 'patient', 'index');
         $this->allow('doctor', 'patient', 'register');
-        $this->allow('doctor', 'floorPlan', 'index');
+        $this->allow('guest', 'floorPlan', 'index');
         $this->allow('doctor', 'floorPlan', 'list');
+        $this->allow('doctor', 'employee', 'empregister');
+        $this->allow('doctor', 'employee', 'docregister');
     }
 
 }
