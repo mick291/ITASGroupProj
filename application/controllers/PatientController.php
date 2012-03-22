@@ -11,10 +11,9 @@ class PatientController extends Zend_Controller_Action {
 
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
-     
+
         $form = new Application_Form_Patient();
         $this->view->form = $form;
-        $sessionRole = new Zend_Session_Namespace('sessionRole');
     }
 
     public function indexAction() {
@@ -47,6 +46,7 @@ class PatientController extends Zend_Controller_Action {
 
     public function registerAction() {
         $form = new Application_Form_Register();
+        $sessionRole = new Zend_Session_Namespace('sessionRole');
 
         $this->view->form = $form;
         if ($this->getRequest()->isPost()) {
@@ -61,10 +61,13 @@ class PatientController extends Zend_Controller_Action {
                 $address = $form->getValue('address');
                 $postal = $form->getValue('postal');
                 $phone = $form->getValue('phone');
+                $dob = $form->getValue('date');
+                $type = $form->getValue('type');
+                $docId = $sessionRole->physicianId;
+                
 
-
-               // $urlOptions = array('controller' => 'patient', 'action' => 'index');
-               // $this->_helper->redirector->gotoRoute($urlOptions);
+                // $urlOptions = array('controller' => 'patient', 'action' => 'index');
+                // $this->_helper->redirector->gotoRoute($urlOptions);
             }
 
 
@@ -74,7 +77,6 @@ class PatientController extends Zend_Controller_Action {
                 $form->populate($formData);
                 $this->view->form = $form;
             }
-
 
             $LDAPHost = "142.25.97.201";       //Your LDAP server DNS Name or IP Address
             $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
@@ -117,30 +119,27 @@ class PatientController extends Zend_Controller_Action {
                 // $ldaprecord["unicodepwd"] = $newPassw;
                 $ldaprecord["UserAccountControl"] = "544";
 
-                ldap_add($cnx, $dn, $ldaprecord);
-              
-                    
+                if (ldap_add($cnx, $dn, $ldaprecord) != false) {
+
                     $careCenterData = new Entity\CareCenterData;
                     $careCenterData->firstName = $fn;
                     $careCenterData->lastName = $ln;
                     $careCenterData->address = $address;
-                    $careCenterData->birthDate = "2000-10-10";
-                    $careCenterData->phoneNumber = "1234567890";
+                    $careCenterData->birthDate = $dob;
+                    $careCenterData->phoneNumber = $phone;
                     $careCenterData->zipCode = $postal;
-                    $careCenterData->assignedPhysician = '91';
-                    $careCenterData->contactDate = "2000-10-10";
-                    $careCenterData->patientType = "outPatient";
-                    $careCenterData->email = "test@test.com";
+                    $careCenterData->assignedPhysician = $docId;
+                    $careCenterData->contactDate = date("Y-m-d");
+                    $careCenterData->patientType = $type;
+                    $careCenterData->email = $fn . "." . $ln . "@basewebdesign.ca";
 
                     $this->_entityManager->persist($careCenterData);
                     $this->_entityManager->flush();
-                    echo "test";
-                
+                    echo "works";
+                }
             } else {
                 echo "Unable to connect to LDAP server";
             }
-            
-            
         }
     }
 

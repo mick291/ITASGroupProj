@@ -21,10 +21,29 @@
             <controller>floorPlan</controller>
             <action>index</action>
         </floor>
-        <login>
-            <label>Register</label>
-            <controller>patient</controller>
-            <action>register</action>
-        </login>
+        <register>
+            <label>Registration</label>
+            <uri></uri>
+            <resource>null</resource>
+            <pages>
+                <registerPatient>
+                    <label>Register</label>
+                    <controller>patient</controller>
+                    <action>register</action>
+                </registerPatient>
+           
+                <registerEmployee>
+                    <label>New Employee</label>
+                    <controller>employee</controller>
+                    <action>empregister</action>
+                </registerEmployee>
+                <registerDoctor>
+                    <label>New Doctor</label>
+                    <controller>employee</controller>
+                    <action>docregister</action>
+                </registerDoctor>
+            </pages>
+        </register>
+
     </nav>
 </configdata>

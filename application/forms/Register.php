@@ -7,13 +7,12 @@ class Application_Form_Register extends Zend_Form {
         $this->setMethod('post');
 
         $type = new Zend_Form_Element_Select('type');
-        $type->setAttrib('style', 'width: 240px')
-                ->setLabel('Patient Type:')
-                ->setMultiOptions(array(
-                    'Out Patient',
-                    'In Patient'
-                ));
-
+        $type->setLabel('Patient Type:')
+              ->setMultiOptions(array('OutPatient'=>'Out Patient', 
+                  'InPatient'=>'In Patient'))
+              ->setRequired(true)->addValidator('NotEmpty', true);
+        
+        
         $this->addElement($type);
         $firstname = new Zend_Form_Element_Text('firstname');
 
