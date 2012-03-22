@@ -46,7 +46,7 @@ class CareCenter
     /**
      * @var integer $bedMax
      *
-     * @Column(name="bed_max", type="integer", nullable=false)
+     * @Column(name="bed_max", type="integer", nullable=true)
      */
     private $bedMax;
 
@@ -56,13 +56,6 @@ class CareCenter
      * @Column(name="labs", type="integer", nullable=true)
      */
     private $labs;
-
-    /**
-     * @var string $nurseInCharge
-     *
-     * @Column(name="nurse_in_charge", type="string", length=25, nullable=false)
-     */
-    private $nurseInCharge;
 
     /**
      * @var Employee
@@ -108,6 +101,16 @@ class CareCenter
      * )
      */
     private $physician;
+
+    /**
+     * @var Nurse
+     *
+     * @ManyToOne(targetEntity="Nurse")
+     * @JoinColumns({
+     *   @JoinColumn(name="nurse_in_charge", referencedColumnName="nurse_id")
+     * })
+     */
+    private $nurseInCharge;
 
     public function __construct()
     {
