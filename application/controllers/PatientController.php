@@ -63,13 +63,20 @@ class PatientController extends Zend_Controller_Action {
                 $phone = $form->getValue('phone');
                 $dob = $form->getValue('date');
                 $type = $form->getValue('type');
+                $emailTest = $fn . "." . $ln . "@basewebdesign.ca";
                 $docId = $sessionRole->physicianId;
-                
+
+                $qb = $this->_entityManager->createQueryBuilder()
+                        ->select('p')
+                        ->from('Entity\Person', 'p')
+                        ->where('p.email = ' . "'$emailTest'");
+                $q = $qb->getQuery();
+
+                $result = $q->getArrayResult();
 
                 // $urlOptions = array('controller' => 'patient', 'action' => 'index');
                 // $this->_helper->redirector->gotoRoute($urlOptions);
             }
-
 
             //Redisplay form with values and error messages
             else {
@@ -77,68 +84,86 @@ class PatientController extends Zend_Controller_Action {
                 $form->populate($formData);
                 $this->view->form = $form;
             }
-
-            $LDAPHost = "142.25.97.201";       //Your LDAP server DNS Name or IP Address
-            $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
-            $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
-            $LDAPUser = "administrator";        //A valid Active Directory login
-            $LDAPUserPassword = "GR0UP!M@!L";
-
-            $cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
-            if ($cnx) {
-
-                ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  //Set the LDAP Protocol used by your AD service
-                ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);         //This was necessary for my AD to do anything
-                ldap_bind($cnx, $LDAPUser . $LDAPUserDomain, $LDAPUserPassword) or die("Could not bind to LDAP");
-                error_reporting(E_ALL ^ E_NOTICE);
-
-                $cn = $fn . " " . $ln;
-
-                $dn = "cn=$cn , ou=Patient, dc=basewebdesign,dc=ca";
-
-                $newPassword = "GR0UP!M@!l";
-                $len = strlen($newPassword);
-                $newPassw = "";
-                for ($i = 0; $i < $len; $i++) {
-                    $newPassw .= "{$newPassword{$i}}\000";
-                }
-
-                $ldaprecord['cn'] = $fn . " " . $ln;
-                $ldaprecord['displayName'] = $fn . " " . $ln;
-                $ldaprecord['name'] = $fn . " " . $ln;
-                $ldaprecord['givenname'] = $fn;
-                $ldaprecord['sn'] = $ln;
-                $ldaprecord['homephone'] = $phone;
-                $ldaprecord["description"] = "patient";
-                $ldaprecord["userpassword"] = $newPassw;
-                $ldaprecord["streetAddress"] = $address;
-                $ldaprecord["postalCode"] = $postal;
-                $ldaprecord["userprincipalname"] = $fn . "." . $ln . "@basewebdesign.ca";
-                $ldaprecord['objectclass'] = array("top", "person", "organizationalPerson", "user");
-                $ldaprecord["sAMAccountName"] = $fn . "." . $ln;
-                // $ldaprecord["unicodepwd"] = $newPassw;
-                $ldaprecord["UserAccountControl"] = "544";
-
-                if (ldap_add($cnx, $dn, $ldaprecord) != false) {
-
-                    $careCenterData = new Entity\CareCenterData;
-                    $careCenterData->firstName = $fn;
-                    $careCenterData->lastName = $ln;
-                    $careCenterData->address = $address;
-                    $careCenterData->birthDate = $dob;
-                    $careCenterData->phoneNumber = $phone;
-                    $careCenterData->zipCode = $postal;
-                    $careCenterData->assignedPhysician = $docId;
-                    $careCenterData->contactDate = date("Y-m-d");
-                    $careCenterData->patientType = $type;
-                    $careCenterData->email = $fn . "." . $ln . "@basewebdesign.ca";
-
-                    $this->_entityManager->persist($careCenterData);
-                    $this->_entityManager->flush();
-                    echo "works";
-                }
+            //If patient is an employee update Person table to change them as a Patient.
+            if (count($result) > 0) {
+                $qt = $this->_entityManager->createQueryBuilder()
+                        ->select('c')
+                        ->from('Entity\Person', 'c')
+                        ->where('c.email = ' . "'$emailTest'");
+                $q = $qt->getQuery();
+                $result1 = $q->getResult();
+                $cc = $result1[0];
+                $cc->patient = 1;
+                $this->_entityManager->persist($cc);
+                $this->_entityManager->flush();
             } else {
-                echo "Unable to connect to LDAP server";
+
+                $LDAPHost = "142.25.97.201";       //Your LDAP server DNS Name or IP Address
+                $dn = "DC=basewebdesign,DC=ca"; //Put your Base DN here
+                $LDAPUserDomain = "@basewebdesign.ca";  //Needs the @, but not always the same as the LDAP server domain
+                $LDAPUser = "administrator";        //A valid Active Directory login
+                $LDAPUserPassword = "GR0UP!M@!L";
+
+                $cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+                if ($cnx) {
+
+                    ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  //Set the LDAP Protocol used by your AD service
+                    ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);         //This was necessary for my AD to do anything
+                    ldap_bind($cnx, $LDAPUser . $LDAPUserDomain, $LDAPUserPassword) or die("Could not bind to LDAP");
+                    error_reporting(E_ALL ^ E_NOTICE);
+
+                    $cn = $fn . " " . $ln;
+
+                    $dn = "cn=$cn , ou=Patient, dc=basewebdesign,dc=ca";
+
+                    $newPassword = "GR0UP!M@!l";
+                    $len = strlen($newPassword);
+                    $newPassw = "";
+                    for ($i = 0; $i < $len; $i++) {
+                        $newPassw .= "{$newPassword{$i}}\000";
+                    }
+
+                    $ldaprecord['cn'] = $fn . " " . $ln;
+                    $ldaprecord['displayName'] = $fn . " " . $ln;
+                    $ldaprecord['name'] = $fn . " " . $ln;
+                    $ldaprecord['givenname'] = $fn;
+                    $ldaprecord['sn'] = $ln;
+                    $ldaprecord['homephone'] = $phone;
+                    $ldaprecord["description"] = "patient";
+                    $ldaprecord["userpassword"] = $newPassw;
+                    $ldaprecord["streetAddress"] = $address;
+                    $ldaprecord["postalCode"] = $postal;
+                    $ldaprecord["userprincipalname"] = $fn . "." . $ln . "@basewebdesign.ca";
+                    $ldaprecord['objectclass'] = array("top", "person", "organizationalPerson", "user");
+                    $ldaprecord["sAMAccountName"] = $fn . "." . $ln;
+                    // $ldaprecord["unicodepwd"] = $newPassw;
+                    $ldaprecord["UserAccountControl"] = "544";
+
+                    if (ldap_add($cnx, $dn, $ldaprecord) != false) {
+
+                        $careCenterData = new Entity\CareCenterData;
+                        $careCenterData->firstName = $fn;
+                        $careCenterData->lastName = $ln;
+                        $careCenterData->address = $address;
+                        $careCenterData->birthDate = $dob;
+                        $careCenterData->phoneNumber = $phone;
+                        $careCenterData->zipCode = $postal;
+                        $careCenterData->assignedPhysician = $docId;
+                        $careCenterData->contactDate = date("Y-m-d");
+                        $careCenterData->patientType = $type;
+                        $careCenterData->email = $fn . "." . $ln . "@basewebdesign.ca";
+
+                        $this->_entityManager->persist($careCenterData);
+                        $this->_entityManager->flush();
+                        echo "works";
+                       
+                        //redirect to patient/index on successfull registration
+                        $urlOptions = array('controller' => 'patient', 'action' => 'index');
+                        $this->_helper->redirector->gotoRoute($urlOptions);
+                    }
+                } else {
+                    echo "Unable to connect to LDAP server";
+                }
             }
         }
     }

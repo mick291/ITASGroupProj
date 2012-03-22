@@ -23,11 +23,11 @@ class Nurse
     private $nurseId;
 
     /**
-     * @var integer $certifiate
+     * @var integer $certificate
      *
-     * @Column(name="certifiate", type="integer", nullable=false)
+     * @Column(name="certificate", type="integer", nullable=false)
      */
-    private $certifiate;
+    private $certificate;
 
     /**
      * @var Employee

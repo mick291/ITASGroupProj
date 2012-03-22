@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="care_center_data")
  * @Entity
  */
-class CareCenterData {
-
+class CareCenterData
+{
     /**
      * @var integer $id
      *
@@ -189,7 +189,7 @@ class CareCenterData {
      */
     private $email;
 
-    public function __get($property) {
+     public function __get($property) {
         return $this->$property;
     }
 
