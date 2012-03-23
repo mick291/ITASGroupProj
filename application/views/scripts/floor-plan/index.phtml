@@ -109,8 +109,39 @@ $(document).ready(function()
 <!--<script src="/js/decaying_update.js"></script>
 <script>
 
+<<<<<<< HEAD
+
+        <script type="text/javascript">
+
+ 
+            function performLookup(room)
+            {
+                data = {
+                    "room":room
+                };
+                /* Get the name, we know its >= characters */
+                $.ajax({
+                    dataType: 'json',
+                    url: '/floorPlan/list',
+                    type: 'POST',
+                    data: data,
+
+                    success: function (response) {
+                        alert(response);
+                    },
+
+                    timeout: 13*60*1000,
+                    error: function(){
+                        alert("error!");
+                    }
+                });
+                
+             
+        </script>
+=======
 </script>-->
        
+>>>>>>> b60a94939b9d1b57bf4ae407b6fc38294f2fbb5f
 
 
         <div class="clearfooter"></div>      

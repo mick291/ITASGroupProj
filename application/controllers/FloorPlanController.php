@@ -5,8 +5,10 @@ class FloorPlanController extends Zend_Controller_Action {
     protected $_flashMessenger = null;
 
     public function init() {
-        $ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('add', 'json')
+        // Get the context switcher helper
+        $contextSwitch = $this->_helper->getHelper('contextSwitch');
+        // We want to have a json and an xml context available for action1
+        $contextSwitch->addActionContext('index', array('xml', 'json'))
                 ->initContext();
     }
 
@@ -18,8 +20,9 @@ class FloorPlanController extends Zend_Controller_Action {
     public function indexAction() {
 
         $this->_helper->layout()->disableLayout();
-        
-            $p = $this->getRequest()->getParams('keyword');
+
+
+        $p = $this->getRequest()->getParams('keyword');
 
         if (isset($p['keyword'])) {
 
@@ -44,6 +47,8 @@ class FloorPlanController extends Zend_Controller_Action {
         }
         //print_r($result);
     }
+
+   
 
 }
 
