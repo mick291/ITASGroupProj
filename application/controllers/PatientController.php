@@ -141,22 +141,44 @@ class PatientController extends Zend_Controller_Action {
 
                     if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
-                        $careCenterData = new Entity\CareCenterData;
-                        $careCenterData->firstName = $fn;
-                        $careCenterData->lastName = $ln;
-                        $careCenterData->address = $address;
-                        $careCenterData->birthDate = $dob;
-                        $careCenterData->phoneNumber = $phone;
-                        $careCenterData->zipCode = $postal;
-                        $careCenterData->assignedPhysician = $docId;
-                        $careCenterData->contactDate = date("Y-m-d");
-                        $careCenterData->patientType = $type;
-                        $careCenterData->email = $fn . "." . $ln . "@basewebdesign.ca";
+                        $person = new Entity\Person;
+                        $person->firstName = $fn;
+                        $person->lastName = $ln;
+                        $person->address = $address;
+                        $person->birthDate = $dob;
+                        $person->phoneNumber = $phone;
+                        $person->zipCode = $postal;
+                        $person->patient = '1';
+                        // $careCenterData->assignedPhysician = $docId;
+                        //$careCenterData->contactDate = date("Y-m-d");
+                        // $careCenterData->patientType = $type;
+                        $person->email = $fn . "." . $ln . "@basewebdesign.ca";
 
-                        $this->_entityManager->persist($careCenterData);
+                        $this->_entityManager->persist($person);
+                        $this->_entityManager->flush();
+
+
+                        $email = $fn . "." . $ln . "@basewebdesign.ca";
+
+                        $qb = $this->_entityManager->createQueryBuilder()
+                                ->select('p')
+                                ->from('Entity\Person', 'p')
+                                ->where('p.email = ' . "'$email'");
+                        $q = $qb->getQuery();
+                        $result = $q->getArrayResult();
+                        echo "test";
+                        print_r($result);
+                        exit();
+
+                        $cc = $result[0];
+                        $cc->assignedPhysician = $docId;
+                        $cc->contactDate = date("Y-m-d");
+                        $cc->patientId = $cc->personId;
+                        $cc->patientType = $type;
+                        $this->_entityManager->persist($cc);
                         $this->_entityManager->flush();
                         echo "works";
-                       
+
                         //redirect to patient/index on successfull registration
                         $urlOptions = array('controller' => 'patient', 'action' => 'index');
                         $this->_helper->redirector->gotoRoute($urlOptions);
