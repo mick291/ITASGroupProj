@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="patient")
  * @Entity
  */
-class Patient
-{
+class Patient {
+
     /**
      * @var integer $patientId
      *
@@ -93,10 +92,17 @@ class Patient
      */
     private $assignedPhysician;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->itemConsumed = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
+    public function __get($property) {
+        return $this->$property;
+    }
+
+    public function __set($property, $value) {
+        $this->$property = $value;
+    }
+
 }
