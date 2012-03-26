@@ -23,8 +23,7 @@
         </floor>
         <register>
             <label>Registration</label>
-            <uri></uri>
-            <resource>null</resource>
+            <uri>#</uri>
             <pages>
                 <registerPatient>
                     <label>Register</label>

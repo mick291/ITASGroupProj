@@ -156,28 +156,32 @@ class PatientController extends Zend_Controller_Action {
 
                         $this->_entityManager->persist($person);
                         $this->_entityManager->flush();
-
-
-                        $email = $fn . "." . $ln . "@basewebdesign.ca";
+                        $this->_entityManager->close();
 
                         $qb = $this->_entityManager->createQueryBuilder()
                                 ->select('p')
                                 ->from('Entity\Person', 'p')
-                                ->where('p.email = ' . "'$email'");
+                                ->where('p.email = ' . "'$emailTest'");
                         $q = $qb->getQuery();
-                        $result = $q->getArrayResult();
-                        echo "test";
-                        print_r($result);
-                        exit();
 
-                        $cc = $result[0];
-                        $cc->assignedPhysician = $docId;
-                        $cc->contactDate = date("Y-m-d");
-                        $cc->patientId = $cc->personId;
-                        $cc->patientType = $type;
-                        $this->_entityManager->persist($cc);
+                        $result = $q->getArrayResult();
+
+                        $patient = new Entity\Patient;
+                        print_r($patient);
+
+                        $patient->assignedPhysician = $sessionRole->physicianId;
+
+                        $patient->contactDate = date("Y-m-d");
+                        $patient->patientId = $result[0][personId];
+                        $patient->patientType = $type;
+                        
+                       
+                        $this->_entityManager->persist($patient);
                         $this->_entityManager->flush();
                         echo "works";
+                        exit();
+
+
 
                         //redirect to patient/index on successfull registration
                         $urlOptions = array('controller' => 'patient', 'action' => 'index');
