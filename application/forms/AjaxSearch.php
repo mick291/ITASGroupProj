@@ -10,6 +10,7 @@ class Application_Form_AjaxSearch extends Zend_Form
 	public function init()
 	{
 		//Set the name of the form
+            
 		$this->setName('AjaxSearch');
 			
 		// *

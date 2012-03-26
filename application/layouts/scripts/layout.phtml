@@ -7,17 +7,35 @@ $this->headTitle('Care Center');
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        
-        <?php 
-        echo $this->doctype();
-        echo $this->headMeta(); ?>
-        <?php echo $this->headTitle(); ?>
-        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
-        <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
+<!--     <script type='text/javascript' src='http://code.jquery.com/jquery-1.4.4.min.js'></script>-->
 
-        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery-1.4.2.min.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.easing.1.3.js') ?>"></script> 
-        <script type="text/javascript" src="<?php echo $this->baseUrl('https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js') ?>"></script> 
+          <script type="text/javascript" src="<?php echo $this->baseUrl('js/jquery-1.4.4.min.js') ?>" ></script>
+         
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.easing.1.3.js') ?>"></script> 
+         <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
+    
+     
+  
+
+             
+                    <script type="text/javascript" src="<?php echo $this->baseUrl('js/jquery.qtip.js') ?>" ></script>
+                     
+          <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.qtip.css'); ?>
+ <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.qtip-1.0.0-rc3.min.js') ?>"></script> 
+        
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
+
+    
+<!--    
+      <script type='text/javascript' src="http://craigsworks.com/projects/qtip_new/packages/nightly/jquery.qtip.js"></script>-->
+
+<!--    
+      <link rel="stylesheet" type="text/css" href="http://craigsworks.com/projects/qtip_new/packages/nightly/jquery.qtip.css"/>-->
+  
+        
 
     </head>
  
@@ -32,7 +50,8 @@ $this->headTitle('Care Center');
       <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
      
             <div id="navigation" class="nav">
-                <?php echo $this->navigation()->menu(); ?>
+                <?php echo $this->navigation()->menu()->renderSubMenu(); ?>
+<!--               setOnlyActiveBranch(true)->setRenderParents(false)->setMinDepth(0); -->
             </div> 
                     
 <!--                   <div id="leftholder">
@@ -55,8 +74,7 @@ $this->headTitle('Care Center');
            site designed by MEDDS
         </div>
               </div>
-             
-       
+     
     </body> 
      
     

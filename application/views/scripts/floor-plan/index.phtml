@@ -1,21 +1,6 @@
 <html>
 <head>
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.4.4.min.js'></script>
 
-    <?php echo $this->headMeta(); ?>
-    <?php echo $this->headTitle(); ?>
-    <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
-    <?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery.ennui.contentslider.css'); ?>
-
-  
-    
-    
-      <script type='text/javascript' src="http://craigsworks.com/projects/qtip_new/packages/nightly/jquery.qtip.js"></script>
-    
-  
-    
-      <link rel="stylesheet" type="text/css" href="http://craigsworks.com/projects/qtip_new/packages/nightly/jquery.qtip.css"/>
-    
     
   
 <!--    
@@ -26,7 +11,20 @@
     
       <link rel="stylesheet" type="text/css" href="http://media1.juggledesign.com/qtip2/css/master.css"/>
     -->
+<style type='text/css'>
+    /* Add some nice box-shadow-ness to the modal tooltip */
+#ui-tooltip-modal{
+    max-width: 420px;
 
+    -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+    box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+}
+
+#ui-tooltip-modal .ui-tooltip-content{
+    padding: 10px;
+}
+  </style>
 
  <script>
 
@@ -71,21 +69,7 @@ $(document).ready(function()
 
 <body class="demo-imagemap">
     
-      <div id="leftholder">
-                
-  
-            </div>  
-    
-    <div id="content" >
-
-        <div id="headerimage" align="center"  >
-            <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />
-        </div>
-        <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
-
-        <div id="navigation" class="nav">
-            <?php echo $this->navigation()->menu(); ?>
-        </div> 
+     
         <h2> Click on a room for more info!</h2>
         
 
@@ -110,11 +94,7 @@ $(document).ready(function()
        
 
 
-        <div class="clearfooter"></div>      
 
-        <div id="footer">            
-            <p>site designed by MEDDS</p>
-        </div>
     </div>
 
 

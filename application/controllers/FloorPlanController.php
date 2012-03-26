@@ -19,7 +19,7 @@ class FloorPlanController extends Zend_Controller_Action {
 
     public function indexAction() {
 
-        $this->_helper->layout()->disableLayout();
+//        $this->_helper->layout()->disableLayout();
 
 
         $p = $this->getRequest()->getParams('keyword');

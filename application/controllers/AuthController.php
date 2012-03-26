@@ -15,10 +15,6 @@ class AuthController extends Zend_Controller_Action {
         $this->_customerRepo = $this->_entityManager->getRepository('Entity\Person');
     }
 
-    /**
-     * Index Action
-     *
-     */
     public function indexAction() {
         
     }
