@@ -18,7 +18,6 @@ class EmployeeController extends Zend_Controller_Action {
 
     public function indexAction() {
         
-        
     }
 
     public function empregisterAction() {
@@ -139,7 +138,7 @@ class EmployeeController extends Zend_Controller_Action {
                 $pager = $form->getValue('pager');
                 $dob = $form->getValue('date');
                 $type = $form->getValue('type');
-                
+
 
                 // $urlOptions = array('controller' => 'patient', 'action' => 'index');
                 // $this->_helper->redirector->gotoRoute($urlOptions);
@@ -197,23 +196,39 @@ class EmployeeController extends Zend_Controller_Action {
 
                 if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
-                    $careCenterData = new Entity\CareCenterData;
-                    $careCenterData->firstName = $fn;
-                    $careCenterData->lastName = $ln;
-                    $careCenterData->address = $address;
-                    $careCenterData->birthDate = $dob;
-                    $careCenterData->phoneNumber = $phone;
-                    $careCenterData->pagerNumber = $pager;
-                    $careCenterData->zipCode = $postal;
-                    $careCenterData->speciality = $type;
-                    $careCenterData->role = "doctor";
-                    $careCenterData->contactDate = date("Y-m-d");
-                   // $careCenterData->patientType = $type;
-                    $careCenterData->email = $fn . "." . $ln . "@basewebdesign.ca";
+                    $person = new Entity\Person;
+                    $person->firstName = $fn;
+                    $person->lastName = $ln;
+                    $person->address = $address;
+                    $person->birthDate = $dob;
+                    $person->phoneNumber = $phone;
+                    $person->zipCode = $postal;
+                    // $careCenterData->patientType = $type;
+                    $person->email = $fn . "." . $ln . "@basewebdesign.ca";
 
-                    $this->_entityManager->persist($careCenterData);
+                    $this->_entityManager->persist($person);
                     $this->_entityManager->flush();
-                    echo "doctor works";
+
+                    $emailTest = $fn . "." . $ln . "@basewebdesign.ca";
+
+                    $qb = $this->_entityManager->createQueryBuilder()
+                            ->select('p')
+                            ->from('Entity\Person', 'p')
+                            ->where('p.email = ' . "'$emailTest'");
+                    $q = $qb->getQuery();
+
+                    $result = $q->getArrayResult();
+
+                    $physician = new Entity\Physician;
+                    $physician->specialty = $type;
+                    $physician->pagerNumber = $pager;
+                    $physician->physicianId = $result[0][personId];
+
+                   // print_r($physician);
+                   
+                    var_dump($this->_entityManager->persist($physician));
+                    exit();
+                    $this->_entityManager->flush($physician);
                 }
             } else {
                 echo "Unable to connect to LDAP server";

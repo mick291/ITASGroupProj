@@ -156,7 +156,6 @@ class PatientController extends Zend_Controller_Action {
 
                         $this->_entityManager->persist($person);
                         $this->_entityManager->flush();
-                        $this->_entityManager->close();
 
                         $qb = $this->_entityManager->createQueryBuilder()
                                 ->select('p')
@@ -167,18 +166,18 @@ class PatientController extends Zend_Controller_Action {
                         $result = $q->getArrayResult();
 
                         $patient = new Entity\Patient;
-                        print_r($patient);
-
-                        $patient->assignedPhysician = $sessionRole->physicianId;
-
-                        $patient->contactDate = date("Y-m-d");
                         $patient->patientId = $result[0][personId];
+                        $patient->patient = $result[0][personId];
+                        $patient->contactDate = date("Y-m-d");
                         $patient->patientType = $type;
-                        
-                       
+
+                        // $patient->assignedPhysician = $sessionRole->physicianId;                        
+//                        
+//                        print_r($patient);
+//
                         $this->_entityManager->persist($patient);
                         $this->_entityManager->flush();
-                        echo "works";
+//                        echo "works";
                         exit();
 
 
