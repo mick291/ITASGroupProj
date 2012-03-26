@@ -23,8 +23,14 @@
         </floor>
         <register>
             <label>Registration</label>
-            <uri>#</uri>
+            <controller>employee</controller>
+            <action>index</action>
             <pages>
+                <back>
+            <label>Return</label>
+          <controller></controller>
+                    <action></action>
+        </back>
                 <registerPatient>
                     <label>Register</label>
                     <controller>patient</controller>
@@ -41,6 +47,7 @@
                     <controller>employee</controller>
                     <action>docregister</action>
                 </registerDoctor>
+                
             </pages>
         </register>
 

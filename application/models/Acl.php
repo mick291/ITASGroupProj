@@ -44,6 +44,8 @@ class Model_Acl extends Zend_Acl {
         $this->allow('doctor', 'employee', 'empregister');
         $this->allow('doctor', 'employee', 'docregister');
         $this->allow('doctor', 'employee', 'index');
+        $this->allow('doctor', 'employee', 'refresh');
+           $this->allow('doctor', 'patient', 'refresh');
     }
 
 }

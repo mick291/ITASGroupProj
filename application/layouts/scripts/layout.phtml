@@ -50,7 +50,8 @@ $this->headTitle('Care Center');
       <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
      
             <div id="navigation" class="nav">
-                <?php echo $this->navigation()->menu(); ?>
+                <?php echo $this->navigation()->menu()->renderSubMenu(); ?>
+<!--               setOnlyActiveBranch(true)->setRenderParents(false)->setMinDepth(0); -->
             </div> 
                     
 <!--                   <div id="leftholder">
