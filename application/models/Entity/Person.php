@@ -106,7 +106,6 @@ class Person
      */
     private $email;
 
-    
      public function __get($property) {
         return $this->$property;
     }

@@ -1,5 +1,6 @@
 <?php
 
+namespace Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -48,5 +49,12 @@ class Bed
      */
     private $residentPatient;
 
+     public function __get($property) {
+        return $this->$property;
+    }
+
+    public function __set($property, $value) {
+        $this->$property = $value;
+    }
 
 }

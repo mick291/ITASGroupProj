@@ -2,6 +2,7 @@
 
 namespace Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="care_center_data")
  * @Entity
  */
-class CareCenterData
-{
+class CareCenterData {
+
     /**
      * @var integer $id
      *
@@ -113,30 +114,30 @@ class CareCenterData
     private $skill;
 
     /**
-     * @var string $patient
+     * @var boolean $patient
      *
-     * @Column(name="patient", type="string", length=2, nullable=true)
+     * @Column(name="patient", type="boolean", nullable=true)
      */
     private $patient;
 
     /**
-     * @var string $employee
+     * @var boolean $employee
      *
-     * @Column(name="employee", type="string", length=2, nullable=true)
+     * @Column(name="employee", type="boolean", nullable=true)
      */
     private $employee;
 
     /**
-     * @var string $volunteer
+     * @var boolean $volunteer
      *
-     * @Column(name="volunteer", type="string", length=2, nullable=true)
+     * @Column(name="volunteer", type="boolean", nullable=true)
      */
     private $volunteer;
 
     /**
-     * @var string $physician
+     * @var boolean $physician
      *
-     * @Column(name="physician", type="string", length=2, nullable=true)
+     * @Column(name="physician", type="boolean", nullable=true)
      */
     private $physician;
 
@@ -189,7 +190,7 @@ class CareCenterData
      */
     private $email;
 
-     public function __get($property) {
+    public function __get($property) {
         return $this->$property;
     }
 

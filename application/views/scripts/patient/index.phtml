@@ -6,6 +6,7 @@
         <th>Address</th>
         <th>Assigned Physician</th>
         <th>Type</th>
+        <th>Room #</th>
 
         <?php echo $this->form; ?>
     </tr>
@@ -37,6 +38,7 @@ else
                 <td><?php echo $myVar['address']; ?></td>
                 <td><?php echo $assignedPhysician; ?></td>
                 <td><?php echo $type; ?></td>
+                <td><?php echo $myVar['room']; ?></td>
             </tr>
         <?php }
     } ?>

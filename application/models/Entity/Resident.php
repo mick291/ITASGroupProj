@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="resident")
  * @Entity
  */
-class Resident
-{
+class Resident {
+
     /**
      * @var integer $patientId
      *
@@ -32,5 +32,12 @@ class Resident
      */
     private $patient;
 
+    public function __get($property) {
+        return $this->$property;
+    }
+
+    public function __set($property, $value) {
+        $this->$property = $value;
+    }
 
 }
