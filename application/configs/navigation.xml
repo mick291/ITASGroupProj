@@ -32,7 +32,7 @@
                     <action></action>
         </back>
                 <registerPatient>
-                    <label>Register</label>
+                    <label>New Patient</label>
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
