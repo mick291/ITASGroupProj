@@ -11,7 +11,8 @@ class Application_Form_Employee extends Zend_Form {
               ->setMultiOptions(array( 
                   'nurse'=>'Nurse',
                   'staff' => 'Staff',
-                  'technician' => 'Technician'))
+                  'technician' => 'Technician',
+                  'volunteer' => 'Volunteer'))
               ->setRequired(true)->addValidator('NotEmpty', true);
         $this->addElement($type);
         
@@ -20,6 +21,7 @@ class Application_Form_Employee extends Zend_Form {
                 ->setRequired(true)
                 ->addFilter('StringTrim')
                 ->addFilter('StripTags')
+                 ->setAttrib('onchange', '')
                 ->addErrorMessage("Please ensure your name only contains letters")
                 ->addValidator('Regex', false, array('/[a-zA-Z ]$/')); // Only chars from a-z and spaces
         $this->addElement($skill);

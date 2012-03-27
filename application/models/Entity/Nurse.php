@@ -32,10 +32,8 @@ class Nurse
     /**
      * @var Employee
      *
-     * @ManyToOne(targetEntity="Employee")
-     * @JoinColumns({
+     * @ToOne(targetEntity="Employee")
      *   @JoinColumn(name="nurse_id", referencedColumnName="employee_id")
-     * })
      */
     private $nurse;
 

@@ -165,6 +165,8 @@ class PatientController extends Zend_Controller_Action {
 
                     if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
+                        $doc = $this->_entityManager->find('Entity\Physician', $sessionRole->physicianId);
+                        
                         $person = new Entity\Person;
                         $person->firstName = $fn;
                         $person->lastName = $ln;
@@ -180,10 +182,10 @@ class PatientController extends Zend_Controller_Action {
 
                         $patient = new Entity\Patient;
                         $patient->patient = $person;
-//                        $patient->patientId = $person;
                         $patient->contactDate = date("Y-m-d");
                         $patient->patientType = $type;
-                        $patient->assignedPhysician = $sessionRole->physicianId;
+                        
+                        $patient->assignedPhysician = $doc;
 //                        
 //                        print_r($patient);
 //

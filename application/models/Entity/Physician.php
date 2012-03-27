@@ -39,7 +39,7 @@ class Physician
     /**
      * @var CareCenter
      *
-     * @ManyToMany(targetEntity="CareCenter", mappedBy="physician")
+     * @OneToMany(targetEntity="CareCenter", mappedBy="physician")
      */
     private $careCenter;
 

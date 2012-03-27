@@ -39,10 +39,8 @@ class Employee
     /**
      * @var Person
      *
-     * @ManyToOne(targetEntity="Person")
-     * @JoinColumns({
+     * @OneToOne(targetEntity="Person")
      *   @JoinColumn(name="employee_id", referencedColumnName="person_id")
-     * })
      */
     private $employee;
 

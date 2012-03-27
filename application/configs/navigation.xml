@@ -27,20 +27,15 @@
             <action>index</action>
             <pages>
                 <back>
-            <label>Return</label>
-          <controller></controller>
+                    <label>Return</label>
+                    <controller></controller>
                     <action></action>
-        </back>
+                </back>
                 <registerPatient>
-<<<<<<< HEAD
                     <label>Patient</label>
-=======
-                    <label>New Patient</label>
->>>>>>> b5be2c90c103af4df0ee2f0f4a74d69dc19d9db9
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
-           
                 <registerEmployee>
                     <label>Employee</label>
                     <controller>employee</controller>
