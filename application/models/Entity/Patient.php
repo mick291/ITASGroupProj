@@ -75,20 +75,16 @@ class Patient {
     /**
      * @var Person
      *
-     * @ManyToOne(targetEntity="Person")
-     * @JoinColumns({
-     *   @JoinColumn(name="patient_id", referencedColumnName="person_id")
-     * })
+     * @oneToOne(targetEntity="Person")
+     * @JoinColumn(name="patient_id", referencedColumnName="person_id")
      */
     private $patient;
 
     /**
      * @var Physician
      *
-     * @ManyToOne(targetEntity="Physician")
-     * @JoinColumns({
+     * @OneToOne(targetEntity="Physician")
      *   @JoinColumn(name="assigned_physician", referencedColumnName="physician_id")
-     * })
      */
     private $assignedPhysician;
 

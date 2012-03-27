@@ -32,18 +32,18 @@
                     <action></action>
         </back>
                 <registerPatient>
-                    <label>Register</label>
+                    <label>Patient</label>
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
            
                 <registerEmployee>
-                    <label>New Employee</label>
+                    <label>Employee</label>
                     <controller>employee</controller>
                     <action>empregister</action>
                 </registerEmployee>
                 <registerDoctor>
-                    <label>New Doctor</label>
+                    <label>Doctor</label>
                     <controller>employee</controller>
                     <action>docregister</action>
                 </registerDoctor>

@@ -197,6 +197,7 @@ class EmployeeController extends Zend_Controller_Action {
                 if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
                     $person = new Entity\Person;
+
                     $person->firstName = $fn;
                     $person->lastName = $ln;
                     $person->address = $address;
@@ -205,30 +206,19 @@ class EmployeeController extends Zend_Controller_Action {
                     $person->zipCode = $postal;
                     // $careCenterData->patientType = $type;
                     $person->email = $fn . "." . $ln . "@basewebdesign.ca";
-
                     $this->_entityManager->persist($person);
                     $this->_entityManager->flush();
 
-                    $emailTest = $fn . "." . $ln . "@basewebdesign.ca";
-
-                    $qb = $this->_entityManager->createQueryBuilder()
-                            ->select('p')
-                            ->from('Entity\Person', 'p')
-                            ->where('p.email = ' . "'$emailTest'");
-                    $q = $qb->getQuery();
-
-                    $result = $q->getArrayResult();
-
+          
                     $physician = new Entity\Physician;
                     $physician->specialty = $type;
                     $physician->pagerNumber = $pager;
-                    $physician->physicianId = $result[0][personId];
-
-                   // print_r($physician);
-                   
-                    var_dump($this->_entityManager->persist($physician));
-                    exit();
-                    $this->_entityManager->flush($physician);
+                    //$physician->physicianId = $person->personId;
+                    $physician->physician = $person;
+                
+                    $this->_entityManager->persist($physician);
+                    
+                    $this->_entityManager->flush();
                 }
             } else {
                 echo "Unable to connect to LDAP server";

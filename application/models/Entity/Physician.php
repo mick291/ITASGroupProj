@@ -46,17 +46,15 @@ class Physician
     /**
      * @var Patient
      *
-     * @ManyToMany(targetEntity="Patient", mappedBy="physician")
+     * @OneToMany(targetEntity="Patient", mappedBy="physician")
      */
     private $patient;
 
     /**
      * @var Person
      *
-     * @ManyToOne(targetEntity="Person")
-     * @JoinColumns({
-     *   @JoinColumn(name="physician_id", referencedColumnName="person_id")
-     * })
+     * @OneToOne(targetEntity="Person")
+     * @JoinColumn(name="physician_id", referencedColumnName="person_id")
      */
     private $physician;
 
