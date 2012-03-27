@@ -32,7 +32,11 @@
                     <action></action>
         </back>
                 <registerPatient>
+<<<<<<< HEAD
                     <label>Patient</label>
+=======
+                    <label>New Patient</label>
+>>>>>>> b5be2c90c103af4df0ee2f0f4a74d69dc19d9db9
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
