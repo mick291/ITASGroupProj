@@ -40,9 +40,9 @@
                                                         data: dataString,
                                                         success: function(json) {
          
-                                                            //                                                        $('#log').html(json)
-                                                            //                                                        console.log("Data back is: " + json);
-                                                            var data = JSON.parse(json);
+//                                                                                                                    $('#log').html(json)
+//                                                                                                                    console.log("Data back is: " + json);
+//                                                            var data = JSON.parse(json);
                                                             location.href="floorPlan?data=" + json;
                                                             //                                                        console.log("Name Of the dog is: " +  data)
                                                         }
@@ -79,6 +79,8 @@
                                             </script>
                                             <?php
                                             $r = $_GET['data'];
+                                            
+//                                             print_r(json_decode($r));
                                             ?>
                                             <div id="spacer">  
                                                 <table border ="0">
@@ -99,19 +101,19 @@
                                                         $myVar3 = $myVar2['patient'];
                                                         $myVar4 = $myVar2['assignedPhysician'];
                                                         $myVar5 = $myVar4['physician'];
-
+                                                         $myVar6 = $value['roomNumber'];
+                                                       
 //                                            echo "<pre>" . 
 //                                                print_r($myVar['patient']) . "</pre>";
 
                                                         $count++;
-                                                        print_r(json_decode($r, true));
-                                                        if ($count & 1) {
+                                                                                                               if ($count & 1) {
                                                             ?> <tr class="d0"> <?php
                                                 } else {
                                                             ?> <tr id="d1"><?php } ?>
 
 
-                                                                <td><?php echo $value['roomNumber']; ?></td>
+                                                                <td><?php echo $myVar6['roomId']; ?></td>
                                                                 <td><?php echo $value['bedId']; ?></td>
                                                                 <td><?php echo $myVar3['personId']; ?></td>
                                                                 <td><?php echo $myVar3['firstName']; ?></td>
