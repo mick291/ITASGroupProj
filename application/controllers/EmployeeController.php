@@ -95,17 +95,23 @@ class EmployeeController extends Zend_Controller_Action {
                 $ldaprecord["UserAccountControl"] = "544";
 
                 if (ldap_add($cnx, $dn, $ldaprecord) != false) {
-                    
-                    
-                    $email = $fn . "." . $ln . "@basewebdesign.ca";
-                    $employee = 1;
-                   // $nurse = new Entity\Nurse($skill, $address, $dob, $fn, $ln, $email, $phone, $postal, $employee);
-                    
-                    $q = $this->_entityManager->createQuery('select * from person');
+
+                    $sql = "select first_name from Entity\Person";
+
+                    $q = $this->_entityManager->getConnection()->prepare('SELECT * from person');
                     $result = $q->execute();
-                    
                     print_r($result);
                     
+                    $stmt = $this->getEntityManager()
+                            ->getConnection()
+                            ->prepare('SELECT * from person');
+
+                    $stmt->execute();
+                    return $stmt->fetchAll();
+
+                    // $email = $fn . "." . $ln . "@basewebdesign.ca";
+                    // $employee = 1;
+                    // $nurse = new Entity\Nurse($skill, $address, $dob, $fn, $ln, $email, $phone, $postal, $employee);
 //                    $this->_entityManager->persist($nurse);
 //                    $this->_entityManager->flush();
 //                    
