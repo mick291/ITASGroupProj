@@ -20,9 +20,10 @@ class PatientController extends Zend_Controller_Action {
 
         $p = $this->getRequest()->getParams('keyword');
         $column2 = 't.firstName';
-        $column = $p['column'];
+       
         if (isset($p['keyword'])) {
             if ($p['column'] == 'p.patientType') {
+                $column = $p['column'] ;
                 $qb = $this->_entityManager->createQueryBuilder()
                         ->select('r', 'p', 'o', 's', 't', 'b')
                         ->from('Entity\Bed', 'b')
