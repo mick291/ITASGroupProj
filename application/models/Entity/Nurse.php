@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="nurse")
  * @Entity
  */
-class Nurse
-{
+class Nurse {
+
     /**
      * @var integer $nurseId
      *
@@ -23,31 +22,38 @@ class Nurse
     private $nurseId;
 
     /**
-     * @var integer $certificate
+     * @var string $certificate
      *
-     * @Column(name="certificate", type="integer", nullable=false)
+     * @Column(name="certificate", type="string", length=10, nullable=false)
      */
     private $certificate;
 
     /**
      * @var Employee
      *
-     * @ToOne(targetEntity="Employee")
+     * @ManyToOne(targetEntity="Employee")
+     * @JoinColumns({
      *   @JoinColumn(name="nurse_id", referencedColumnName="employee_id")
+     * })
      */
     private $nurse;
 
-    /**
-     * @var CareCenter
-     *
-     * @ManyToOne(targetEntity="CareCenter")
-     * @JoinColumns({
-     *   @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
-     * })
-     */
-    private $careCenter;
+    public function __construct($cert, $address, $dob, $fn, $ln, $email, $phone, $zip, $employee) {
 
-     public function __get($property) {
+        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+         
+
+        $emp = new \Entity\Employee($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee, $volunteer = 0, $patient = 0);
+        
+        $this->nurse = $emp;
+        $this->certificate = $cert;
+        
+
+        $this->_entityManager->persist($this);
+        $this->_entityManager->flush();
+    }
+
+    public function __get($property) {
         return $this->$property;
     }
 

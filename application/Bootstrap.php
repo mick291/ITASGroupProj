@@ -17,7 +17,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     }
  
     protected function _initAutoLoad() {
-
+        
+       // require_once '../Application/Plugin/AccessCheck';
+        
         $modelLoader = new Zend_Application_Module_Autoloader(array(
             'namespace' => '',
             'basePath' => APPLICATION_PATH));

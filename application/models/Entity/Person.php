@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="person")
  * @Entity
  */
-class Person
-{
+class Person {
+
     /**
      * @var integer $personId
      *
@@ -105,8 +104,28 @@ class Person
      * @Column(name="email", type="string", length=45, nullable=false)
      */
     private $email;
+    
+        public function __construct($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee = 0, $volunteer = 0, $patient = 0) {
+        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+        $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
 
-     public function __get($property) {
+        $this->address = $address;
+        $this->birthDate = $dob;
+        $this->email = $email;
+        $this->firstName = $fn;
+        $this->lastName = $ln;
+        $this->phoneNumber = $phone;
+        $this->zipCode = $zip;
+        $this->employee = $employee;
+        $this->physician = $physician;
+        $this->volunteer = $volunteer;
+        $this->patient = $patient;
+
+        $this->_entityManager->persist($this);
+        $this->_entityManager->flush();
+    }
+
+    public function __get($property) {
         return $this->$property;
     }
 

@@ -34,8 +34,9 @@ class AuthController extends Zend_Controller_Action {
             $formData = $this->_request->getPost();
 
             
-            $result = $this->loginCheckAction($formData['username'], $formData['password'] );
-            print_r($result);
+          $result = $this->loginCheckAction($formData['username'], $formData['password'] );
+          return $result;
+          
         }
     }
 
@@ -136,7 +137,8 @@ class AuthController extends Zend_Controller_Action {
             $user = $auth->getIdentity();
 
             $phoneArray = array('name' => $giv,
-                        'email' => $userName);
+                        'email' => $userName,
+                        'success' => 1);
             
             return $phoneArray;
         }

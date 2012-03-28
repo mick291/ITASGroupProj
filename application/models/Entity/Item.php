@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="item")
  * @Entity
  */
-class Item
-{
+class Item {
+
     /**
      * @var integer $itemId
      *
@@ -36,7 +35,7 @@ class Item
      */
     private $unitCost;
 
-     public function __get($property) {
+    public function __get($property) {
         return $this->$property;
     }
 
