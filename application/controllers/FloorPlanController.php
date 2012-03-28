@@ -24,12 +24,13 @@ class FloorPlanController extends Zend_Controller_Action {
         $room = $_GET['room'];
 //        $room = 4;
         $qb = $this->_entityManager->createQueryBuilder()
-                        ->select('r', 'p', 'o', 's', 't', 'b')
+                        ->select('r', 'p', 'o', 's', 't', 'b', 'q')
                         ->from('Entity\Bed', 'b')
                         ->join('b.residentPatient', 'r')
                         ->join('r.patient', 'p')
                         ->join('p.assignedPhysician', 'o')
                         ->join('o.physician', 's')
+                        ->join('b.roomNumber', 'q')
                         ->join('p.patient', 't')
                         ->where('b.roomNumber = '. "'$room'");
                 $q = $qb->getQuery();
