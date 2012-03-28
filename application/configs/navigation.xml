@@ -32,29 +32,19 @@
                     <action></action>
                 </back>
                 <registerPatient>
-<<<<<<< HEAD
-                    <label>New-Patient</label>
-=======
                     <label>Patient</label>
->>>>>>> 199cb565e83fde20c74b338cb93f583c015b053d
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
                 <registerEmployee>
-<<<<<<< HEAD
-                    <label>New-Employee</label>
-=======
+
                     <label>Employee</label>
->>>>>>> 199cb565e83fde20c74b338cb93f583c015b053d
                     <controller>employee</controller>
                     <action>empregister</action>
                 </registerEmployee>
                 <registerDoctor>
-<<<<<<< HEAD
-                    <label>New-Doctor</label>
-=======
+
                     <label>Doctor</label>
->>>>>>> 199cb565e83fde20c74b338cb93f583c015b053d
                     <controller>employee</controller>
                     <action>docregister</action>
                 </registerDoctor>
