@@ -141,7 +141,7 @@
                                             ?>
                                             <div id="spacer">  
                                                 <table border ="0">
-
+                                                    <tr>
                                                     <th>Room #</th>
                                                     <th>Bed ID</th>
                                                     <th>Patient ID</th>
@@ -163,7 +163,7 @@
 //                                                print_r($myVar['patient']) . "</pre>";
 
                                                         $count++;
-
+                                                        print_r(json_decode($r, true));
                                                         if ($count & 1) {
                                                             ?> <tr class="d0"> <?php
                                                 } else {
