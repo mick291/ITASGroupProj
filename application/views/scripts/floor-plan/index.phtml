@@ -40,8 +40,8 @@
                                                         data: dataString,
                                                         success: function(json) {
          
-                                                                                                                    $('#log').html(json)
-                                                                                                                    console.log("Data back is: " + json);
+//                                                                                                                    $('#log').html(json)
+//                                                                                                                    console.log("Data back is: " + json);
 //                                                            var data = JSON.parse(json);
                                                             location.href="floorPlan?data=" + json;
                                                             //                                                        console.log("Name Of the dog is: " +  data)
@@ -80,7 +80,7 @@
                                             <?php
                                             $r = $_GET['data'];
                                             
-                                             print_r(json_decode($r));
+//                                             print_r(json_decode($r));
                                             ?>
                                             <div id="spacer">  
                                                 <table border ="0">
