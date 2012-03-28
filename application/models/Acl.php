@@ -21,6 +21,7 @@ class Model_Acl extends Zend_Acl {
 
         $this->add(new Zend_Acl_Resource('floorPlan'));
         $this->add(new Zend_Acl_Resource('list'), 'floorPlan');
+        $this->add(new Zend_Acl_Resource('ajax'), 'floorPlan');
 
         $this->add(new Zend_Acl_Resource('employee'));
         // $this->add(new Zend_Acl_Resource('index'), 'employee');
@@ -45,7 +46,8 @@ class Model_Acl extends Zend_Acl {
         $this->allow('doctor', 'employee', 'docregister');
         $this->allow('doctor', 'employee', 'index');
         $this->allow('doctor', 'employee', 'refresh');
-           $this->allow('doctor', 'patient', 'refresh');
+        $this->allow('doctor', 'patient', 'refresh');
+        $this->allow('doctor', 'floorPlan', 'ajax');
     }
 
 }

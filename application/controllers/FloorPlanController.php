@@ -10,42 +10,45 @@ class FloorPlanController extends Zend_Controller_Action {
         // We want to have a json and an xml context available for action1
         $contextSwitch->addActionContext('index', array('xml', 'json'))
                 ->initContext();
+          $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
     }
 
     public function listAction() {
         $p = $this->getRequest()->getParams('room');
         echo $p['room'];
     }
+    
+    public function ajaxAction() {
+        $this->_helper->layout()->disableLayout();
+
+        $room = $_GET['room'];
+//        $room = 4;
+        $qb = $this->_entityManager->createQueryBuilder()
+                        ->select('r', 'p', 'o', 's', 't', 'b')
+                        ->from('Entity\Bed', 'b')
+                        ->join('b.residentPatient', 'r')
+                        ->join('r.patient', 'p')
+                        ->join('p.assignedPhysician', 'o')
+                        ->join('o.physician', 's')
+                        ->join('p.patient', 't')
+                        ->where('b.roomNumber = '. "'$room'");
+                $q = $qb->getQuery();
+
+ $result = $q->getArrayResult();
+//return $this->view->floorPlan = json_encode($result);
+//     $result = array();
+//       $result['room'] = $_GET['room'];
+//       $result['dog'] = "Spot";
+        echo json_encode($result);
+        
+        
+    
+        
+
+    }
 
     public function indexAction() {
 
-//        $this->_helper->layout()->disableLayout();
-
-
-        $p = $this->getRequest()->getParams('keyword');
-
-        if (isset($p['keyword'])) {
-
-            $column = $p['column'];
-            $column2 = 't.firstName';
-
-            $qb = $this->_entityManager->createQueryBuilder()
-                    ->select('p', 'o', 's', 't')
-                    ->from('Entity\Patient', 'p')
-                    ->leftJoin('p.assignedPhysician', 'o')
-                    ->leftJoin('o.physician', 's')
-                    ->leftJoin('p.patient', 't')
-                    ->where($column . ' LIKE :specialty')
-                    ->orWhere($column2 . ' LIKE :specialty')
-                    ->setParameter('specialty', '%' . $p['keyword'] . '%')
-                    ->orderBy($column);
-            $q = $qb->getQuery();
-
-            $result = $q->getArrayResult();
-
-            return $this->view->patient = $result;
-        }
-        //print_r($result);
     }
 
    

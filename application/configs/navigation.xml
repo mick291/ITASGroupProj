@@ -17,12 +17,12 @@
             <action>index</action>
         </patient>
         <floor>
-            <label>Floor Plan</label>
+            <label>Floor-Plan</label>
             <controller>floorPlan</controller>
             <action>index</action>
         </floor>
         <register>
-            <label>Registration</label>
+            <label>Registration-Forms</label>
             <controller>employee</controller>
             <action>index</action>
             <pages>
@@ -32,18 +32,18 @@
                     <action></action>
         </back>
                 <registerPatient>
-                    <label>New Patient</label>
+                    <label>New-Patient</label>
                     <controller>patient</controller>
                     <action>register</action>
                 </registerPatient>
            
                 <registerEmployee>
-                    <label>New Employee</label>
+                    <label>New-Employee</label>
                     <controller>employee</controller>
                     <action>empregister</action>
                 </registerEmployee>
                 <registerDoctor>
-                    <label>New Doctor</label>
+                    <label>New-Doctor</label>
                     <controller>employee</controller>
                     <action>docregister</action>
                 </registerDoctor>

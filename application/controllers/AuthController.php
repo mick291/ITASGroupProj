@@ -24,7 +24,7 @@ class AuthController extends Zend_Controller_Action {
      *
      */
     public function loginAction() {
-        
+         $this->_helper->layout()->disableLayout();
         $loginForm = new Application_Form_Auth();
 
         //If the request is not POST

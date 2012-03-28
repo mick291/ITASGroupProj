@@ -358,6 +358,20 @@ ul.navigation li.active ul {
     text-align: center;
 }
 
+#customForm {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-top: 1%;
+    overflow: hidden;
+    text-align: left;
+    height: auto;
+}
+
+#spacer {
+ padding-top: 1%;
+  }
+
 form {
     width: 100%;
     margin: 0 auto;

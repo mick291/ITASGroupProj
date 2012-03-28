@@ -1,7 +1,37 @@
+<?php
 
-<div id="centerContent">
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Care Center');
 
-    <h1>Login</h1>
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+
+                       <script type="text/javascript" src="<?php echo $this->baseUrl('js/jquery-1.4.4.min.js') ?>" ></script>
+         
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+      
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/index.css'); ?>
+
+
+    </head>
+     <body>
+                  <div id="content" >
+                    
+                   <div id="headerimage" align="center"  >
+           <img src="<?php echo $this->baseUrl('images/MEDDS.png') ?>" alt="MEDDS header background image" />    </div>
+                  
+      <div id="toprightholder"><?php echo $this->loggedInAs(); ?></div>
+     
+            <div id="navigation" class="nav">
+                <?php echo $this->navigation()->menu()->setMinDepth(1); ?>
+            </div> 
+        
+       <div id="centerContent">
+
+    <h2>Login</h2>
     
         <?php echo $this->messages; ?>
     <table>
@@ -9,3 +39,17 @@
     </table>
     
 </div>
+              <div class="clearfooter"></div>      
+                           
+               <div id="footer">            
+           site designed by MEDDS
+        </div>
+              </div>
+        
+             
+    </body> 
+
+</html>    
+    
+  
+
