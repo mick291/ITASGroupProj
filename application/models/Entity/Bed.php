@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="bed")
  * @Entity
  */
-class Bed
-{
+class Bed {
+
     /**
      * @var integer $bedId
      *
@@ -21,13 +20,6 @@ class Bed
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $bedId;
-
-    /**
-     * @var integer $roomNumber
-     *
-     * @Column(name="room_number", type="integer", nullable=false)
-     */
-    private $roomNumber;
 
     /**
      * @var CareCenter
@@ -49,7 +41,17 @@ class Bed
      */
     private $residentPatient;
 
-     public function __get($property) {
+    /**
+     * @var Room
+     *
+     * @ManyToOne(targetEntity="Room")
+     * @JoinColumns({
+     *   @JoinColumn(name="room_number", referencedColumnName="room_id")
+     * })
+     */
+    private $roomNumber;
+
+    public function __get($property) {
         return $this->$property;
     }
 

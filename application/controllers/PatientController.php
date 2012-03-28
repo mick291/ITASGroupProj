@@ -19,27 +19,51 @@ class PatientController extends Zend_Controller_Action {
     public function indexAction() {
 
         $p = $this->getRequest()->getParams('keyword');
-
+        $column2 = 't.firstName';
+        $column = $p['column'];
         if (isset($p['keyword'])) {
+            if ($p['column'] == 'p.patientType') {
+                $qb = $this->_entityManager->createQueryBuilder()
+                        ->select('r', 'p', 'o', 's', 't', 'b')
+                        ->from('Entity\Bed', 'b')
+                        ->join('b.residentPatient', 'r')
+                        ->join('r.patient', 'p')
+                        ->join('p.assignedPhysician', 'o')
+                        ->join('o.physician', 's')
+                        ->join('p.patient', 't')
+                        ->where($column . ' LIKE :specialty')
+                        ->orWhere($column2 . ' LIKE :specialty')
+                        ->setParameter('specialty', '%' . $p['keyword'] . '%')
+                        ->orderBy($column);
+                $q = $qb->getQuery();
 
-            $column = $p['column'];
-            $column2 = 't.firstName';
+                $result = $q->getArrayResult();
 
-            $qb = $this->_entityManager->createQueryBuilder()
-                    ->select('p', 'o', 's', 't')
-                    ->from('Entity\Patient', 'p')
-                    ->leftJoin('p.assignedPhysician', 'o')
-                    ->leftJoin('o.physician', 's')
-                    ->leftJoin('p.patient', 't')
-                    ->where($column . ' LIKE :specialty')
-                    ->orWhere($column2 . ' LIKE :specialty')
-                    ->setParameter('specialty', '%' . $p['keyword'] . '%')
-                    ->orderBy($column);
-            $q = $qb->getQuery();
+                return $this->view->patient = $result;
+            } else {
 
-            $result = $q->getArrayResult();
 
-            return $this->view->patient = $result;
+                $column = $p['column'];
+                $column2 = 't.firstName';
+
+                $qb = $this->_entityManager->createQueryBuilder()
+                        ->select('p', 'o', 's', 't')
+                        ->from('Entity\Patient', 'p')
+                        ->join('p.assignedPhysician', 'o')
+                        ->join('o.physician', 's')
+                        ->join('o.careCenter', 'c')
+                        ->join('p.patient', 't')
+                        ->where($column . ' LIKE :specialty')
+                        ->orWhere($column2 . ' LIKE :specialty')
+                        ->setParameter('specialty', '%' . $p['keyword'] . '%')
+                        ->orderBy($column);
+                $q = $qb->getQuery();
+
+
+                $result = $q->getArrayResult();
+
+                return $this->view->patient = $result;
+            }
         }
         //print_r($result);
     }
@@ -141,6 +165,8 @@ class PatientController extends Zend_Controller_Action {
 
                     if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
+                        $doc = $this->_entityManager->find('Entity\Physician', $sessionRole->physicianId);
+                        
                         $person = new Entity\Person;
                         $person->firstName = $fn;
                         $person->lastName = $ln;
@@ -149,42 +175,26 @@ class PatientController extends Zend_Controller_Action {
                         $person->phoneNumber = $phone;
                         $person->zipCode = $postal;
                         $person->patient = '1';
-                        // $careCenterData->assignedPhysician = $docId;
-                        //$careCenterData->contactDate = date("Y-m-d");
-                        // $careCenterData->patientType = $type;
                         $person->email = $fn . "." . $ln . "@basewebdesign.ca";
 
                         $this->_entityManager->persist($person);
                         $this->_entityManager->flush();
 
-                        $qb = $this->_entityManager->createQueryBuilder()
-                                ->select('p')
-                                ->from('Entity\Person', 'p')
-                                ->where('p.email = ' . "'$emailTest'");
-                        $q = $qb->getQuery();
-
-                        $result = $q->getArrayResult();
-
                         $patient = new Entity\Patient;
-                        $patient->patientId = $result[0][personId];
-                        $patient->patient = $result[0][personId];
+                        $patient->patient = $person;
                         $patient->contactDate = date("Y-m-d");
                         $patient->patientType = $type;
-
-                        // $patient->assignedPhysician = $sessionRole->physicianId;                        
+                        
+                        $patient->assignedPhysician = $doc;
 //                        
 //                        print_r($patient);
 //
                         $this->_entityManager->persist($patient);
                         $this->_entityManager->flush();
-//                        echo "works";
-                        exit();
-
-
 
                         //redirect to patient/index on successfull registration
-                        $urlOptions = array('controller' => 'patient', 'action' => 'index');
-                        $this->_helper->redirector->gotoRoute($urlOptions);
+//                        $urlOptions = array('controller' => 'patient', 'action' => 'index');
+//                        $this->_helper->redirector->gotoRoute($urlOptions);
                     }
                 } else {
                     echo "Unable to connect to LDAP server";

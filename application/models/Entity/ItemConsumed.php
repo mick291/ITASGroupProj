@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="item_consumed")
  * @Entity
  */
-class ItemConsumed
-{
+class ItemConsumed {
+
     /**
      * @var integer $itemId
      *
@@ -74,18 +73,17 @@ class ItemConsumed
      */
     private $item;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->patient = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->patient = new \Doctrine\Common\Collections\ArrayCollection();
     }
-     public function __get($property) {
+
+    public function __get($property) {
         return $this->$property;
     }
 
     public function __set($property, $value) {
         $this->$property = $value;
     }
-    
-    
+
 }

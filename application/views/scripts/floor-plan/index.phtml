@@ -4,8 +4,75 @@
         <title>Floor Plan</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
+<<<<<<< HEAD
     </head>
     <body>
+=======
+    
+  
+<!--    
+      <link rel="stylesheet" type="text/css" href="http://media1.juggledesign.com/qtip2/css/demos.css"/>
+    
+    -->
+<!--  
+    
+      <link rel="stylesheet" type="text/css" href="http://media1.juggledesign.com/qtip2/css/master.css"/>
+    -->
+<style type='text/css'>
+    /* Add some nice box-shadow-ness to the modal tooltip */
+#ui-tooltip-modal{
+    max-width: 420px;
+
+    -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+    box-shadow: 0 0 10px 1px rgba(0,0,0,.5);
+}
+
+#ui-tooltip-modal .ui-tooltip-content{
+    padding: 10px;
+}
+  </style>
+
+ <script>
+
+ // Create the tooltips only when document ready
+$(document).ready(function()
+{
+    // We'll target all AREA elements with alt tags (Don't target the map element!!!)
+    $('area[alt]').qtip(
+    {
+        content: {
+            text: 'Loading...',
+            ajax: {
+                url: '/floorPlan/index/',
+                type: 'post',
+                data: {
+                    delay: 1, // Simulate a delay so we can see the loading message
+                    html: 'My ajax content that the server returns'
+                }
+            }
+        },
+        show: {
+            event: 'click',
+            solo: true // Hide other tooltips when opened
+        },
+        hide: {
+            event: 'click'
+        },
+        style: {
+            classes: 'ui-tooltip-tipsy ui-tooltip-shadow'
+        }
+    });
+});
+             
+        </script>
+        
+        
+        
+        
+        
+</head>
+>>>>>>> 199cb565e83fde20c74b338cb93f583c015b053d
 
         <h2> Click on a room for more info!</h2>
 

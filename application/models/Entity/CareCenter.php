@@ -2,6 +2,7 @@
 
 namespace Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,21 +58,6 @@ class CareCenter
     private $labs;
 
     /**
-     * @var Employee
-     *
-     * @ManyToMany(targetEntity="Employee", inversedBy="careCenter")
-     * @JoinTable(name="care_center_has_employee",
-     *   joinColumns={
-     *     @JoinColumn(name="care_center_id", referencedColumnName="care_center_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @JoinColumn(name="employee_id", referencedColumnName="employee_id")
-     *   }
-     * )
-     */
-    private $employee;
-
-    /**
      * @var ItemConsumed
      *
      * @ManyToMany(targetEntity="ItemConsumed", inversedBy="careCenter")
@@ -113,8 +99,7 @@ class CareCenter
 
     public function __construct()
     {
-        $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->item = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->item = new \Doctrine\Common\Collections\ArrayCollection();
     $this->physician = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
@@ -125,5 +110,6 @@ class CareCenter
     public function __set($property, $value) {
         $this->$property = $value;
     }
+
     
 }

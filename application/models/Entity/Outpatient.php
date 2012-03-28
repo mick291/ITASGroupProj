@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="outpatient")
  * @Entity
  */
-class Outpatient
-{
+class Outpatient {
+
     /**
      * @var integer $patientId
      *
@@ -32,7 +31,7 @@ class Outpatient
      */
     private $patient;
 
-     public function __get($property) {
+    public function __get($property) {
         return $this->$property;
     }
 

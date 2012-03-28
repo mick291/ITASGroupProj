@@ -11,13 +11,22 @@ class Application_Form_Employee extends Zend_Form {
               ->setMultiOptions(array( 
                   'nurse'=>'Nurse',
                   'staff' => 'Staff',
-                  'technician' => 'Technician'))
+                  'technician' => 'Technician',
+                  'volunteer' => 'Volunteer'))
               ->setRequired(true)->addValidator('NotEmpty', true);
-        
-        
         $this->addElement($type);
-        $firstname = new Zend_Form_Element_Text('firstname');
+        
+        $skill = new Zend_Form_Element_Text('skill');
+        $skill->setLabel('Skill/Job title/Certificate:')
+                ->setRequired(true)
+                ->addFilter('StringTrim')
+                ->addFilter('StripTags')
+                 ->setAttrib('onchange', '')
+                ->addErrorMessage("Please ensure your name only contains letters")
+                ->addValidator('Regex', false, array('/[a-zA-Z ]$/')); // Only chars from a-z and spaces
+        $this->addElement($skill);
 
+        $firstname = new Zend_Form_Element_Text('firstname');
         $firstname->setLabel('First Name:')
                 ->setRequired(true)
                 ->addFilter('StringTrim')

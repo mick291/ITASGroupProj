@@ -36,11 +36,32 @@ class Patient {
     private $patientType;
 
     /**
+     * @var string $notes
+     *
+     * @Column(name="notes", type="string", length=10000, nullable=true)
+     */
+    private $notes;
+
+    /**
+     * @var string $picture
+     *
+     * @Column(name="picture", type="string", length=10000, nullable=true)
+     */
+    private $picture;
+
+    /**
      * @var boolean $discharged
      *
-     * @Column(name="discharged", type="boolean", nullable=false)
+     * @Column(name="discharged", type="boolean", nullable=true)
      */
     private $discharged;
+
+    /**
+     * @var string $dischargeDate
+     *
+     * @Column(name="discharge_date", type="string", length=25, nullable=true)
+     */
+    private $dischargeDate;
 
     /**
      * @var ItemConsumed
