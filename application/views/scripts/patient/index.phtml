@@ -40,8 +40,9 @@
                 <td><?php echo $type; ?></td>
 
                 <td><?php if ($type == 'inpatient' || $type == 'InPatient') { ?>
-                        <a href="<?php echo $this->url(array('controller' => 'patient', 
-                            'action' => 'discharge', 'patientId' => "$id")); ?>">Discharge</a> 
+                    <INPUT TYPE="BUTTON" VALUE="Discharge" ONCLICK="window.location.href='<?php echo $this->url(array('controller' => 'patient', 
+                            'action' => 'discharge', 'patientId' => "$id")); ?>'"> 
+                       
                     <?php } ?>
                 </td>
             </tr>
