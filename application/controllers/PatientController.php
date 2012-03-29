@@ -20,31 +20,51 @@ class PatientController extends Zend_Controller_Action {
 
         $p = $this->getRequest()->getParams('keyword');
         $column2 = 't.firstName';
-       
+
         if (isset($p['keyword'])) {
-             $column = $p['column'];
-                $column2 = 't.firstName';
+            $column = $p['column'];
+            $column2 = 't.firstName';
 
-                $qb = $this->_entityManager->createQueryBuilder()
-                        ->select('p', 'o', 's', 't')
-                        ->from('Entity\Patient', 'p')
-                        ->join('p.assignedPhysician', 'o')
-                        ->join('o.physician', 's')
-                        ->join('o.careCenter', 'c')
-                        ->join('p.patient', 't')
-                        ->where($column . ' LIKE :specialty')
-                        ->orWhere($column2 . ' LIKE :specialty')
-                        ->setParameter('specialty', '%' . $p['keyword'] . '%')
-                        ->orderBy($column);
-                $q = $qb->getQuery();
+            $qb = $this->_entityManager->createQueryBuilder()
+                    ->select('p', 'o', 's', 't')
+                    ->from('Entity\Patient', 'p')
+                    ->join('p.assignedPhysician', 'o')
+                    ->join('o.physician', 's')
+                    ->join('o.careCenter', 'c')
+                    ->join('p.patient', 't')
+                    ->where($column . ' LIKE :specialty')
+                    ->orWhere($column2 . ' LIKE :specialty')
+                    ->setParameter('specialty', '%' . $p['keyword'] . '%')
+                    ->andWhere('p.discharged = ' . "'0'")
+                    ->orderBy($column);
+            $q = $qb->getQuery();
 
 
-                $result = $q->getArrayResult();
+            $result = $q->getArrayResult();
 
-                return $this->view->patient = $result;
-            }
-        
+            return $this->view->patient = $result;
+        }
+
         //print_r($result);
+    }
+
+    public function dischargeAction() {
+        $p = $this->getRequest()->getParams('patientId');
+        $date = date("Y-m-d");
+        $params = array(
+            'dbname' => 'itas288_medds',
+            'user' => 'zend',
+            'password' => 'medds',
+            'host' => '142.25.97.201',
+            'driver' => 'pdo_mysql'
+        );
+
+        $conn = Doctrine\DBAL\DriverManager::getConnection($params);
+        $conn->update('patient', array('patient_type' => null, 'discharged' => 1, 'discharge_date' => $date), array('patient_id' => $p['patientId']));
+        $conn->delete('resident', array('patient_id' => $p['patientId']));
+
+        $urlOptions = array('controller' => 'patient', 'action' => 'index');
+        $this->_helper->redirector->gotoRoute($urlOptions);
     }
 
     public function registerAction() {
@@ -145,7 +165,7 @@ class PatientController extends Zend_Controller_Action {
                     if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
                         $doc = $this->_entityManager->find('Entity\Physician', $sessionRole->physicianId);
-                        
+
                         $person = new Entity\Person;
                         $person->firstName = $fn;
                         $person->lastName = $ln;
@@ -161,9 +181,10 @@ class PatientController extends Zend_Controller_Action {
 
                         $patient = new Entity\Patient;
                         $patient->patient = $person;
+                        $patient->discharged = 0;
                         $patient->contactDate = date("Y-m-d");
                         $patient->patientType = $type;
-                        
+
                         $patient->assignedPhysician = $doc;
 //                        
 //                        print_r($patient);
@@ -172,8 +193,8 @@ class PatientController extends Zend_Controller_Action {
                         $this->_entityManager->flush();
 
                         //redirect to patient/index on successfull registration
-//                        $urlOptions = array('controller' => 'patient', 'action' => 'index');
-//                        $this->_helper->redirector->gotoRoute($urlOptions);
+                        $urlOptions = array('controller' => 'patient', 'action' => 'index');
+                        $this->_helper->redirector->gotoRoute($urlOptions);
                     }
                 } else {
                     echo "Unable to connect to LDAP server";

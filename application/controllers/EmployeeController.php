@@ -9,6 +9,7 @@ class EmployeeController extends Zend_Controller_Action {
 
     public function init() {
 
+
         $this->_itemNumber = 30;
         $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
 
@@ -97,66 +98,80 @@ class EmployeeController extends Zend_Controller_Action {
                 if (ldap_add($cnx, $dn, $ldaprecord) != false) {
 
 
-$q = $this->_entityManager->createQuery('select email from Entity\Person');
-$result = $q->execute();
-print_r($result);
+
                     // $email = $fn . "." . $ln . "@basewebdesign.ca";
                     // $employee = 1;
                     // $nurse = new Entity\Nurse($skill, $address, $dob, $fn, $ln, $email, $phone, $postal, $employee);
 //                    $this->_entityManager->persist($nurse);
 //                    $this->_entityManager->flush();
-//                    
-//                    
-//                    $person = new Entity\Person;
-//                    $person->firstName = $fn;
-//                    $person->lastName = $ln;
-//                    $person->address = $address;
-//                    $person->birthDate = $dob;
-//                    $person->phoneNumber = $phone;
-//                    $person->zipCode = $postal;
-//                    $person->employee = 1;
-//                    $person->email = $fn . "." . $ln . "@basewebdesign.ca";
-//
-//                    $this->_entityManager->persist($person);
-//                    $this->_entityManager->flush();
-//
-//                    $employee = new Entity\Employee;
-//                    $employee->employee = $person;
-//                    $employee->dateHired = date("Y-m-d");
-//
-//                    $this->_entityManager->persist($employee);
-//                    $this->_entityManager->flush();
-//
-//                    if ($type == "nurse") {
-//                        $careCenter = $this->_entityManager->find('Entity\CareCenter', 1);
-//                      
-//                        $nurse = new Entity\Nurse;
-//                        $nurse->certificate = $skill;
-//                        $nurse->careCenter = $careCenter;
-//                        $nurse->nurse = $employee;
-//
-//                        $this->_entityManager->persist($nurse);
-//                        $this->_entityManager->flush();
-//
-//                        echo "works";
-//                    } elseif ($type == "staff") {
-//                        $staff = new Entity\Staff;
-//                        
-//                        $staff->jobClass = $skill;
-//                        $staff->staff = $employee;
-//                        
-//                        $this->_entityManager->persist($staff);
-//                        $this->_entityManager->flush();
-//                        
-//                    } elseif ($type == "volunteer") {
-//                        $volunteer = new Entity\Volunteer;
-//                        
-//                        $volunteer->skill = $skill;
-//                        $volunteer->volunteer = $person;
-//                        
-//                        $this->_entityManager->persist($volunteer);
-//                        $this->_entityManager->flush();
-//                    }
+
+
+                    $person = new Entity\Person;
+                    $person->firstName = $fn;
+                    $person->lastName = $ln;
+                    $person->address = $address;
+                    $person->birthDate = $dob;
+                    $person->phoneNumber = $phone;
+                    $person->zipCode = $postal;
+                    $person->employee = 1;
+                    $person->email = $fn . "." . $ln . "@basewebdesign.ca";
+
+                    $this->_entityManager->persist($person);
+                    $this->_entityManager->flush();
+
+                    $employee = new Entity\Employee;
+                    $employee->employee = $person;
+                    $employee->dateHired = date("Y-m-d");
+
+                    $this->_entityManager->persist($employee);
+                    $this->_entityManager->flush();
+
+                    if ($type == "nurse") {
+                        $params = array(
+                            'dbname' => 'itas288_medds',
+                            'user' => 'zend',
+                            'password' => 'medds',
+                            'host' => '142.25.97.201',
+                            'driver' => 'pdo_mysql'
+                        );
+
+                        $conn = Doctrine\DBAL\DriverManager::getConnection($params);
+                        $conn->insert('nurse', array('certificate' => $skill, 'nurse_id' => $person->personId));
+
+
+                        echo "works";
+                    } elseif ($type == "staff") {
+                        $params = array(
+                            'dbname' => 'itas288_medds',
+                            'user' => 'zend',
+                            'password' => 'medds',
+                            'host' => '142.25.97.201',
+                            'driver' => 'pdo_mysql'
+                        );
+
+                        $conn = Doctrine\DBAL\DriverManager::getConnection($params);
+                        $conn->insert('staff', array('job_class' => $skill, 'staff_id' => $person->personId));
+                    } elseif ($type == "technician") {
+                        $params = array(
+                            'dbname' => 'itas288_medds',
+                            'user' => 'zend',
+                            'password' => 'medds',
+                            'host' => '142.25.97.201',
+                            'driver' => 'pdo_mysql'
+                        );
+
+                        $conn = Doctrine\DBAL\DriverManager::getConnection($params);
+                        $conn->insert('technician', array('skill' => $skill, 'technician_id' => $person->personId));
+                        
+                    } elseif ($type == "volunteer") {
+                        $volunteer = new Entity\Volunteer;
+
+                        $volunteer->skill = $skill;
+                        $volunteer->volunteer = $person;
+
+                        $this->_entityManager->persist($volunteer);
+                        $this->_entityManager->flush();
+                    }
                 }
             } else {
                 echo "Unable to connect to LDAP server";

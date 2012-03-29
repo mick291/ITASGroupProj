@@ -38,20 +38,20 @@ class Nurse {
      */
     private $nurse;
 
-    public function __construct($cert, $address, $dob, $fn, $ln, $email, $phone, $zip, $employee) {
-
-        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
-         
-
-        $emp = new \Entity\Employee($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee, $volunteer = 0, $patient = 0);
-        
-        $this->nurse = $emp;
-        $this->certificate = $cert;
-        
-
-        $this->_entityManager->persist($this);
-        $this->_entityManager->flush();
-    }
+//    public function __construct($cert, $address, $dob, $fn, $ln, $email, $phone, $zip, $employee) {
+//
+//        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+//         
+//
+//        $emp = new \Entity\Employee($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee, $volunteer = 0, $patient = 0);
+//        
+//        $this->nurse = $emp;
+//        $this->certificate = $cert;
+//        
+//
+//        $this->_entityManager->persist($this);
+//        $this->_entityManager->flush();
+//    }
 
     public function __get($property) {
         return $this->$property;

@@ -48,20 +48,20 @@ class Employee {
      */
     private $careCenter;
 
-    public function __construct($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee = 0, $volunteer = 0, $patient = 0) {
-        $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
-
-        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
-
-        $pers = new \Entity\Person($address, $dob, $fn, $ln, $email, $phone, $zip, $physician, $employee, $volunteer, $patient);
-       
-        $this->dateHired = date("Y-m-d");
-        $this->employee = $pers;
-        $this->careCenter = $carecenter;
-
-        $this->_entityManager->persist($this);
-        $this->_entityManager->flush();
-    }
+//    public function __construct($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee = 0, $volunteer = 0, $patient = 0) {
+//        $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
+//
+//        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+//
+//        $pers = new \Entity\Person($address, $dob, $fn, $ln, $email, $phone, $zip, $physician, $employee, $volunteer, $patient);
+//       
+//        $this->dateHired = date("Y-m-d");
+//        $this->employee = $pers;
+//        $this->careCenter = $carecenter;
+//
+//        $this->_entityManager->persist($this);
+//        $this->_entityManager->flush();
+//    }
 
     public function __get($property) {
         return $this->$property;
