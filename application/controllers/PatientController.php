@@ -22,29 +22,7 @@ class PatientController extends Zend_Controller_Action {
         $column2 = 't.firstName';
        
         if (isset($p['keyword'])) {
-            if ($p['column'] == 'p.patientType') {
-                $column = $p['column'] ;
-                $qb = $this->_entityManager->createQueryBuilder()
-                        ->select('r', 'p', 'o', 's', 't', 'b')
-                        ->from('Entity\Bed', 'b')
-                        ->join('b.residentPatient', 'r')
-                        ->join('r.patient', 'p')
-                        ->join('p.assignedPhysician', 'o')
-                        ->join('o.physician', 's')
-                        ->join('p.patient', 't')
-                        ->where($column . ' LIKE :specialty')
-                        ->orWhere($column2 . ' LIKE :specialty')
-                        ->setParameter('specialty', '%' . $p['keyword'] . '%')
-                        ->orderBy($column);
-                $q = $qb->getQuery();
-
-                $result = $q->getArrayResult();
-
-                return $this->view->patient = $result;
-            } else {
-
-
-                $column = $p['column'];
+             $column = $p['column'];
                 $column2 = 't.firstName';
 
                 $qb = $this->_entityManager->createQueryBuilder()
@@ -65,7 +43,7 @@ class PatientController extends Zend_Controller_Action {
 
                 return $this->view->patient = $result;
             }
-        }
+        
         //print_r($result);
     }
 
