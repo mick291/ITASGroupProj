@@ -13,7 +13,7 @@
     <?php
     $count = 0;
     if (isset($this->patient)) {
-        foreach ($this->patient as $key => $value) {
+           foreach ($this->patient as $key => $value) {
 
 
             $count++;
@@ -44,7 +44,11 @@
 //        }
 //            ?></td>-->
             </tr>
+                        
+            
     <?php }
+    $stuff = $this->patient;
 } ?>
 
 </table>
+<a href="<?php echo $this->url(array('controller' => 'pdf', 'action' => 'index', 'list' => $stuff)); ?>">Print this list </a>
