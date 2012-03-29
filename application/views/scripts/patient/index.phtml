@@ -30,25 +30,31 @@
         foreach ($value['assignedPhysician'] as $newKey => $value2) {
             $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
         }
+                $id = $value['patientId'];
             ?>
+                
                 <td><?php echo $myVar['lastName']; ?></td>
                 <td><?php echo $myVar['firstName']; ?></td>
                 <td><?php echo $myVar['address']; ?></td>
                 <td><?php echo $assignedPhysician; ?></td>
                 <td><?php echo $type; ?></td>
-<!--                <td>//<?php
-//        if (isset($value['roomNumber'])) {
-//            echo $value['roomNumber'];
-//        } else {
-//            echo "N/A";
-//        }
-//            ?></td>-->
+
+                <td><?php if ($type == 'inpatient' || $type == 'InPatient') { ?>
+                        <a href="<?php echo $this->url(array('controller' => 'patient', 
+                            'action' => 'discharge', 'patientId' => "$id")); ?>">Discharge</a> 
+                    <?php } ?>
+                </td>
             </tr>
+<<<<<<< HEAD
                         
             
     <?php }
     $stuff = $this->patient;
 } ?>
+=======
+        <?php }
+    } ?>
+>>>>>>> 9c075310c21de878f7b4ca1a2b8b399400d4a053
 
 </table>
 <a href="<?php echo $this->url(array('controller' => 'pdf', 'action' => 'index', 'list' => $stuff)); ?>">Print this list </a>

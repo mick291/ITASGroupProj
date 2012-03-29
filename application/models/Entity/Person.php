@@ -105,24 +105,24 @@ class Person {
      */
     private $email;
     
-        public function __construct($address, $dob, $fn, $ln, $email, $phone, $zip, $physician = 0, $employee = 0, $volunteer = 0, $patient = 0) {
-        $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
+        public function __construct() {
+       // $this->_entityManager = \Zend_Registry::get('DoctrineEntityManager');
         $this->careCenter = new \Doctrine\Common\Collections\ArrayCollection();
 
-        $this->address = $address;
-        $this->birthDate = $dob;
-        $this->email = $email;
-        $this->firstName = $fn;
-        $this->lastName = $ln;
-        $this->phoneNumber = $phone;
-        $this->zipCode = $zip;
-        $this->employee = $employee;
-        $this->physician = $physician;
-        $this->volunteer = $volunteer;
-        $this->patient = $patient;
-
-        $this->_entityManager->persist($this);
-        $this->_entityManager->flush();
+//        $this->address = $address;
+//        $this->birthDate = $dob;
+//        $this->email = $email;
+//        $this->firstName = $fn;
+//        $this->lastName = $ln;
+//        $this->phoneNumber = $phone;
+//        $this->zipCode = $zip;
+//        $this->employee = $employee;
+//        $this->physician = $physician;
+//        $this->volunteer = $volunteer;
+//        $this->patient = $patient;
+//
+//        $this->_entityManager->persist($this);
+//        $this->_entityManager->flush();
     }
 
     public function __get($property) {
