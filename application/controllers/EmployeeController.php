@@ -18,7 +18,24 @@ class EmployeeController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+       
+    }
+    
+    public function techAction(){
+    
+              $params = array(
+            'dbname' => 'itas288_medds',
+            'user' => 'zend',
+            'password' => 'medds',
+            'host' => '142.25.97.201',
+            'driver' => 'pdo_mysql'
+        );
+
+        $conn = Doctrine\DBAL\DriverManager::getConnection($params);
+        $sql = "SELECT * FROM tech";
+        $stmt = $conn->query($sql);
         
+        $this->view->tech = $stmt->fetchAll();
     }
 
     public function empregisterAction() {

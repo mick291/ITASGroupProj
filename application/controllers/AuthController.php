@@ -24,7 +24,7 @@ class AuthController extends Zend_Controller_Action {
      *
      */
     public function loginAction() {
-         $this->_helper->layout()->disableLayout();
+        $this->_helper->layout()->disableLayout();
 
 
 
@@ -36,10 +36,9 @@ class AuthController extends Zend_Controller_Action {
         } else {//If user submits form
             $formData = $this->_request->getPost();
 
-            
-          $result = $this->loginCheckAction($formData['username'], $formData['password'] );
-          return $result;
-          
+
+            $result = $this->loginCheckAction($formData['username'], $formData['password']);
+            return $result;
         }
     }
 
@@ -140,10 +139,11 @@ class AuthController extends Zend_Controller_Action {
             $user = $auth->getIdentity();
 
             $phoneArray = array('name' => $giv,
-                        'email' => $userName,
-                        'success' => 1);
-            
-            return $phoneArray;
+                'email' => $userName,
+                'success' => 1);
+
+            $urlOptions = array('controller' => 'index', 'action' => 'index');
+            $this->_helper->redirector->gotoRoute($urlOptions);
         }
     }
 
