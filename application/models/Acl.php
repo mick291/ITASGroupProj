@@ -28,9 +28,11 @@ class Model_Acl extends Zend_Acl {
         $this->add(new Zend_Acl_Resource('employee'));
         $this->add(new Zend_Acl_Resource('empregister'), 'employee');
         $this->add(new Zend_Acl_Resource('docregister'), 'employee');
+        $this->add(new Zend_Acl_Resource('tech'), 'employee');
 
         $this->addRole(new Zend_Acl_Role('guest'));
-        $this->addRole(new Zend_Acl_Role('employee'), 'guest');
+        $this->addRole(new Zend_Acl_Role('patient'), 'guest');
+        $this->addRole(new Zend_Acl_Role('employee'), 'patient');
         $this->addRole(new Zend_Acl_Role('doctor'), 'employee');
         $this->addRole(new Zend_Acl_Role('admin'), 'doctor');
 
@@ -38,6 +40,7 @@ class Model_Acl extends Zend_Acl {
         $this->allow('guest', 'index', 'index');
         $this->allow('guest', 'auth', 'logout');
         $this->allow('guest', 'auth', 'login');
+        $this->allow('patient', 'index', 'index');
         $this->allow('employee', 'person', 'index');
         $this->allow('doctor', 'patient', 'index');
         $this->allow('doctor', 'patient', 'register');
@@ -47,6 +50,7 @@ class Model_Acl extends Zend_Acl {
         $this->allow('doctor', 'floorPlan', 'list');
         $this->allow('doctor', 'employee', 'empregister');
         $this->allow('doctor', 'employee', 'docregister');
+        $this->allow('employee', 'employee', 'tech');
         $this->allow('doctor', 'employee', 'index');
         $this->allow('doctor', 'employee', 'refresh');
         $this->allow('doctor', 'patient', 'refresh');
