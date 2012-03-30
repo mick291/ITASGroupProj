@@ -17,12 +17,12 @@ class PatientController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        
-$sessionRole = new Zend_Session_Namespace('sessionRole');
+
+        $sessionRole = new Zend_Session_Namespace('sessionRole');
 
         $p = $this->getRequest()->getParams('keyword');
         $column2 = 't.firstName';
-        
+
         if (isset($p['keyword'])) {
             $column = $p['column'];
             $column2 = 't.firstName';
@@ -43,11 +43,8 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
 
 
             $result = $q->getArrayResult();
-
+            $sessionRole->arrayInfo = $result;
             return $this->view->patient = $result;
-            
-           $sessionRole->arrayInfo = $result;
-
         }
 
         //print_r($result);
@@ -207,6 +204,6 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
             }
         }
     }
- 
+
 }
 

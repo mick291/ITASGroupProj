@@ -10,11 +10,11 @@ class PdfController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        
+
         $sessionRole = new Zend_Session_Namespace('sessionRole');
 
-        
-  $this->getHelper('viewRenderer')->setNoRender();
+
+        $this->getHelper('viewRenderer')->setNoRender();
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
 
@@ -30,71 +30,51 @@ class PdfController extends Zend_Controller_Action {
         $image = Zend_Pdf_Image::imageWithPath('images/MEDDS.png');
         // set font for page
         // write text to page
-         $page->drawImage($image, 72, 820, 800, 400);
+        $page->drawImage($image, 72, 820, 800, 400);
 
         $page->setFont($font, 24)
                 ->drawText('Mr. Book', 72, 720);
 
         $page->setFont($font, 12)
                 ->drawText('Your bookss:', 72, 700);
-      
-
-        $patients = $sessionRole->array;
-         $page->setFont($font, 12)
-                ->drawText(print_r($patients) , 72, 700);
-       
-        
-      if (isset($patients)) {
-           foreach ($patients as $key => $value) {
 
 
-            $count++;
+        $patients = $sessionRole->arrayInfo;
+
+        $page->setFont($font, 12)
+                ->drawText(print_r($patients), 72, 700);
 
 
-            if ($count & 1) {
-                ?> <tr class="d0"> <?php
-        } else {
-                ?> <tr id="d1"> <?php
-        }
+        //     if (isset($patients)) {
 
-        $myVar = $value['patient'];
-        $type = $value['patientType'];
-        foreach ($value['assignedPhysician'] as $newKey => $value2) {
-            $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
-        }
-                $id = $value['patientId'];
-            ?>
-                
-                <td><?php echo $myVar['lastName']; ?></td>
-                <td><?php echo $myVar['firstName']; ?></td>
-                <td><?php echo $myVar['address']; ?></td>
-                <td><?php echo $assignedPhysician; ?></td>
-                <td><?php echo $type; ?></td>
+        $pos = 820;
+        $pos2 = 72;
+        $count = 5;
+        foreach ($patients as $key => $value) {
 
-                <td><?php if ($type == 'inpatient' || $type == 'InPatient') { ?>
-                        <a href="<?php echo $this->url(array('controller' => 'patient', 
-                            'action' => 'discharge', 'patientId' => "$id")); ?>">Discharge</a> 
-                    <?php } ?>
-                </td>
-            </tr>
-                        
+            $count+5;
             
-    <?php }
-    
-    
-    } ?>
-
-</table>
-<?php
+            $myVar = $value['patient'];
+            $type = $value['patientType'];
+            foreach ($value['assignedPhysician'] as $newKey => $value2) {
+                $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
+            }
+            $id = $value['patientId'];
+            $page->setFont($font, 16)
+                    ->drawText($myVar['lastName'], 40, $pos)
+                    ->drawText($myVar['firstName'], $pos2, 3200);
+            $pos += $count;
+            $pos2 += $count;
+        }
         // ->drawText($books, 72, 680);
 
-        $page->setFont($font, 16)
-                ->drawText('Date: ' . $date, 40, 820)
-                ->drawText('Keep this receipt for your records.', 72, 320)
-                ->drawText('You purchased ' . $count . ' books.', 72, 590)
-                ->drawText('Subtotal is: $' . $subTotal, 90, 500)
-                ->drawText('Taxes : $' . number_format($subTotal * .12, 2, '.', ''), 90, 470)
-                ->drawText('Total Charges: $' . number_format($subTotal * 1.12, 2, '.', ''), 90, 440);
+//        $page->setFont($font, 16)
+//                ->drawText('Date: ' . $myVar['lastName'], 40, 820)
+//                ->drawText('Keep this receipt for your records.', 72, 320)
+//                ->drawText('You purchased ' . $count . ' books.', 72, 590)
+//                ->drawText('Subtotal is: $' . $myVar['firstName'], 90, 500)
+//                ->drawText('Taxes : $' . number_format($subTotal * .12, 2, '.', ''), 90, 470)
+//                ->drawText('Total Charges: $' . number_format($subTotal * 1.12, 2, '.', ''), 90, 440);
         // add page to document
         $pdf->pages[] = $page;
 
@@ -104,10 +84,6 @@ class PdfController extends Zend_Controller_Action {
         header("Content-Disposition: inline; filename=result.pdf");
         header("Content-type: application/x-pdf");
         echo $pdfData;
-
-      
     }
-       
-    
 
 }
