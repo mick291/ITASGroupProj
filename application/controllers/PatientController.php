@@ -17,6 +17,7 @@ class PatientController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+        
 $sessionRole = new Zend_Session_Namespace('sessionRole');
 
         $p = $this->getRequest()->getParams('keyword');

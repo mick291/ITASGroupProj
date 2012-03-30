@@ -21,6 +21,11 @@
             <controller>floorPlan</controller>
             <action>index</action>
         </floor>
+               <techs>
+            <label>Technicians</label>
+            <controller>employee</controller>
+            <action>tech</action>
+        </techs>
           <pdf>
             <label>PDF</label>
             <controller>pdf</controller>

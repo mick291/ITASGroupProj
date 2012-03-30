@@ -1,3 +1,6 @@
+
+<h2>Technicians</h2>
+<div id="spacer">
 <table>
     
     <tr>
@@ -7,15 +10,21 @@
         <th>Laboratory</th>
         
     </tr>
-    <tr>
-    <?php 
-    
+    <?php
+    $count = 0;
+     
     foreach ($this->tech as $key => $value) {
-        
-        echo '<tr><td>' . $value['first_name'] . '</td>';
+        $count++;
+            if ($count & 1) {
+                ?> <tr class="d0"> <?php
+        } else {
+                ?><tr id="d1"> <?php
+        }
+     
+        echo '<td>' . $value['first_name'] . '</td>';
         echo '<td>' . $value['last_name'] . '</td>';
         echo '<td>' . $value['name'] . '</td>';
-        echo '<td>' . $value['laboratory_name'] . '</td></tr>';
+        echo '<td>' . $value['laboratory_name'] . '</td>';
     }
     
     
@@ -23,4 +32,4 @@
     </tr>
     
 </table>
-
+</div>
