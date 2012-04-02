@@ -11,13 +11,16 @@ class PdfController extends Zend_Controller_Action {
 
     public function indexAction() {
 
-        $sessionRole = new Zend_Session_Namespace('sessionRole');
 
-
-        $this->getHelper('viewRenderer')->setNoRender();
+//        $this->getHelper('viewRenderer')->setNoRender();
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
+  self::getFrontController()->setParam("noViewRenderer", true);
+        
+//        Zend_Layout::getMvcInstance()->disableLayout();
+//Zend_Controller_Front::getInstance()->setParam('noViewRenderer', true);
 
+$sessionRole = new Zend_Session_Namespace('sessionRole');
         $pdf = new Zend_Pdf();
 
 // Add new page to the document
@@ -27,10 +30,10 @@ class PdfController extends Zend_Controller_Action {
         // define font resource
         $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
         $date = new Zend_Date();
-        $image = Zend_Pdf_Image::imageWithPath('images/MEDDS.png');
+//        $image = Zend_Pdf_Image::imageWithPath('images/MEDDS.png');
         // set font for page
         // write text to page
-        $page->drawImage($image, 72, 820, 800, 400);
+//        $page->drawImage($image, 72, 820, 800, 400);
 
         $page->setFont($font, 24)
                 ->drawText('Mr. Book', 72, 720);
@@ -49,10 +52,10 @@ class PdfController extends Zend_Controller_Action {
 
         $pos = 820;
         $pos2 = 72;
-        $count = 5;
+        $count = 24;
         foreach ($patients as $key => $value) {
 
-            $count+5;
+            $count+24;
             
             $myVar = $value['patient'];
             $type = $value['patientType'];
@@ -76,7 +79,7 @@ class PdfController extends Zend_Controller_Action {
 //                ->drawText('Taxes : $' . number_format($subTotal * .12, 2, '.', ''), 90, 470)
 //                ->drawText('Total Charges: $' . number_format($subTotal * 1.12, 2, '.', ''), 90, 440);
         // add page to document
-        $pdf->pages[] = $page;
+//        $pdf->pages[] = $page;
 
         // save as file
         $pdfData = $pdf->render();
