@@ -18,7 +18,7 @@
         </patient>
         <floor>
             <label>Floor-Plan</label>
-            <controller>floorPlan</controller>
+            <controller>floorplan</controller>
             <action>index</action>
         </floor>
                <techs>
