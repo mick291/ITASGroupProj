@@ -12,10 +12,10 @@ class PdfController extends Zend_Controller_Action {
     public function indexAction() {
 
 
-//        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('viewRenderer')->setNoRender();
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
-  self::getFrontController()->setParam("noViewRenderer", true);
+//  self::getFrontController()->setParam("noViewRenderer", true);
         
 //        Zend_Layout::getMvcInstance()->disableLayout();
 //Zend_Controller_Front::getInstance()->setParam('noViewRenderer', true);
@@ -79,7 +79,7 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
 //                ->drawText('Taxes : $' . number_format($subTotal * .12, 2, '.', ''), 90, 470)
 //                ->drawText('Total Charges: $' . number_format($subTotal * 1.12, 2, '.', ''), 90, 440);
         // add page to document
-//        $pdf->pages[] = $page;
+        $pdf->pages[] = $page;
 
         // save as file
         $pdfData = $pdf->render();
