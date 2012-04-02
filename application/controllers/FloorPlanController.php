@@ -1,6 +1,6 @@
 <?php
 
-class FloorPlanController extends Zend_Controller_Action {
+class FloorplanController extends Zend_Controller_Action {
 
     protected $_flashMessenger = null;
 

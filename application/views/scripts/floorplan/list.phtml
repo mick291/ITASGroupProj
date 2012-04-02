@@ -1,0 +1,43 @@
+           <table border="0" align="center">
+    <tr>      
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Address</th>
+        <th>Assigned Physician</th>
+        <th>Type</th>
+
+        <?php echo $this->form; ?>
+    </tr>
+    <?php
+     $count = 0;
+    if (isset($this->patient)) {
+        foreach ($this->patient as $key => $value) {
+         
+               $count ++;
+            
+                          
+                          if ( $count&1 )
+{
+ ?> <tr class="d0"> <?php
+}
+else
+{
+?> <tr id="d1"> <?php
+}
+                $myVar = $value['patient'];
+                $type = $value['patientType'];
+                foreach ($value['assignedPhysician'] as $newKey => $value2) {
+                    $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
+                }
+                ?>
+
+                <td><?php echo $myVar['lastName']; ?></td>
+                <td><?php echo $myVar['firstName']; ?></td>
+                <td><?php echo $myVar['address']; ?></td>
+                <td><?php echo $assignedPhysician; ?></td>
+                <td><?php echo $type; ?></td>
+            </tr>
+        <?php }
+    } ?>
+
+</table>
