@@ -13,7 +13,7 @@
     <?php
     $count = 0;
     if (isset($this->patient)) {
-           foreach ($this->patient as $key => $value) {
+        foreach ($this->patient as $key => $value) {
 
 
             $count++;
@@ -30,9 +30,9 @@
         foreach ($value['assignedPhysician'] as $newKey => $value2) {
             $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
         }
-                $id = $value['patientId'];
+        $id = $value['patientId'];
             ?>
-                
+
                 <td><?php echo $myVar['lastName']; ?></td>
                 <td><?php echo $myVar['firstName']; ?></td>
                 <td><?php echo $myVar['address']; ?></td>
@@ -40,21 +40,18 @@
                 <td><?php echo $type; ?></td>
 
                 <td><?php if ($type == 'inpatient' || $type == 'InPatient') { ?>
-                    <INPUT TYPE="BUTTON" VALUE="Discharge" ONCLICK="window.location.href='<?php echo $this->url(array('controller' => 'patient', 
-                            'action' => 'discharge', 'patientId' => "$id")); ?>'"> 
-                       
+                        <INPUT TYPE="BUTTON" VALUE="Discharge" ONCLICK="window.location.href='<?php echo $this->url(array('controller' => 'patient',
+                'action' => 'discharge', 'patientId' => "$id")); ?>'"> 
+
                     <?php } ?>
                 </td>
             </tr>
-                        
-            
-    <?php }
-   
- 
 
-         
+
+        <?php }
     } ?>
 
 </table>
-<a href="<?php echo $this->url(array('controller' => 'pdf', 'action' => 'index')); ?>">Print this list </a>
 
+
+<INPUT TYPE="BUTTON" VALUE="Print" ONCLICK="window.location.href='<?php echo $this->url(array('controller' => 'pdf', 'action' => 'index')); ?>'"> 
