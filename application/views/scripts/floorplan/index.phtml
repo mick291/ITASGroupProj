@@ -70,7 +70,7 @@
             </script>
             <?php
             $r = $_GET['data'];
-//                                             print_r(json_decode($r));
+                                             print_r(json_decode($r));
             ?>
             <div id="spacer">  
                 <table border ="0">
@@ -81,6 +81,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Assigned Physician</th>
+                         <th>Notes</th>
                     </tr>
 
                     <?php
@@ -106,6 +107,7 @@
                                 <td><?php echo $myVar3['firstName']; ?></td>
                                 <td><?php echo $myVar3['lastName']; ?></td>
                                 <td><?php echo $myVar5['firstName'] . " " . $myVar5['lastName']; ?></td>
+                                 <td><?php echo $myVar2['notes']; ?></td>
                             </tr>
                             <?php
                         endforeach;
