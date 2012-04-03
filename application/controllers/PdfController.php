@@ -16,11 +16,10 @@ class PdfController extends Zend_Controller_Action {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
 //  self::getFrontController()->setParam("noViewRenderer", true);
-        
 //        Zend_Layout::getMvcInstance()->disableLayout();
 //Zend_Controller_Front::getInstance()->setParam('noViewRenderer', true);
 
-$sessionRole = new Zend_Session_Namespace('sessionRole');
+        $sessionRole = new Zend_Session_Namespace('sessionRole');
         $pdf = new Zend_Pdf();
 
 // Add new page to the document
@@ -55,8 +54,8 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
         $count = 24;
         foreach ($patients as $key => $value) {
 
-            $count+24;
-            
+            $count + 24;
+
             $myVar = $value['patient'];
             $type = $value['patientType'];
             foreach ($value['assignedPhysician'] as $newKey => $value2) {
@@ -70,7 +69,6 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
             $pos2 += $count;
         }
         // ->drawText($books, 72, 680);
-
 //        $page->setFont($font, 16)
 //                ->drawText('Date: ' . $myVar['lastName'], 40, 820)
 //                ->drawText('Keep this receipt for your records.', 72, 320)
@@ -87,6 +85,8 @@ $sessionRole = new Zend_Session_Namespace('sessionRole');
         header("Content-Disposition: inline; filename=result.pdf");
         header("Content-type: application/x-pdf");
         echo $pdfData;
+        
+        flush();
     }
 
 }
