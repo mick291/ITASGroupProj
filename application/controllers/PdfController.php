@@ -35,36 +35,37 @@ class PdfController extends Zend_Controller_Action {
 //        $page->drawImage($image, 72, 820, 800, 400);
 
         $page->setFont($font, 24)
-                ->drawText('Mr. Book', 72, 720);
+                ->drawText('Nanaimo Health Clinic', 72, 720);
 
         $page->setFont($font, 12)
-                ->drawText('Your bookss:', 72, 700);
+                ->drawText('Requested List', 72, 700);
 
 
         $patients = $sessionRole->arrayInfo;
 
-        $page->setFont($font, 12)
-                ->drawText(print_r($patients), 72, 700);
-
-
+//
+        $page->setFont($font, 12);
+//                ->drawText(print_r($patients), 72, 700);
         //     if (isset($patients)) {
 
-        $pos = 820;
-        $pos2 = 72;
+        $pos = 550;
+        $pos2 = 200;
         $count = 24;
         foreach ($patients as $key => $value) {
 
-            $count + 24;
+            $count - 10;
 
             $myVar = $value['patient'];
             $type = $value['patientType'];
             foreach ($value['assignedPhysician'] as $newKey => $value2) {
                 $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
+                 $page->setFont($font, 16)
+                    ->drawText($assignedPhysician, 100, $pos);
             }
             $id = $value['patientId'];
             $page->setFont($font, 16)
-                    ->drawText($myVar['lastName'], 40, $pos)
-                    ->drawText($myVar['firstName'], $pos2, 3200);
+                    ->drawText($myVar['lastName'], 100, 600)
+                    ->drawText($myVar['firstName'], $pos2, 600);
             $pos += $count;
             $pos2 += $count;
         }
@@ -85,7 +86,7 @@ class PdfController extends Zend_Controller_Action {
         header("Content-Disposition: inline; filename=result.pdf");
         header("Content-type: application/x-pdf");
         echo $pdfData;
-        
+
         flush();
     }
 
