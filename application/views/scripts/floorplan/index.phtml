@@ -75,6 +75,7 @@
             <div id="spacer">  
                 <table border ="0">
                     <tr>
+                        <th></th>
                         <th>Room #</th>
                         <th>Bed ID</th>
                         <th>Patient ID</th>
@@ -100,7 +101,7 @@
                             ?> <tr class="d0"> <?php
                 } else {
                             ?> <tr id="d1"><?php } ?>
-
+                                <td><?php echo "<img src=\"/var/www/uploads/" . $myVar2['picture'] . "\" />"; ?></td>
                                 <td><?php echo $myVar6['roomId']; ?></td>
                                 <td><?php echo $value['bedId']; ?></td>
                                 <td><?php echo $myVar3['personId']; ?></td>
