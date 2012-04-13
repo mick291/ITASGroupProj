@@ -26,11 +26,6 @@
             <controller>employee</controller>
             <action>tech</action>
         </techs>
-          <pdf>
-            <label>PDF</label>
-            <controller>pdf</controller>
-            <action>index</action>
-        </pdf>
         <register>
             <label>Registration-Forms</label>
             <controller>employee</controller>
