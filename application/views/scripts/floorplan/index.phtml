@@ -102,8 +102,16 @@
                         if ($count & 1) {
                             ?> <tr class="d0"> <?php
                 } else {
-                            ?> <tr id="d1"><?php } ?>
-                                <td><?php echo "<img src=\"http://142.25.97.127/phone/uploads/" . $myVar2['picture'] . "\" />"; ?></td>
+                            ?> <tr id="d1"><?php } 
+                            
+                            
+                            if( $myVar2['picture'] == null) {
+                              ?>                                                         
+                                <td><?php echo "No Image"; ?></td>  <?php
+                            } else {
+                            ?>
+                                                              
+                                <td><?php echo "<img src=\"http://142.25.97.127/phone/uploads/" . $myVar2['picture'] . "\" />";  }?></td>
                                 <td><?php echo $myVar6['roomId']; ?></td>
                                 <td><?php echo $value['bedId']; ?></td>
                                 <td><?php echo $myVar3['personId']; ?></td>
