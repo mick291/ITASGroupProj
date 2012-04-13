@@ -24,15 +24,17 @@ class PdfController extends Zend_Controller_Action {
 
 // Add new page to the document
         $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
-        $pdf->pages[] = $page;
+//        $pdf->pages[] = $page;
 
         // define font resource
         $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
         $date = new Zend_Date();
-//        $image = Zend_Pdf_Image::imageWithPath('images/MEDDS.png');
+        $image = Zend_Pdf_Image::imageWithPath('images/MEDDS.png');
         // set font for page
         // write text to page
-//        $page->drawImage($image, 72, 820, 800, 400);
+        $page->drawImage($image, 0, 0, 1000, 100);
+        
+        
 
         $page->setFont($font, 24)
                 ->drawText('Nanaimo Health Clinic', 72, 720);
@@ -48,27 +50,37 @@ class PdfController extends Zend_Controller_Action {
 //                ->drawText(print_r($patients), 72, 700);
         //     if (isset($patients)) {
 
-        $pos = 550;
-        $pos2 = 200;
-        $count = 24;
+        $pos = 650;
+        $pos2 = 634;
+        $count = 16;
+        $count2 = 16;
         foreach ($patients as $key => $value) {
 
-            $count - 10;
+           
 
             $myVar = $value['patient'];
-            $type = $value['patientType'];
-            foreach ($value['assignedPhysician'] as $newKey => $value2) {
-                $assignedPhysician = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
-                 $page->setFont($font, 16)
-                    ->drawText($assignedPhysician, 100, $pos);
-            }
-            $id = $value['patientId'];
-            $page->setFont($font, 16)
-                    ->drawText($myVar['lastName'], 100, 600)
-                    ->drawText($myVar['firstName'], $pos2, 600);
+//            $type = $value['patientType'];
+          
+//            $id = $value['patientId'];
+                  $person = $myVar['lastName'] . ", " . $myVar['firstName'];
+            $page->setFont($font, 14)
+                   ->drawText($person, 100, $pos - 100);
             $pos += $count;
-            $pos2 += $count;
-        }
+        }          
+//        }
+//                     foreach ($patients as $key => $value) {
+//         foreach ($value['assignedPhysician'] as $newKey => $value2) {
+//               $count2 - 32;
+////                $assignedPhysician2 = "Dr. " . $value2['firstName'] . " " . $value2['lastName'];
+//                
+////                foreach ($value2 as $newKey2 => $value3) {
+////                $page->setFont($font, 16)
+////                    ->drawText("Dr. " . $value3['firstName'] . " " . $value3['lastName'], 100, $pos2);
+////                    $pos2 += $count2;
+////                }
+//         }
+//          }
+
         // ->drawText($books, 72, 680);
 //        $page->setFont($font, 16)
 //                ->drawText('Date: ' . $myVar['lastName'], 40, 820)
